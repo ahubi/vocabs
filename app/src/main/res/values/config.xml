@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="WordSeparator">=</string><item name="Tag2" format="integer" type="id">2</item><item name="Tag1" format="integer" type="id">1</item>
+    <string translatable="false" name="NamePrefix">\@#</string>
+    <string translatable="false" name="ButtonFormKey">ButtonFormKey</string>
+    <color name="DefaultButtonColor">#FFFFF68F</color>
+    <color name="DefaultTextColor">#FF000000</color>
+    <item type="id" format="integer" name="Tag3">3</item>
+    
+</resources>

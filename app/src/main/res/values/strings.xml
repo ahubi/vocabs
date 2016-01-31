@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Sound">Sound by right</string>
+	<string
+		name="Words">Words</string>
+	<string
+		name="Title">Title</string>
+
+	<string
+		name="app_name">Vocabs</string>
+	<string
+		name="EditWords">Edit list</string>
+	<string
+		name="WordLists">Word lists</string>
+	<string
+		name="Delete">Delete</string>
+	<string
+		name="Add">New list</string>
+	<string
+		name="Edit">Edit</string>		
+	<string
+		name="SelectFile">Select file</string>	
+	<string
+		name="NoMoreWordlists">No more words</string>
+	<string
+		name="Import">Import...</string>
+	<string
+		name="Error">Error</string>
+	<string
+		name="ImportError">Failed to read %s</string>
+	<string
+		name="Export">Export</string>	
+	<string
+		name="Exported">Word list exported to %s</string>	
+	<string
+		name="ExportError">Word list couldn\'t be exported to %s</string>	
+	<string  name="Prefs">Settings</string>
+	<string  name="Help">Help</string>	
+    <string name="Right">C:</string>
+    <string name="False">W:</string>
+    <string name="ButtonsX">Columns</string>
+    <string name="ButtonsY">Rows</string>
+    <string name="TrainMode">Train mode</string>
+    <string name="InverseLang">Invert language</string>
+    <string name="Buttonsdesc">Number of questions</string>
+    <string name="VibrateF">Vibrate by wrong</string>
+    <string name="ToneSelectorR">Tone by correct</string>
+    <string name="ToneSettings">Tone settings</string>
+    <string name="ToneSelectorF">Tone by wrong</string>
+    <string name="VibrateR">Vibrate by correct</string>
+    <string name="Stats">Stats</string>
+    <string name="FirstTime">Start</string>
+    <string name="LastTime">Last time</string>
+    <string name="LastWords">Last trained</string>
+    <string name="TotalWrong">wrong:</string>
+    <string name="TotalCorrect">Total correct:</string>
+    <string name="TotalDuration">Total duration</string>
+    <string name="Ratio">Result</string>
+    <string name="TimedStart">On time</string>
+    <string name="TimedStop">Stop</string>
+    <string name="DisplaySettings">Display settings</string>
+    <string name="ButtonFormRectangles">Rectangle</string>
+    <string name="ButtonFormCircles">Oval</string>
+    <string name="ButtoFormsDescription">Change look </string>
+    <string name="ButtonFormsText">Form settings</string>
+    <string name="MultipleChoice">Multiple choice</string>
+    <string name="MemoryCard">Flash cards</string>
+    <string name="DeleteAll">Delete all lists</string>
+    <string name="DeleteAllMessage">Are you sure to delete all your word lists?</string>
+    <string name="ExportAll">Export all</string>
+    <string name="Select2Train">Select list</string>
+    <string name="ButtonColorTitle">Button color</string>
+    <string name="ButtonTextColorTitle">Text color</string>
+    <string name="PickColorText">Pick a color</string>
+    <string name="HelpString"><![CDATA[
+        <h1>Description</h1>
+        <p> 
+        This is a tool that helps to learn the vocabulary of foreigner languages, historical dates,
+        or any other information which can be presented in a \"Question-Answer\" format.</p>
+        <h1>Modus Operandi</h1>
+        <p>
+        <b>Flash cards</b> starts a mode where the words are learned by the flashcard principle. <br>
+        <b>Multiple choice</b> starts a mode where the words are learned by the multiple choice principle.<br>
+        <b>Manage word lists</b> starts an interface where the word lists can be uploaded, edited or created from scratch. <br>
+        </p>
+        
+        <h1>How to create a new list</h1>
+        <p> A new word list can be created either at the PC and then uploaded to the phone, or directly at the phone inside \"Manage word lists\" interface. 
+        The word list creation at the PC has many advantages and therefore recommended.
+        A new word list might be prepared at the PC as a text file. Please unmout SD car from PC before starting to import on your device. 
+        The question should be separated by a tabulator from the answer: <br>
+        Question \"Tabulator\" Answer<br>  
+        Please export an existing list to see more about the format.
+        </p>
+              
+        <h1>How to import a new word list</h1>
+        <p> 
+        * Prepare a new word list at the PC<br>
+        * Connect the phone to the PC using a USB cable<br>
+        * Copy a new list from the PC to the phone SD memory card<br>
+        * Disconnect the phone from the PC<br>
+        * Start the application at your device<br>
+        * Tap a \"Manage words\" icon, press option button, tap an \"Import\" option
+        * Tap a new list file name in the file manager window<br><br>
+        </p>
+        <h1>Settings</h1>
+        <p> The underlying options provide an opportunity to make the tool more \"child-friendly\".   
+        * \"Invert language\" - flip the Question-Answer pairs (move option to the Modes) <br>
+        * Define a number of Rows and Columns<br>
+        * Change Tone settings (in case of correct\/false answer)<br>
+        * Change Display settings<br><br>
+        </p>
+        ]]>
+     </string>
+     <string name="TextSizeButtons">Text buttons</string>
+     <string name="TextSizeDescription">Change text size</string>
+     <string name="TextSizeQuestion">Text size question word</string>
+     <string translatable="false" name="ohoh">Oh, Oh!</string>
+     <string translatable="false" name="solala">So lala</string>
+     <string translatable="false" name="easy">Easy</string>
+     <string name="FilterHint">type here to filter</string>
+     <string name="MagnifierText">Search ...</string>
+     <string name="EditList">Edit list</string>
+     <string name="Language1">Language 1</string>
+     <string name="Language2">Language 2</string>
+     <string name="AddWord">Add new item</string>
+     <string name="PleaseWait">Please wait</string>
+     <string name="GetLists">Getting lists ...</string>
+     <string name="GetWords">Getting words ...</string>
+     <string name="ImportProgress">Importing ...</string>
+     <string name="ImportFromDictCC">Import from dict.cc</string>
+     <string name="ErrorFromDictCC">Error importing lists from dict.cc, check your internet connection.</string>
+     <string name="ErrorGettingWords">Error getting words from this list</string>
+     <string name="Translate">Translate</string>
+     <string name="TargetLanguageError">Wrong target language, please specify a language.</string>
+     <string name="RecordSaved">Record was saved</string>
+     <string name="RecordSaveFail">Record incorrect and wasn\'t saved</string>
+</resources>

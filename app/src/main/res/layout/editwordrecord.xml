@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/top_control_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:weightSum="2.0">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/AddItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:text="@string/AddWord" />
+
+            <Button
+                android:id="@+id/edit_word_button1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:text="Translate" />
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/trans_word_lang1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/edit_word_lang1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:gravity="center" />
+        <EditText
+            android:id="@+id/edit_word_word1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.39"
+            android:gravity="top" >
+
+            <requestFocus />
+        </EditText>
+
+        <Spinner
+            android:id="@+id/trans_word_lang2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/edit_word_lang2"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:gravity="center" />
+        <EditText
+            android:id="@+id/edit_word_word2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.57"
+            android:gravity="top" />
+
+    </LinearLayout>
+
+</LinearLayout>

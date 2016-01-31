@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Sound">Sound bei richtig</string>
+	<string
+		name="Words">Wörter</string>
+	<string
+		name="Title">Titel</string>
+
+	<string
+		name="app_name">Vocabs</string>
+	<string
+		name="EditWords">Wortliste bearbeiten</string>
+	<string
+		name="WordLists">Wortlisten</string>
+	<string
+		name="Delete">Löschen</string>
+	<string
+		name="Add">Neue Wortliste</string>
+	<string
+		name="Edit">Bearbeiten</string>		
+	<string
+		name="SelectFile">Datei wählen</string>	
+	<string
+		name="NoMoreWordlists">Keine weiteren Wortlisten</string>
+	<string
+		name="Import">Importieren...</string>
+	<string
+		name="Error">Fehler</string>
+	<string
+		name="ImportError">Datei %s konnte nicht gelesen werden</string>
+	<string
+		name="Export">Exportieren</string>	
+	<string
+		name="Exported">Wortliste wurde ins Verzeichnis %s exportiert</string><string name="Language1">Sprache 1</string><string name="Language2">Sprache 2</string>	
+	<string
+		name="ExportError">Wortliste konnte nicht ins Verzeichnis %s exportiert werden</string>	
+	<string	name="Prefs">Einstellungen</string>
+	<string  name="Help">Hilfe</string> 
+    <string name="Right">R:</string><string name="ExportAll">Alle exportieren</string>
+    <string name="False">F:</string>
+    <string name="ButtonsX">Spalten</string>
+    <string name="ButtonsY">Zeilen</string>
+    <string name="TrainMode">Trainier Modus</string>
+    <string name="InverseLang">Sprache umkehren</string>
+    <string name="WordSeparator">=</string>
+    <string name="Buttonsdesc">Anzahl der angezeigten Fragen</string>
+    <string name="VibrateF">Vibrieren bei falsch</string>
+    <string name="ToneSelectorR">Tone bei richtig</string>
+    <string name="Select2Train">Liste auswählen</string>
+    <string name="ToneSettings">Tone settings</string>
+    <string name="ToneSelectorF">Tone bei falsch</string>
+    <string name="VibrateR">Vibrieren bei richtig</string>
+    <string name="Stats">Statistik</string>
+    <string name="FirstTime">Start</string>
+    <string name="LastTime">Letzte Übung</string>
+    <string name="LastWords">Zuletzt geübt</string>
+    <string name="TotalWrong">falsch:</string>
+    <string name="TotalCorrect">Gesamt richtig:</string>
+    <string name="TotalDuration">Übungszeit</string>
+    <string name="Ratio">Ergebnis</string>
+    <string name="TimedStart">Auf Zeit</string>
+    <string name="TimedStop">Anhalten</string>
+    <string name="DisplaySettings">Anzeige Einstellungen</string>
+    <string name="ButtonFormRectangles">Abgerundete Rechtecke</string>
+    <string name="ButtonFormCircles">Ovale</string>
+    <string name="ButtoFormsDescription">Aussehen ändern </string>
+    <string name="ButtonFormsText">Formeinstellungen</string>
+    <item name="Tag1" format="integer" type="id">1</item>
+    <item name="Tag2" format="integer" type="id">2</item>
+    <string name="MultipleChoice">Multiple choice</string>
+    <string name="MemoryCard">Flash cards</string>
+    <string name="DeleteAll">Alle löschen</string>
+    <string name="DeleteAllMessage">Damit werden alle Wortlisten gelöscht, sind Sie sicher?</string>
+    <string name="ButtonColorTitle">Buttonfarbe</string>
+    <string name="ButtonTextColorTitle">Textfarbe</string>
+    <string name="PickColorText">Farbe wählen</string>
+    <string name="HelpString"><![CDATA[
+        <h1>Allgemein</h1>
+        <p>Zum Einprägen und Üben von beliebigem Stoff der sich in Form Frage=Antwort üben lässt.</p>
+        <h1>Trainer Modi</h1>
+        <p><b>Flash cards</b> nach dem Prinzip der \"Vokabeln Karten\" Wörter bzw. Ausdrücke lernen.
+        <br>
+        <b>Multichoice</b> \"Multiple choice\" Prinzip, nur eine Antwort ist richtig.</p>
+       
+        <h1>Listen Operationen</h1>
+        <p> 
+        * Neue Wortlisten am Telefon anlegen<br>
+        * Am PC erstellte Listen importieren<br> 
+        * Wortlisten auf SD Karte exportieren<br>
+        * Wortlisten am Telefon direkt bearbeiten.<br>
+        * Wortlisten löschen.<br><br>
+        Eine Wortliste ist nach dem Prinzip<br> 
+        Frage Antwort<br>
+        Frage Antwort<br>
+        aufgebaut. Frage und Antwort sollten mit einem Tabulator getrennt sein.<br> 
+        Tipp: Exportiere eine bestehnde um mehr über das Format zu erfahren.<br>
+        
+        Hinweis: Vor dem Import der Liste sollte die SD Karte vom PC unmountet werden.
+        </p>
+        <h1>Einstellungen</h1>
+        <p> 
+        * Ändern des Aussehen von Buttons <br>
+        * Anzahl Buttons pro Zeile\/Spalte einstellen<br>
+        * Farbe der Buttons\/Textes ändern<br>
+        * Textgröße ändern<br><br>
+        Zum Ändern der Farbe zuerst die Farbe wählen, in der Mitte wird dann die Farbe 
+        angezeigt dann in der Mitte des Kreises klicken umd die Farbe einzustellen.</p>
+        ]]>
+     </string>
+     <string name="TextSizeButtons">Textgröße buttons</string>
+     <string name="TextSizeDescription">Ändern der Textgröße</string>
+     <string name="TextSizeQuestion">Textgröße Fragewort</string>
+     <string name="FilterHint">Tippen Sie hier zum Filtern</string>
+     <string name="MagnifierText">Suchen...</string>
+     <string name="EditList">Liste bearabeiten</string>
+     <string name="AddWord">Wordpaar hinzufügen</string>
+     <string name="PleaseWait">Bitte warten</string>
+     <string name="GetLists">Lade Listen ...</string>
+     <string name="GetWords">Wörter werden geholt ...</string>
+     <string name="ImportProgress">Importiere ...</string>
+     <string name="ImportFromDictCC">Import von dict.cc</string>
+     <string name="ErrorFromDictCC">Fehler beim Importieren von dict.cc, prüfen Sie die Internet Verbindung.</string>
+     <string name="ErrorGettingWords">Beim Holen der Wörter ist ein Problem aufgetretten</string>
+     <string name="Translate">Übersetze</string>
+     <string name="TargetLanguageError">Zielsprache nicht gesetzt, bitte eine konkrete Sprache auswählen.</string>
+     <string name="RecordSaved">Wörter wurden gespeichert</string>
+     <string name="RecordSaveFail">Unvollständige Wörterpaare werden nicht gespeichert.</string>
+     
+</resources>

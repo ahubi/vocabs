@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.babasoft.vocabs"
+    android:installLocation="auto"
+    android:versionCode="5"
+    android:versionName="1.5" >
+
+    <application
+        android:icon="@drawable/main_icon"
+        android:label="@string/app_name" >
+
+        <!--
+              Activity soll bei Drehung des Geräts nicht neu gestartet werden: 
+			android:configChanges="keyboardHidden|orientation"
+			(Layout passt sich automatisch an)
+        -->
+        <activity
+            android:name=".Main"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name" 
+        	android:theme="@style/Theme.AppCompat">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="EditWordList"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/EditWords" >
+        </activity>
+        <activity
+            android:name="WordLists"
+            android:label="@string/WordLists" >
+        </activity>
+        <activity android:name="FileSelectorActivity" >
+        </activity>
+        <activity
+            android:name="com.babasoft.vocabs.PrefsActivity"
+            android:label="@string/Prefs" >
+        </activity>
+        <activity
+            android:name="Stats"
+            android:label="@string/Stats" >
+        </activity>
+        <activity
+            android:name="MemoryCard"
+            android:label="@string/MemoryCard" >
+        </activity>
+        <activity
+            android:name="MultipleChoice"
+            android:label="@string/MultipleChoice" >
+        </activity>
+        <activity
+            android:name="WordListsSimple"
+            android:label="@string/Select2Train" >
+        </activity>
+        <activity
+            android:name="EditWordRecord"
+            android:label="@string/EditWords" >
+        </activity>
+        <activity
+            android:name="EditList"
+            android:label="EditList" >
+        </activity>
+        <activity
+            android:name=".Help"
+            android:label="@string/Help" >
+        </activity>
+        <activity
+            android:name="DictCCList"
+            android:label="DictCCList" >
+        </activity>
+        <activity
+            android:name="DictCCWords"
+            android:label="DictCCWords" >
+        </activity>
+    </application>
+
+     <uses-sdk
+      android:minSdkVersion="7"
+      android:targetSdkVersion="19" />
+    <supports-screens
+        android:anyDensity="false"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.VIBRATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+
+</manifest>

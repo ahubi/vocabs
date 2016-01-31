@@ -1,0 +1,1817 @@
+<sql>
+<statement>
+CREATE TABLE IF NOT EXISTS wordlists (
+        _id INTEGER PRIMARY KEY AUTOINCREMENT, 
+        title TEXT not null,
+        lang1 TEXT not null,
+        lang2 TEXT not null,
+        descr TEXT,
+        type  INTEGER,	
+        selection INTEGER)
+</statement>
+
+<statement>
+CREATE TABLE IF NOT EXISTS words (
+        _id INTEGER PRIMARY KEY AUTOINCREMENT, 
+        _list INTEGER,
+        w1 TEXT not null,
+        w2 TEXT not null,
+        score INTEGER)
+</statement>
+
+<wordlists>
+	<wordlist>
+	  <list>1, Lektion 1-7, la, de, Latein mit Felix, 0</list>
+		<words>basilica	Markthalle, Gerichtshalle
+		cūria	Rathaus, Kurie
+		forum	Marktplatz, Forum
+		monumentum	Denkmal, Grabmal
+		statua	Standbild, Statue
+		templum	Tempel, heiliger Ort
+		dominus	Hausherr, Herr
+		domina	Hausherrin, Dame
+		fīlius	Sohn
+		fīlia	Tochter
+		servus	Sklave, Diener
+		serva	Sklavin, Dienerin
+		Roma	Rom
+		forum Romanum	Forum Romanum (Marktplatz von Rom)
+		taberna	Laden, Wirtshaus
+		mercator, mercatoris	Kaufmann
+		praetor, praetoris	Prätor (Beamter)
+		senator, senatoris	Senator
+		amphitheatrum	Amphitheater
+		argentarius	Geldwechsler, Bankier
+		est	er (sie, es) ist
+		amīcus	Freund
+		amīca	Freundin
+		et	und, auch
+		sunt	sie sind
+		hīc	hier
+		ibī	dort
+		porta	Tor
+		iam	nun; schon, bereits
+		patet	er (sie, es) steht offen, erstreckt sich
+		taberna	Laden, Wirtshaus
+		adest	er (sie, es) eilt, beeilt sich
+		salūtat	er (sie, es) (be)gruesst
+		salvē	Sei gruesst! Guten Tag!
+		salvēte	Seid gruesst! Guten Tag!
+		gaudet	er (sie, es) freut sich
+		sed	 aber, sondern
+		intérrogat	er (sie, es) fragt
+		ubī	wo
+		tandem	endlich
+		nunc	jetzt, nun
+		quid?	was?
+		videt	er (sie, es) sieht
+		mercator	Kaufmann, Händler
+		labōrat	er (sie, es) arbeitet, strengt sich an
+		etiam	auch, sogar
+		adsunt	sie sind da, helfen
+		nam	denn, nämlich
+		nōn	nicht
+		intrat	er (sie, es) betritt, tritt ein
+		paulum	ein wenig
+		exspectat	er (sie, es) wartet, erwartet
+		cūr?	warum?
+		cessat	er (sie, es) zögert, rastet
+		senator	Senator
+		prope	nahe, in der Nahe; beinahe
+		sedet	er (sie, es) sitzt
+		tacet	er (sie, es) schweigt, verschweigt
+		nōndum	noch nicht
+		populus	Volk, Volksmenge (die Leute)
+		diū	lange (Zeit)
+		accēdit	er (sie, es) kommt herbei,kommt hinzu
+		statim	auf der Stelle, sofort
+		clamat	  er (sie, es) ruft laut, schreit  Re-klame
+		tum	da, damals, dann, darauf
+		quis?	wer?
+		mittit	er (sie, es) lasst (los), schickt; wirft
+		nēmō	niemand
+		placet	er (sie, es) gefallt
+		stat	er (sie, es) steht statua
+		rīdet	er (sie, es) lacht, lacht aus
+		vocat	er (sie, es) nennt, benennt, ruft
+		aurum	Gold
+		argentum	Silber
+		et... et	sowohl... als auch
+		iacet	er (sie, es) liegt
+		spectat	er (sie, es) betrachtet, sieht hin
+		emit	er (sie, es) kauft
+		intus	im Inneren, innen
+		ōrnāmentum	Schmuck(stück)
+		est	es gibt
+		itaque	deshalb
+		quaerit	er (sie, es) sucht; will erwerben; fragt
+		Rōmānus	Römer
+		aedificat	er (sie, es) baut
+		portat	er (sie, es) bringt, trägt
+		puella	Mädchen, Freundin
+		pecūnia	Geld, Vermögen
+		petit	er (sie, es) sucht (auf), (er)strebt, bittet, verlangt
+		dat	er (sie, es) gibt
+		discēdit	er (sie, es) geht weg, geht auseinander
+		subitō	plötzlich
+		equus	Pferd
+		frumentum	Getreide
+		amat	er (sie, es) liebt
+		tangit	er (sie, es) berührt
+		timet	er (sie, es) hat Angst, fürchtet
+		clāmor	Geschrei, Lärm
+		sollicitat	er (sie, es) hetzt auf, beunruhigt, erregt
+		retinet	er (sie, es) hält zurück, behält, hält fest
+		locus	Ort, Platz, Stelle
+		locum dat	er (sie, es) macht Platz
+		imprīmīs	besonders, vor allem
+		turba	Menschenmenge, Lärm, Verwirrung
+		cūriam petit	 er (sie, es) sucht die Kurie auf, eilt zur Kurie
+		dum	während, solange, (so lange) bis
+		dēpōnit	er (sie, es) legt nieder, legt ab 
+		dimittit	er (sie, es) schickt weg, entlässt, gibt auf
+		dēnique	schließlich, zuletzt
+		verbum	Wort, Äußerung
+		violat	er (sie, es) verletzt, entehrt
+		nōn iam	nicht mehr 
+		sustinet	er (sie, es) erträgt, hält stand</words>
+	</wordlist>
+	<wordlist>
+	   <list>2, Lektion 8-14, la, de, Latein mit Felix, 0</list>
+		<words>clāmat	er (sie, es) ruft laut, schreit
+		accēdit	er (sie, es) kommt herbei, kommt hinzu
+		discēdit	er (sie, es) geht weg, geht auseinander
+		emit	er (sie, es) kauft
+		pecūniam petit	er (sie, es) verlangt Geld
+		ad	an, bei, nach, zu
+		in	in, nach, auf, gegen, bei, an
+		ā/ab	von, von ... her
+		cum	mit, zusammen
+		ē/ex	aus, von ... her
+		cōnsilium	Beratung; Beschluss, Plan, Rat
+		habet	er (sie, es) hat, hält er (sie, es) hält
+		cōnsilium habet	eine Beratung ab Aufgabe, Geschäft
+		negōtium	Angelegenheit er (sie, es) handelt
+		agit	treibt, verhandelt er (sie, es)
+		negōtia agit	geht (seinen) Geschäften nach
+		modo ... modo	manchmal... manchmal, bald ... bald
+		semper	immer
+		dē	von, von ... her, von ... herab; über
+		pretium	Preis, Wert
+		dē pretiō agit	er (sie, es) verhandel über den Preis
+		dēscendit	er (sie, es) steigt ab
+		compōnit	er (sie, es) verfasst, ordnet
+		ecce	schau/schaut, sieh da/seht da
+		comprehendit	er (sie, es) ergreift, nimmt fest; begreift
+		probat	er (sie, es) prüft; beweist, befindet für gut
+		reprehendit	er (sie, es) kritisiert, schimpft
+		adhūc	bis jetzt, noch  
+		via	Straße, Weg
+		profectō	sicherlich, tatsächlich
+		tamen	dennoch, jedoch
+		labor, laborem	Anstrengung, Arbeit
+		prohibet(ā/ab)	er (sie, es) hält ab, hält fern (von); hindert (an)
+		arbor, arborem	Baum
+		nōn modo ... sed etiam	nicht nur... sondern auch
+		sine	ohne
+		timor, timōrem	Angst, Furcht
+		hūc	hierher
+		illūc	dahin, dorthin
+		intereā	inzwischen, unterdessen
+		femina	Frau
+		umerus	Schulter, Oberarm
+		quiēscit	er (sie, es) ruht (aus), schläft
+		ita	so
+		domum	nach Hause, heim (wohin?)
+		procul	von fern, weit weg
+		enim	nämlich, in der Tat
+		dēbēre	müssen, sollen
+		neque	und nicht, auch nicht, nicht einmal
+		dubitāre	zweifeln; zögern
+		esse	sein, sich befinden
+		flamma	Flamme, Feuer
+		āra	Altar
+		servāre	bewahren, retten (vor)
+		dea	Göttin
+		fūr, furem	 Dieb; Diebin
+		pōscere	fordern, verlangen
+		dēesse	abwesend sein, fehlen
+		studēre	sich bemühen
+		līberāre	befreien, freilassen
+		monēre	(er)mahnen
+		iniūria	Unrecht, Beleidigung
+		auxilium	Hilfe
+		pārēre	gehorchen, sich richten nach
+		Vestālis, Vestālem	Vestalin (Priesterin der Göttin Vesta)
+		Vesta	Vesta (Göttin des Herdfeuers)
+		quia	weil
+		dōnum	Geschenk
+		dēlectāre, dēlectō	erfreuen, unterhalten
+		nūptiae, nūptiās	Hochzeit
+		parāre, parō	(vor)bereiten, vorhaben; erwerben
+		rēctē	geradeaus, richtig, zu Recht
+		bene	gut
+		sī	falls, wenn
+		dōnāre, dōnō	schenken
+		egō	ich
+		item	ebenso, gleichfalls
+		dēsīderāre, dēsīderō	sich sehnen nach, vermissen
+		certē	gewiss, sicherlich
+		pretium quaerere	(jmdn.) nach dem Preis fragen
+		neque ... neque	weder... noch
+		maritus	Ehemann
+		scelerātus	Verbrecher
+		valē	Leb wohl!
+		valēte	Lebt wohl!
+		Croesus	Krösus (durch seinen Reichtum bekannter König)
+		venīre, veniō	 kommen
+		vōx, vōcem	Stimme; Äußerung, Laut
+		audīre, audiō	hören
+		plēbs, plēbem	(nicht adeliges, einfaches) Volk
+		senex, senem	Greis, alter Mann
+		cibus	Nahrung, Speise
+		vīnum	   Wein
+		appetere, appetō	haben wollen, erstreben
+		ōrāre, ōrō	bitten
+		quaesō	bitte!
+		autem	(nachgestellt)aber, andererseits
+		neque tamen	und trotzdem nicht
+		iterum	wiederum
+		perīculum	Gefahr
+		sentīre, sentiō	fühlen, meinen, wahrnehmen
+		immō	im Gegenteil, ja sogar
+		nōnne?	etwa nicht? denn nicht?
+		heus	He! Pass auf!
+		scīre, sciō	wissen, kennen, verstehen
+		fūrtum	Diebstahl; Hinterlist
+		nex. necem	Mord, (gewaltsamer) Tod
+		necēs parāre	Mordanschläge vorbereiten
+		Subūra	Subura (Stadtviertel in Rom)
+		gratia	Dank, Gefälligkeit; Ansehen,Beliebtheit
+		grātiās agere	danken 
+		libenter	gern 
+		tū	du
+		comes, comitem	Begleiter(in), Gefährte, Gefährtin
+		cūstōs, cūstōdem	Wächter(in)
+		manēre, maneō	bleiben, (er)warten 
+		occurrere, occurrō	begegnen, entgegentreten 
+		dīcere, dīcō	sagen, sprechen
+		ostendere, ostendō	zeigen, erklären
+		mox	bald
+		simulācrum	Bild, Schatten(eines Toten) 
+		narrāre, narrō	erzählen
+		deus	Gott, Gottheit
+		ut	wie
+		colere, colō	bewirtschaften, pflegen; verehren 
+		quidem	freilich, gewiss, wenigstens, zwar
+		prōmittere, prōmittō	versprechen 
+		saepe	oft 
+		sōl, sōlem	Sonne 
+		umbra	Schatten
+		Capitōlium	Kapitol (Hügel Roms mit Burg und Jupitertempel)
+		Iuppiter, Iovem	Jupiter (höchster Gott der Römer)
+		Minerva	Minerva (Göttin der Weisheit)
+		nōs	wir/uns
+		vōs	ihr/euch
+		mihi	mir
+		tibi	dir
+		lūdere, lūdō	spielen, scherzen
+		hospes, hospitem	Fremder; Gast, Gastgeber
+		cēna	Mahlzeit, Essen
+		invenīre, inveniō	finden, erfinden
+		hodiē	heute
+		permittere, permittō	erlauben, überlassen
+		vāsa, vāsa	Gefäße
+		aqua	Wasser
+		pellere, pellō	schlagen, (ver)treiben
+		cadere, cadō	fallen
+		frangere, frangō	zerbrechen
+		dēsinere, dēsinō	aufhören
+		pēs, pedem	Fuß
+		venia	Gefallen; Nachsicht, Verzeihung
+		veniam dare	verzeihen
+		vitium	Fehler, schlechte Eigenschaft
+		oportet	es gehört sich, es ist nötig
+		īgnōscere, ignōscō	  verzeihen
+		silva	Wald</words>
+</wordlist>
+<wordlist>
+	<list>3, Lektion 15-21, la, de, Latein mit Felix, 0</list>
+	<words>epistula	Brief
+	avus	Großvater
+	vīlla	Haus, Landhaus
+	prīmum	erstens, zuerst, zum ersten Mal
+	relinquere, relinquō	zurücklassen, verlassen
+	dūcere, dūcō	führen; ziehen
+	vīcus	Dorf; Gasse
+	Insula	Insel; Wohnblock
+	mūrus	Mauer
+	tectum	Dach; Haus
+	familia	Familie, Hausgemeinschaft
+	paulō	post  (ein) wenig später
+	aura	Luft(zug)
+	movere, moveō	bewegen
+	nātūra	Beschaffenheit, Natur, Wesen
+	laudāre, laudō	loben
+	via Appia	Via Appia (Straße von Rom nach Capua in Kampanien)
+	puer, puerī	Junge, Bub
+	lībeiī, līberōrum	Kinder 
+	ager, agrī	Acker, Feld, Gebiet
+	mōns, montis	Berg
+	posse, possum	können
+	vesper, vesperī	Abend; Westen
+	urbs, urbis	Stadt, Hauptstadt(Rom)
+	tenebrae,tenebrārum	Dunkelheit, Finsternis
+	nox, noctis	Nacht
+	vir, viri	Mann
+	prōcēdere, prōeēdō	(vorwärts)gehen, vorrücken 
+	minister, ministiī	Diener, Gehilfe
+	prīmō	zuerst
+	cēnāre, cēnō	essen 
+	deinde	dann, darauf
+	fābula	Erzählung, Geschichte, Theaterstück
+	familiāris, familiāris	Freund
+	vendere, vendō	verkaufen
+	scīlicet	freilich, natürlich, selbstverständlich
+	nōn dēbēre	nicht dürfen
+	fōns, fontis	Quelle; Ursprung
+	arcessere, arcessō	herbeirufen, holen
+	laetus, a, um	froh, fröhlich
+	probus, a, um	anständig, gut; tüchtig
+	antlquus, a, um	alt, altertümlich
+	paucī, ae, a	wenige
+	ārdēre, ārdeō	brennen
+	pulcher, pulchra, pulchrum	schön 
+	medius, a, um	der mittlere, in der Mitte (von)
+	mediā in viā	mitten auf der Straße
+	nōnnūllī, ae, a	einige, manche
+	arēna	Sand, Kampfplatz, Arena
+	saxum	Fels, Stein
+	varius, a, um	bunt, verschieden, vielfältig
+	parvus, a, um	klein, gering
+	ūnus, a, um	ein(er), ein einziger
+	ūnus ē/ex	einer von
+	faber, fabiī m	Arbeiter, Handwerker
+	dūrus, a, um	hart
+	miser, misera, miserum	 arm, unglücklich, erbärmlich
+	iterum atque iterum	immer wieder 
+	imperāre, imperō	befehlen, herrschen (über)
+	pergere, pergō	 aufbrechen; weitermachen
+	viam dare	Platz machen
+	nūllus, a, um	kein
+	rūsticus, a, um	ländlich
+	vīlla rūstica	Landgut
+	mōntes Albānī	Albanergebirge (südlich von Rom)
+	ager Albānus	Albanerland (südlich von Rom)
+	cupere, cupiō	verlangen, wünschen, wollen
+	contentus, a, um	zufrieden
+	bōs, bovis	Kuh, Ochse, Rind
+	aedificium	 Gebäude
+	quoque	auch
+	magnus, a, um	groß, bedeutend
+	magnā vōce	 mit lauter Stimme
+	facere, faciō	machen, tun, handeln
+	multus, a, um	viel
+	multa, multorum	viel(es)
+	-que (angehängt)	und
+	cūrāre, cūrō	pflegen, sorgen für
+	vāstus, a, um	riesig; menschenleer, verwüstet
+	attingere, attingō	berühren
+	numquam	iemals
+	tam	so
+	resistere, resistō	stehenbleiben; Widerstand leisten
+	tenēre, teneō	halten, festhalten, besitzen
+	terrēre, terreō	erschrecken
+	nam(que)	denn, nämlich
+	causa	Sache, Ursache, Grund
+	īgnōrāre, Ignōrō	nicht kennen, nicht wissen
+	Esquiliae, Esquiliārum	Esquilin (Hügel Roms)
+	mūnus, mūneris	Aufgabe; Geschenk
+	pecus, pecoris	Vieh; Tier
+	onus, oneris	Last, Belastung
+	crimen, criminis	Beschuldigung, Vorwurf; Verbrechen
+	velle, volō	wollen
+	latus, lateris	Flanke, Seite
+	sinister, sinistra, sinistrum	links; trügerisch, falsch
+	incendium	Brand, Feuer
+	indicāre, indicō	anzeigen, melden
+	alius, alia, aliud	ein anderer
+	aliī ... aliī	die einen ... die anderen
+	forās	heraus, hinaus (wohin?)
+	ēdūcere, ēdūcō	herausführen
+	cēteri, ae, a	die übrigen 
+	exstinguere, exstinguō	 auslöschen, vernichten 
+	suspīciō, suspīciōnis	Verdacht, Vermutung
+	acerbus, a, um	bitter; grausam, rücksichtslos
+	meus, a, um	mein
+	corpus, corporis	Körper, Leichnam
+	vulnus, vulneris	Wunde; Verlust (milit.)
+	malus, a, um	schlecht, schlimm 
+	condiciō, condiciōnis	Bedingung, Lage
+	haud	nicht
+	rārō	selten
+	incendere, incendō	entflammen, in Brand stecken
+	suscipere,suscipiō	  auf sich nehmen, sich (einer Sache)annehmen, unternehmen
+	quī, quae, quod	der, die, das; welcher, welche, welche
+	agitāre, agitō	(be)treiben, überlegen
+	pater, patris	Vater
+	vīta	Leben, Lebensweise
+	vītam agere	sein Leben verbringen/führen
+	noster, nostra, nostrum	   unser
+	alere, alō	ernähren, großziehen
+	annus	Jahr
+	tuus, a,um	dein
+	homō, hominis	Mensch
+	bonus, a, um	gut
+	vester, vestra, vestrum	euer
+	nōn īgnōrāre	gut kennen, wohl wissen
+	possidēre, possideō	besitzen
+	quam	als, wie
+	tarn ... quam	so ... wie
+	multōs annōs	viele Jahre (lang) (wie lange?)
+	calamitās, calamitātis	Schaden, Unglück
+	bellum	Krieg
+	gerere, gerō	tragen; ausführen, führen
+	nōn sōlum ... sed etiam	nicht nur... sondern auch
+	pūgnāre, pūgnō	kämpfen
+	mīles, mīlitis	Soldat
+	patria	Heimat
+	abesse, absum	abwesend sein (von), fehlen
+	nātiō, nātiōnis	Volk, Volksstamm
+	oppriraere, opprimō	bedrohen, niederwerfen,unterdrücken
+	parcus, a, um	sparsam
+	respondēre, respondeō	antworten; entsprechen
+	iubēre, iubeō	anordnen, befehlen
+	hōra	Stunde; Zeit
+	Rōmānus, a, um	römisch
+	Italia	Italien
+	Hispānia	Spanien
+	Āfrica	Afrika
+	Graecia	Griechenland</words>
+</wordlist>
+<wordlist>
+<list>4, Lektion 22-28, la, de, Latein mit Felix, 0</list>
+<words>audīre, audiō, audīvī	hören
+esse, sum, fuī	sein, sich befinden 
+discēdere, discēdō, discessī	weggehen, auseinandergehen
+velle, volō, voluī	wollen
+nūntius	Bote, Nachricht
+nihil	nichts
+novus, a, um	neu, ungewöhnlich
+oppidum	Stadt
+dēlēre, dēleō, dēlēvī	zerstören, vernichten
+cinis, cineris	Asche
+sub	unten an/bei, unter (wo?)
+salūs, salūtis	Gesundheit, Glück, Rettung; Gri
+tegere, tegō, tēxī	bedecken; schützen, verbergen
+angustus, a, um	eng; schwierig
+exstinguere, exstinguō, exstīnxi,extinctum	auslöschen, vernichten 
+extrā	außerhalb (von)
+saevus, a, um	schrecklich; wild, wütend
+mala, malōrum	Schlechtes; schlimme Dinge 
+effugere, effugiō	entfliehen, entkommen
+posse, possum, potuī	   können
+sentire, sentiō, sēnsī	fühlen, meinen, wahrnehmen
+necāre, necō	töten
+decedere, dēcēdō,dēcessī	weggehen; sterben 
+dē vītā decedere	sterben, umkommen
+Vesuvius mōns	Vesuv (Vulkan in Kampanien)
+Campānia	Kampanien (Landschaft südlich von Rom)
+nōbilis, e	berühmt, adelig, vornehm
+tiīstis, e	traurig; unfreundlich
+omnis, e	ganz, jeder; Pl. alle
+terra	Erde, Land
+caelum	Himmel 
+cognōscere, cognōscō, cognōvī	erkennen, kennenlernen; kennen, wissen
+āter, ātra, ātrum	schwarz; düster
+super	(oben) auf; über (... hinaus)
+opportūnus, a, um	geeignet, günstig
+fortis, e	kräftig, tapfer
+nāvis, nāvis	Schiff
+iubēre, iubeō, iussī	anordnen, befehlen
+similis, e	ähnlich
+studium	Beschäftigung, Engagement, Interesse
+animus	Geist, Gesinnung, Mut 
+accēdere, accēdō, accessī	herbeikommen, hinzukommen
+classis, classis	Abteilung, Flotte
+regere, regō, rēxī	beherrschen, leiten, lenken
+turpis, e	unanständig, hässlich, schändlich
+fortūna	Schicksal, Glück
+lītus, lītoris	Strand, Küste
+petere, petō, petīvī	(auf)suchen, (er)streben, bitten, verlangen
+familiāris, e	freundschaftlich, vertraut
+vīvere, vīvō, vīxī	leben
+posteā	nachher, später
+studēre, studeō	sich bemühen, sich (wissenschaftlich) beschäftigen 
+quiēscere, quiēscō, quiēvī	(aus)ruhen, schlafen
+Plīnius	1. Gaius Plinius Secundus der Ältere 2. Gaius Plinius Caecilius Secundus der Jüngere 
+Rēctīna	Rektina (Frau eines Freundes von Plinius)
+Stabiae, Stabiārum	Stabiä (kleine Stadt am Golf von Neapel)
+Pompōniānus	Pomponianus (Freund des Plinius)
+tot	so viele
+exīstimāre, exīstimō	einsehätzen, meinen
+aspicere, aspiciō, aspexī	erblicken 
+cōnstat	es ist bekannt, es steht fest
+brevis, e	kurz
+tempus, temporis	(günstige) Zeit; Pl. Umstände
+brevī tempore	nach kurzer Zeit, bald (darauf)
+putāre, putō	glauben, meinen
+mūtāre, mūtō	(ver)ändern, verwandeln
+post	hinter, nach
+quaerere, quaerö, quaesīvī (ex/dē m. Abi.)	suchen; erwerben wollen; (jmdn.) fragen
+contendere,contendō	behaupten
+tangere, tangō, tetigī	berühren
+vidēre, videō, vīdī	sehen
+dēscendere, dēscendō, dēscendī	herabsteigen
+effugere, effugiō,effūgī	entfliehen, entkommen
+cadere, cadō, cēcidī	fallen
+occidere, occidō, occidī	umkommen, untergehen
+nūper	neulich, vor kurzem
+theātrum	Theater
+amphitheātrum	Amphitheater
+adesse, adsum, adfuī	da sein; helfen
+per	durch, hindurch
+hūc et illūc	hin und her
+currere, currō, cucurri	eilen, laufen
+venire, veniō, vēnī	kommen
+repeiīre, reperiō,reppeiī	(wieder)finden 
+stāre, stō, stetī	stehen
+lūdere, lūdō, lūsī	spielen, seherzen
+ridēre, rīdeō, risī	lachen, auslachen 
+thermae, thermārum	Thermen, Badeanlage
+pervenīre, perveniō,pervēnī (ad / in)	kommen zu/nach
+occurrere, occurrō,occurrī	begegnen, entgegentreten
+apud	bei, nahe bei
+manēre, maneō, mānsī	bleiben, (er)warten
+longus, a, um	lang, weit
+sermō, sermōnis	Gespräch, Sprache, Äußerung, Gerede
+commūnis, e	gemeinsam, allgemein
+lūdus	Spiel; Schule
+nōmen, nōminis	Name
+gladiātor, gladiātōris	Gladiator, Schwertkämpfer
+vincere, vincō, vīcī	(be)siegen, übertreffen
+vincere	übertreffen an
+Pompei, Pompeiorum	Pompeji (Stadt in Kampanien)
+caedēs, caedis	Blutbad, Mord
+libellus	kleines Buch, Heft
+fabulam agere	ein Theaterstück spielen
+sīgnum	Merkmal, Zeichen
+sententia	Meinung, Satz, Sinn, Antrag (im Senat)
+memoria	Erinnerung, Gedächtnis; Zeit
+memoria tenēre	im Gedächtnis behalten
+an (im Fragesatz)	oder (etwa)
+sōlum	nur
+mens, mentis	Geist, Sinn, Verstand; Meinung
+discere, discō, didicī	lernen, erfahren
+mīlle	tausend
+modus	Art, Weise;Maß
+eō modō	auf diese Weise
+eiusmodl	derartig, so beschaffen
+nisī	wenn nicht
+āctiō, āctiōnis	Tätigkeit, Gerichtsverhandlung, Rede 
+intellegere, intellegō, intellexī	(be)merken, verstehen
+suus, sua, suum	ihr, sein
+sē	sich
+multitūdō,multitūdinis	große Zahl, Menge
+praeclārus, a, um	großartig
+iuvāre, iuvō, iūvī	unterstützen, erfreuen
+volāre, volō	fliegen; eilen
+arma, armōrum	Waffen
+sēcum	mit sich, bei sich
+dēfendere, dēfendō, dēfendī	abwehren, verteidigen
+aut	oder
+temptāre, temptō	angreifen; prüfen, versuchen
+numerus	Zahl; Menge
+suī	eine/ihre Leute
+sua	sein/ihr Besitz
+flēre, fleō, flēvī	beklagen, (be)weinen
+iuvenis, iuvenis	jung; junger Mann
+dīcere, dīcō, dīxī	sagen, sprechen
+initium	Anfang, Eingang
+facere, faciō, fēcī	machen, tun, handeln
+damnāre, damnō	verurteilen
+decem	zehn
+iūdicāre, iūdicō	beurteilen, urteilen
+Pompēiānī, -ōrum	Pompejaner (Einwohner von Pompeji)
+Pompēiānus, a, um	pompejanisch, aus Pompeji
+Rōmam	nach Rom (wohin?)
+postquam	nachdem, als
+quamquam	obwohl
+cūnctī, ae, a	alle (zusammen)
+occultē	heimlich
+socius	Gefährte; Verbündeter
+aperīre, aperiō, aperuī	aufdecken, öffnen
+dolus	List, Täuschung
+frūstrā	vergeblich
+capere, capiō, cēpī	fassen, nehmen, erhalten; erobern
+atque/ac	und, und auch
+abdūcere, abdūcō,abdūxī	wegführen
+colligere, colligō, collēgī	sammeln
+māter, mātris	Mutter
+tūtus, a, um	sicher
+dūcere, dūcō, dūxī	führen, ziehen
+ēdūcere, ēdūcō, ēdūxī	herausführen
+uxor, uxōris	Ehefrau
+Trōiānus, a, um	trojanisch; Trojaner
+Graecus, a, um	griechisch; Grieche
+Lāocoōn, Lāocoontis	Laokoon (trojanischer Priester)
+Trōia	Troja (Stadt in Kleinasien, der heutigen Türkei)
+Aenēās, Aenēae	   Äneas
+Apollo, Apollinis	Apollo (Gott der Künste und Wissenschaften)
+Venus, Veneris	Venus (Göttin der Liebe, Mutter des Äneas)</words>
+</wordlist>
+<wordlist>
+<list>5,Lektion 29-35,la,de,Latein mit Felix, 0 </list>
+<words>inter	unter, während, zwischen
+futūrus, a, um	zukünftig
+futūra, futūrōrum	Zukunft
+dēmōnstrāre, dēmōnstrō	beweisen, darlegen
+posterus, a, um	folgend
+posteri, posterōrum	Nachkommen
+glōria	Ehre, Ruhm
+augēre, augeō, auxī	vergrößern, vermehren
+condere, condō,condidī	verwahren, verbergen; erbauen, gründen
+mihi placet	mir gefällt es, ich beschließe
+caput, capitis	Kopf, Hauptstadt
+orbis, orbis	Kreis(lauf); Erdkreis, Welt
+orbis terrārum	Erde, Welt
+ars, artis	Fertigkeit, Kunst; Eigenschaften
+superāre, superō	besiegen, übertreffen
+superāre m.Abl.	übertreffen an
+temperāre,temperō	maßvoll gebrauchen, zurückhalten, schonen
+superbus, a, um	stolz, überheblich
+rēx, rēgis	König
+imperium	 Befehl, Befehlsgewalt; Herrschaft, Herrschaftsgebiet
+finis, ftnis	Ende, Grenze; Ziel, Zweck; Gebiet
+pāx, pācis	Frieden
+Anchīsēs, Anchīsae	Anchises (Vater des Äneas)
+Lāvīnia	Lavinia (zweite Ehefrau des Äneas)
+Alba Longa	Alba Longa (antike Stadt südlieh von Rom)
+Rōmulus	Romulus (sagenhafter Gründer Roms)
+Fortuna	Fortuna (Glücksgöttin)
+Brutus	Lucius lunius Brutus (befreite Rom von der Königsherrschaft)
+Tarquinius Superbus	Tarquinius Superbus (siebter König von Rom)
+Augustus (Caesar)	Augustus (erster römischer Kaiser)
+virgō, virginis	Mädchen
+somnus	Schlaf
+duo, duae, duo	zwei
+vinculum	Band, Fessel; Gefängnis
+in vincula dare	in Fesseln legen, fesseln
+pro	 vor; an Stelle von, für; entsprechend
+adulēscēns, adulēscentis	jung; junger Mann 
+virtūs, virtūtis	Tapferkeit, Tüchtigkeit, Vortrefflichkeit; Leistung; gute Eigenschaften, Verdienste
+contendere, contendō	behaupten; kämpfen, sich anstrengen
+praeda	Beute
+dīvidere, divido, dīvīsī	teilen, trennen
+scelerātus, a, um	verbrecherisch; Verbrecher
+rapere, rapiō, rapuī	rauben, wegreißen, wegführen
+falsus, a, um	falsch
+falsō	fälschlich
+frāter, frātris	Bruder
+cupere, cupiō, cupīvī	verlangen, wünschen, wollen
+supplicium	Hinrichtung, Strafe; flehentliches Bitten
+nepōs, nepōtis	Enkel
+īra	Zorn
+Ascanius	Askanius (Sohn des Äneas)
+Numitor, Numitōris	Numitor (Großvater von Romulus und Remus)
+Amülius	Amulius (König von Alba Longa)
+Rēa Silvia	Rea Silvia (Mutter des Romulus und Remus)
+Mārs, Mārtis	Mars (Gott des Krieges)
+Tiberis,Tiberim	Tiber (Fluss durch Rom)
+Faustulus	Faustulus (Pflegevater von Romulus und Remus)
+Lārentia	Larentia (Pflegemutter von Romulus und Remus)
+Remus	Remus (Bruder des Romulus)
+ingēns, ingentis	gewaltig, ungeheuer
+ācer, ācris, ācre	energisch, heftig, scharf 
+invenīre, inveniō, invēnī	finden, erfinden
+rīpa	Ufer
+alere, alō, aluī	ernähren, großziehen
+idōneus, a, um	geeignet, passend
+rēgnum	(Königs-)Herrschaft, Reich
+potēns, potentis	mächtig, stark 
+vehemēns, vehementis	energisch, heftig
+neque enim	denn nicht
+sapere, sapiō	Verstand haben, Geschmack haben
+iūdicium	Gericht; Urteil
+contendere, contendō, contendī	behaupten; kämpfen, sich anstrengen; eilen
+celer, celeris, celere	schnell
+sex	sechs
+duodecim	zwölf
+felīx, felīcis	glücklich, erfolgreich; glückbringend
+victōria	Sieg
+concēdere, concēdō, concessī	erlauben, nachgeben, zugestehen
+tantum	nur
+recēns, recentis	frisch, neu
+Palātium	Palatin (Hügel Roms)
+Aventlnus	Aventin (Hügel Roms)
+Līvius	Titus Livius (Geschichtsschreiber)
+vīs,vim, vī	Gewalt, Kraft; Menge
+vīres, vīrium	Streitkräfte
+hostis, hostis	Feind (Landesfeind)
+moenia, moeniura	(Stadt-)Mauern
+turris, turris f	Turm
+mare, maris	Meer
+terrā marīque	zu Wasser und zu Lande (wo?)
+septimus, a, um	der siebte
+tyrannus	Tyrann, Gewaltherrscher
+crūdēlitās,crūdēlitātis	Grausamkeit
+bonum	das Gut(e), Besitz
+bona, bonorum	Güter, Besitz
+amor, amōris	Liebe
+nōmināre, nōminō	nennen, benennen
+licentia	Freiheit, Willkür
+ōmen, ōminis	Vorzeichen
+ostendere, ostendō, ostendī	zeigen, erklären
+serpēns, serpentis	Schlange
+animal, animālis	Lebewesen, Tier
+movere, moveō, mōvī	bewegen
+prōmittere, prōmittō, prōmīsī	versprechen
+soror, sorōris	Schwester
+pertinēre, pertineō	betreffen, gehören (zu)
+ultrō	freiwillig, noch dazu
+dare, dō, dedī	geben
+Delphicus, a, um	delphisch
+vultus, vultūs	Gesicht, Gesichtsausdruck; Gesichtszüge
+manus, manūs	Hand; Schar (von Bewaffneten)
+cursus, cursūs	Lauf
+agere, agō, ēgī	handeln, treiben, verhandeln
+respondēre, respondeō, respondī	antworten, entsprechen
+magna, magnōrum	Großes, große Werke
+perflcere, perficiō, perfecī	erreichen, fertigstellen, vollenden 
+spīritus, splritūs	 Atem, Seele
+impetus, impetūs	Angriff, Schwung
+metus, metūs	Angst
+contra	gegen
+cāsus, cāsūs	Fall, Zufall
+adversus, a, um	entgegengesetzt, feindlich
+plūs, plūris	mehr
+plūs ... quam	mehr... als
+valēre, valeō, valuī	Einfluss haben; gesund sein, stark sein
+sēnsus, sēnsūs	Gefühl, Sinn; Verstand
+usus, ūsūs	Benutzung, Nutzen, Gebrauch
+Carmen, carminis	Gedicht, Lied
+Mūsae, Mūsārum	Musen (Göttinnen der Künste,Töchter des Zeus)
+Python, Pythōnis	Python (von Apollo in Delphi getöteter Drache)
+Delphi, Delphōrum	Delphi (Apollonheiligtum)
+Pythia	Pythia (Orakelpriesterin in Delphi)
+Mercurius	Merkur (Götterbote)
+Olympus	Olymp (Berg in Griechenland)
+quondam	einmal, einst; manchmal
+regio, regiōnis	Gebiet, Gegend, Richtung
+pectus, pectoris	Brust, Herz
+afficere, afficiō, afīcī	versehen mit
+mittere, mittō, mīsī	loslassen, schicken; werfen
+crūdēlis, e	grausam 
+torquēre, torqueō, torsī	drehen, schleudern; quälen
+poena	Strafe
+auxiliö venire	zu Hilfe kommen
+īgnis, īgnis	Feuer
+permittere, permittö, permīsī	erlauben, überlassen 
+incendere, incendō, incendī	entflammen, in Brand stecken
+difficilis, e	schwierig
+tēlum	(Angriffs-)Waffe, Geschoss 
+interficere, interficiō, interfecī	töten, vernichten
+Herculēs, Herculis	Herkules (Held in der griech. Sage)
+Caucasus	Kaukasus (Gebirgszug in Asien)
+Prometheus	Prometheus (Sagengestalt)
+diēs, diēī m	Tag
+diēs, diēī f	Termin
+rēs, reī	Angelegenheit, Ding, Sache
+primus, a, um	der (die, das) erste
+ferus, a, um	wild
+secundus, a, um	der (die, das) zweite, günstig
+centum	hundert
+spēs, speī	Hoffnung
+dēpōnere, dēpōnō,dēposuī	niederlegen, ablegen
+rēs adversae	Unglück
+tertius, a, um	der (die, das) dritte
+quārtus, a, um	der (die, das) vierte 
+indīgnus, a, um	unwürdig (einerSache)
+mandāre, mandō	einen Auftrag geben, übergeben
+āit	behauptet(e) er, sagt(e) er
+cōpia	Menge; Möglichkeit; Vorrat; Truppen
+decimus, a, um	der (die, das) zehnte
+pars, partis	Teil, Seite, Richtung
+aestus, aestūs	Hitze
+labōrāre	leiden (an)
+dexter, dext(e)ra, dext(e)rum	rechts 
+volvere, volvō, volvī	rollen, wälzen; überlegen
+quīntus, a, um	der (die, das) fünfte
+fidēs, fideī	Glaube, Treue, Vertrauen, Zuverlässigkeit
+gerere, gerō, gessī	tragen; ausführen, führen
+Hydra	Hydra (vielköpfige Sehlange)
+Eurystheus	Eurystheus (König von Tiryns)
+Augīās	Augias (griechischer König)
+Alphēus	Alpheus (Fluss in Griechenland)</words>
+</wordlist>
+
+<wordlist>
+<list>6,Irregular verbs,en,en,Irregular verbs,0</list>
+<words>alight	alighted, alit alighted, alit (aus-/absteigen, anbrennen)
+arise	arose arisen   hervorgehen (hervorgehen, sich ergeben (aus))
+awake	awoke, awaked awoken, awaked (erwachen)
+be	was,were been (sein)
+bear	bore borne, born (tragen, ertragen)
+beat	beat beaten, beat (schlagen)
+become	became become (werden)
+beget	begot begotten (zeugen, erzeugen)
+begin	began begun (beginnen)
+bend	bent bent (biegen, krümmen)
+bereave	bereaved, bereft bereaved, bereft (rauben, berauben)
+beseech	besought, beseeched besought, beseeched (anflehen, erflehen)
+bet	bet, betted bet, betted (wetten)
+bid	bade, bid bidden, bid, bade (bieten (bei Auktion))
+bide	bade, bided bided (abwarten, abpassen)
+bind	bound bound (binden, verpflichten)
+bite	bit bitten (beißen)
+bleed	bled bled (bluten)
+bless	blessed, blest blessed, blest (segnen)
+blow	blew blown (wehen)
+break	broke broken (brechen)
+breed	bred bred (züchten)
+bring	brought brought (herbringen)
+broadcast	broadcast, broadcasted broadcast, broadcasted (senden, ausstrahlen, übertragen (im Rundfunk/Fernsehen))
+build	built built (bauen)
+burn	burnt, burned burnt, burned (brennen)
+burst	burst burst (platzen)
+bust	bust, busted bust, busted (Pleite machen)
+buy	bought bought (kaufen)
+can	could (können)
+cast	cast cast (besetzen (eine Rolle), werfen)
+catch	caught caught (fangen, erwischen)
+choose	chose chosen (wählen)
+cleave	cleft, cleaved, clove cleft, cleaved, cloven (spalten)
+cling	clung clung (kleben, haften)
+clothe	clothed, clad clothed, clad (einkleiden, umhüllen)
+come	came come (kommen)
+cost	cost cost (kosten (Preis))
+creep	crept crept (kriechen, schleichen)
+crow	crowed crew, crowed (krähen, jubeln, prahlen)
+cut	cut cut (schneiden)
+deal	dealt dealt ((be)handeln, sich beschäftigen)
+dig	dug  dug (graben, umgraben)
+do	did done (tun)
+draw	drew drawn (zeichnen)
+dream	dreamt, dreamed dreamt, dreamed (träumen)
+drink	drank drunk (trinken)
+drive	drove driven (fahren)
+dwell	dwelt, dwelled dwelt, dwelled (weilen, verweilen, leben)
+eat	ate  eaten (essen)
+fall	fell fallen (fallen)
+feed	fed fed (füttern)
+feel	felt felt (fühlen)
+fight	fought fought (kämpfen)
+find	found found (finden)
+flee	fled fled (fliehen)
+fling	flung flung (werfen, schleudern)
+fly	flew flown (fliegen)
+forbid	forbad, forbade forbid, forbidden (untersagen, verbieten)
+forecast	forecast, forecasted forecast, forecasted (vorhersagen)
+forget	forgot forgotten (vergessen)
+forsake	forsook forsaken (aufgeben, im Stich lassen)
+freeze	froze frozen (gefrieren, einfrieren)
+geld	gelded, gelt gelded, gelt (kastrieren (bes. Pferd))
+get	got got, gotten (bekommen)
+gild	gilded, gilt gilded, gilt (vergolden, beschönigen)
+give	gave given (geben)
+gnaw	gnawed gnawed, gnawn (nagen)
+go	went gone (gehen)
+grind	ground ground  (zermahlen, zerkleinern, pauken)
+grip	gripped, gript  gripped, gript (ergreifen, packen)
+grow	grew grown   (wachsen)
+hang	hung hung (hängen)
+have	had had (haben)
+hear	heard heard (hören)
+heave	heaved, hove heaved, hove (stemmen, hieven, werfen)
+hew	hewed hewed, hewn (hauen, hacken)
+hide	hid hidden, hid (verstecken)
+hit	hit hit (schlagen, hauen)
+hold	held held (halten)
+hurt	hurt hurt (verletzen)
+keep	kept kept (behalten, weiter machen)
+kneel	knelt, kneeled knelt, kneeled (knien)
+knit	knitted, knit knitted, knit (stricken)
+know	knew known (kennen, wissen)
+lay	laid laid (legen)
+lead	led led (anführen)
+lean	leant, leaned leant, leaned (lehnen)
+leap	leapt, leaped leapt, leaped (springen)
+learn	learnt, learned learnt, learned (lernen)
+leave	left left   (verlassen)
+lend	lent lent (verleihen)
+let	let let (lassen)
+lie	lay lain (liegen)
+light	lit, lighted lit, lighted (anzünden, erleuchten)
+lose	lost lost (verlieren)
+make	made made (machen, herstellen)
+may	might (können, könnte)
+mean	meant meant (bedeuten, meinen)
+meet	met met (kennen lernen, treffen)
+melt	melted molten, melted (schmelzen)
+mow	mowed mown, mowed (mähen)
+pay	paid paid (bezahlen)
+pen	pent, penned pent, penned (niederschreiben)
+plead	pled, pleaded pled, pleaded (bitten, geltend machen)
+prove	proved proven, proved (beweisen)
+put	put put (legen, stellen, setzen)
+quit	quit, quitted quit, quitted (beenden, aufhören, kündigen)
+read	read read (lesen)
+rid	rid, ridded rid, ridded (befreien)
+ride	rode ridden (reiten, fahren (Rad))
+ring	rang rung (klingeln)
+rise	rose risen (erheben, aufgehen (Sonne))
+run	ran run (laufen)
+saw	sawed sawn, sawed (sägen)
+say	said said (sagen)
+see	saw seen (sehen)
+seek	sought sought (suchen)
+sell	sold sold (verkaufen)
+send	sent sent (senden, schicken)
+set	set set (setzen, einstellen)
+sew	sewed sewn, sewed (nähen)
+shake	shook shaken (schütteln)
+shall	should (werden, sollen)
+shear	sheared shorn, sheared (scheren)
+shed	shed shed (vergießen (Träne), verlieren (Blätter), ablegen (Gewohnheit))
+shine	shone shone (scheinen (Sonne))
+shit	shit, shitted, shat shit, shitted, shat (scheißen)
+shoe	shod, shoed shod, shoed (beschlagen (Pferd))
+shoot	shot shot (schießen, drehen (Film))
+show	showed shown, showed (zeigen)
+shred	shred, shredded shred, shredded (zerfetzen, schreddern)
+shrink	shrank, shrunk shrunk (einlaufen, eingehen, schrumpfen)
+shut	shut shut (schließen)
+sing	sang sung (singen)
+sink	sank sunk (sinken)
+sit	sat sat (sitzen)
+slay	slew slain (ermorden, umbringen)
+sleep	slept slept (schlafen)
+slide	slid slid (rutschen, gleiten)
+sling	slung slung (schleudern, aufhängen)
+slink	slunk slunk (sich schleichen)
+slit	slit slit (schlitzen, aufschlitzen)
+smell	smelt, smelled smelt, smelled (riechen)
+smite	smote smitten (packen)
+sow	sowed sown, sowed (besäen)
+speak	spoke spoken (sprechen)
+speed	sped, speeded sped, speeded (rasen)
+spell	spelt, spelled spelt, spelled (buchstabieren, schreiben)
+spend	spent spent (verbringen, ausgeben)
+spill	spilt, spilled spilt, spilled (verschütten)
+spin	spun spun (spinnen)
+spit	spat spat (spucken)
+split	split split (zerspalten, zerreißen)
+spoil	spoilt, spoiled spoilt, spoiled (verwöhnen, verderben)
+spread	spread spread (verbreiten, ausbreiten)
+spring	sprang, sprung sprung (springen)
+stand	stood stood (stehen)
+steal	stole stolen (stehlen)
+stick	stuck stuck (kleben)
+sting	stung stung (stechen)
+stink	stank, stunk stunk (stinken)
+stride	strode stridden (schreiten)
+strike	struck struck (streiken, schlagen)
+string	strung strung (auffädeln, aufreihen, bespannen)
+strive	strove striven (sich bemühen, kämpfen, streben)
+swear	swore sworn (schwören, fluchen)
+sweat	sweat, sweated sweat, sweated (schwitzen)
+sweep	swept swept (kehren)
+swell	swelled swollen, swelled (anschwellen, anwachsen)
+swim	swam swum (schwimmen)
+swing	swung swung (schwingen, swingen)
+take	took taken (nehmen)
+teach	taught taught (lehren, unterrichten, beibringen)
+tear	tore torn (zerreißen)
+telecast	telecast, telecasted telecast, telecasted (übertragen (im Fernsehen))
+tell	told told (erzählen)
+think	thought thought (denken)
+throw	threw thrown (werfen)
+thrust	thrust thrust (stoßen, stechen)
+tread	trod trodden (treten)
+understand	understood understood (verstehen)
+wake	woke, waked woken, waked (wecken, aufwecken)
+wear	wore worn (tragen (Kleidung))
+weave	wove woven (weben)
+wed	wed, wedded wed, wedded   (heiraten)
+weep	wept wept (weinen)
+wet	wet, wetted wet, wetted (nass machen, befeuchten)
+win	won won (gewinnen)
+wind	wound wound (wickeln, aufziehen, kurbeln)
+wring	wrung wrung (auswringen, ringen (Hände))
+write	wrote written (schreiben)</words>
+</wordlist>
+<wordlist>
+<list>7,Unregelmässige Verben, de,de, Deutsche unregelmässige Verben,0</list>
+<words>backen	backte/buk gebacken
+befehlen	befahl befohlen
+beginnen	begann begonnen
+beißen	biss gebissen
+bergen	barg geborgen
+biegen	bog gebogen
+bieten	bot geboten
+binden	band gebunden
+bitten	bat gebeten
+blasen	blies geblasen
+bleiben	blieb geblieben
+braten	briet gebraten
+brechen	brach gebrochen
+brennen	brannte gebrannt
+bringen	brachte gebracht
+denken	dachte gedacht
+dreschen	drosch gedroschen
+dringen	drang gedrungen
+dürfen	durfte gedurft
+empfehlen	empfahl empfohlen
+erschrecken	erschrak erschrocken
+essen	aß gegessen
+erwägen	erwog erwogen
+fahren	fuhr gefahren
+fallen	fiel gefallen
+fangen	fing gefangen
+finden	fand gefunden
+fliegen	flog geflogen
+fliehen	floh geflohen
+fließen	floss geflossen
+fressen	fraß gefressen
+frieren	fror gefroren
+gären	gor gegoren
+gebären	gebar geboren
+geben	gab gegeben
+gedeihen	gedieh gediehen
+gehen	ging gegangen
+gelingen	gelang gelungen
+gelten	galt gegolten
+genesen	genas genossen
+genießen	genoss genossen
+geschehen	geschah geschehen
+gewinnen	gewann gewonnen
+gießen	goss gegossen
+gleichen	glich geglichen
+gleiten	glitt geglitten
+graben	grub gegraben
+greifen	griff gegriffen
+haben	hatte gehabt
+halten	hielt gehalten
+hängen	hing gehangen
+hauen	haute gehauen
+heben	hob gehoben
+heißen	hieß geheißen
+helfen	half geholfen
+kennen	kannte gekannt
+klingen	klang geklungen
+kneifen	kniff gekniffen
+kommen	kam gekommen
+können	konnte gekonnt
+kriechen	kroch gekrochen
+laden	lud geladen
+lassen	ließ gelassen
+laufen	lief gelaufen
+leiden	litt gelitten
+leihen	lieh geliehen
+lesen	las gelesen
+liegen	lag gelegen
+lügen	log gelogen
+meiden	mied gemieden
+messen	maß gemessen
+misslingen	misslang misslungen
+mögen	mochte gemocht
+müssen	musste gemusst
+nehmen	nahm genommen
+nennen	nannte genannt
+pfeifen	pfiff gepfiffen
+preisen	pries gepriesen
+quellen	quoll gequollen
+raten	riet geraten
+reiben	rieb gerieben
+reißen	riss gerissen
+reiten	ritt geritten
+rennen	rannte gerannt
+riechen	roch gerochen
+ringen	rang gerungen
+rinnen	rann geronnen
+rufen	rief gerufen
+saufen	soff gesoffen
+schaffen	schuf geschaffen
+scheiden	schied geschieden
+scheinen	schien geschienen
+schelten	schalt gescholten
+scheren	schor geschoren
+schieben	schob geschoben
+schießen	schoss geschossen
+schinden	schindete geschunden
+schlafen	schlief geschlafen
+schlagen	schlug geschlagen
+schleichen	schlich geschlichen
+schließen	schloss geschlossen
+schlingen	schlang geschlungen
+schmeißen	schmiss geschmissen
+schmelzen	schmolz geschmolzen
+schneiden	schnitt geschnitten
+schreiben	schrieb geschrieben
+schreien	schrie geschrien
+schreiten	schritt geschritten
+schweigen	schwieg geschwiegen
+schwellen	schwoll geschwollen
+schwimmen	schwamm geschwommen
+schwinden	schwand geschwunden
+schwingen	schwang geschwungen
+schwören	schwor geschworen
+sehen	sah gesehen
+sein	war gewesen
+singen	sang gesungen
+sinken	sank gesunken
+sinnen	sann gesonnen
+sitzen	saß gesessen
+sollen	sollte gesollt
+speien	spie gespien
+spinnen	spann gesponnen
+sprechen	sprach gesprochen
+sprießen	spross gesprossen
+springen	sprang gesprungen
+stechen	stach gestochen
+stehen	stand gestanden
+stehlen	stahl gestohlen
+steigen	stieg gestiegen
+sterben	starb gestorben
+streichen	strich gestrichen
+streiten	stritt gestritten
+tragen	trug getragen
+treffen	traf getroffen
+treiben	trieb getrieben
+treten	trat getreten
+trinken	trank getrunken
+trügen	trog getrogen
+tun	tat getan
+verderben	verdarb verdorben
+vergessen	vergaß vergessen
+verlieren	verlor verloren
+wachsen	wuchs gewachsen
+waschen	wusch gewaschen
+weichen	wich gewichen
+weisen	wies gewiesen
+werben	warb geworben
+werden	wurde geworden
+werfen	warf geworfen
+wiegen	wog gewogen
+wissen	wusste gewusst
+wollen	wollte gewollt
+wringen	wrang gewrungen
+ziehen	zog gezogen
+zwingen	zwang gezwungen</words>
+</wordlist>
+</wordlists>
+<wordlist>
+<list>8,Lektion 36,la,de,Lektion 36,0</list>
+<words>﻿auris, auris f	Ohr
+convivium	Gastmahl, Gelage
+decernere, dēcemō, dēcrēvī	beschließen, entscheiden
+eō Adv.	dorthin; deswegen
+lacrima	Träne
+fundere, fundō, fudi	(aus)gießen, zerstreuen
+dolor, doloris m	Schmerz
+comprehendere,  comprehendo,  comprehendi	ergreifen, festnehmen, begreifen
+reddere, reddō,	zurückgeben, etwas zukommen
+reddidi	lassen
+praebere, praebeo, praebui	geben, hinhalten
+convertere, converto, converti	verändern, (um)wandeln, verwandeln
+spērāre, spērō	erwarten, hoffen
+corripere, corripio, corripui	ergreifen, gewaltsam an sich reißen
+bibere, bibō, bibi	trinken
+Infelix, Infelicis	unglücklich
+ō mē miserum!	Oh ich Unglücksrabe! Oh ich Armer!
+pernicies, pernicie! f	Verderben, Vernichtung</words>
+</wordlist>
+<wordlist>
+<list>9,Lektion 37,la,de,Lektion 37,0</list>
+<words>﻿auris, auris f	Ohr
+﻿quō	wohin
+vertere, vertō, verti	drehen, wenden
+conspicere, cōnspiciō, cōnspexī	erblicken
+circumdare, circumdo, circumdedi	umgeben
+unda	Gewässer, Welle
+ambō, ambae, ambō	beide (zusammen)
+undique Adv.	von allen Seiten
+ventus	Wind
+vestis, vestis f	Kleidung; PI. Kleider
+cum Subj. m. Ind.	als (plötzlich), (zu der Zeit) als, (immer) wenn
+dēmittere, dēmittō, dēmīsī	hinabschicken, sinken lassen
+amittere, āmittō, āmīsī	aufgeben, verlieren
+animum demittere	den Mut verlieren
+dēspērāre, dēspērō	die Hoffnung aufgeben, verzweifeln
+dē salūte dēspērāre	die Hoffnung auf Rettung aufgeben
+ante m.Akk.	vor
+conspectus, cōnspectūs m	Anblick, Blickfeld
+aurēs dare	zuhören
+necesse est	es ist notwendig</words>
+</wordlist>
+<wordlist>
+<list>10,Lektion 38,la,de,Lektion 38,0</list>
+<words>﻿﻿perterrere, perterreo	sehr erschrecken, einschüchtern
+nāvigāre, nāvigō	(mit dem Schiff) fahren, segeln
+occidere, occīdō, occidi	niederschlagen, töten
+cōnfīrmāre, cōnflrmō	bekräftigen, ermutigen, stärken
+causā (nachgestellt) m. Gen.	wegen
+intrā m. Akk.	innerhalb (von)
+aut... aut	entweder... oder
+exitus, exitūs m	Ende, Ausgang
+Ut Subj. m. Ind. Perf.	sobald
+paene Adv.	fast
+animum (m. Gen.)	(jmd.) ermutigen
+cōnfirmāre cōnservāre, cōnservō  (ā m.Abl.)	retten (vor), bewahren
+ūtilis, e	nützlich
+pūgna	Kampf
+alter, altera, alterum (Gen. alterius, Dat. alteri)	der eine/der andere (von zweien)</words>
+</wordlist>
+<wordlist>
+<list>11,Lektion 39,la,de,Lektion 39,0</list>
+<words>﻿captivus	gefangen;  Subst. (Kriegs-)Gefangener
+claudere, claudo/ clausi, clausum	absehließen, einsehließen
+modo Adv.	nur
+āēr, āeris m	Luft
+igitur Adv.	also, folglich
+aliter Adv.	anders; sonst
+penna	Feder
+colligere, colligo, collēgī, collectum	sammeln
+āla	Flügel
+facere, faciō, feci, factum	machen, tun, handeln
+docēre, doceō, docui, doctum	lehren, unterrichten
+inquam (3. Ps. Sg. inquit)	sag(t)e ich
+pendere, pendeō, pependi	(herab)hängen, schweben
+avis, avis f	Vogel
+relinquere, relinquo, reliqui, relictum	zurücklassen, verlassen
+respicere, respicio, respexi, respectum	zurückblicken, berücksichtigen
+quot	wie viele
+laetitia	Freude
+capere, capiō, cēpī, captum	fassen, nehmen, erhalten; erobern
+dēlēre, dēleō, dēlēvī, dēlētum	zerstören, vernichten</words>
+</wordlist>
+<wordlist>
+<list>12,Lektion 40,la,de,Lektion 40,0</list>
+<words>﻿movēre, moveō, movi, mōtum	bewegen
+perterrere, perterreo, perterruī, perterritum	sehr erschrecken, einschüchtern
+amplus, a, um	groß, weit, bedeutend
+invenire, invenio, invēnī, inventum	finden, erfinden
+velut	wie, wie zum Beispiel
+fructus, frūctūs m	Ertrag, Frucht, Nutzen
+cōnsīdere, cōnsīdō, cōnsēdī, consessum	sich setzen, sich niederlassen
+membrum	Glied, Körperteil
+altus, a, um	hoch; tief
+frōns, frontis f	Stirn, Vorderseite
+mediā in fronte	mitten auf der Stirn
+oculus	Auge
+tendere, tendō, tetendi, tentum	spannen, (aus)strecken, sich anstrengen
+tollere, tollō, sustuli, sublatum	aufheben, in die Höhe heben, wegnehmen
+corripere, corripio, corripui, correptum	ergreifen, gewaltsam an sich reißen
+Infestus, a, um	feindlich, feindselig
+iussū	auf Befehl
+volvere, volvō, volvi, volūtum	rollen, wälzen; überlegen
+nūllō modō	keineswegs, keinesfalls</words>
+</wordlist>
+<wordlist>
+<list>13,Lektion 41,la,de,Lektion 41,0</list>
+<words>﻿mortalis, e	sterblich; Subst. Mensch
+nimis Adv.	(all)zu, (all)zu sehr
+stultus, a, um	dumm
+unde	woher
+decipere, dēcipiō, dēcēpī, deceptum	täuschen
+dulcis, e	angenehm, süß
+commovere,  commoveo,  commōvī,  commotum	bewegen; veranlassen
+laedere, laedō, laesī, laesum	beschädigen, verletzen
+vix Adv.	kaum, (nur) mit Mühe
+nēmō (Gen. neminis, Dat. nēminī,  Akk. nēminem)	niemand, kein(er)
+perturbāre, perturbo	in Verwirrung bringen
+Neptunus	Neptun (Gott des Meeres)</words>
+</wordlist>
+<wordlist>
+<list>14,Lektion 42,la,de,Lektion 42,0</list>
+<words>﻿canere, canō, cecini,	singen, besingen,
+cantātum	(ein Instrument) spielen
+nē ... quidem	nicht... einmal
+nūbere, nūbō, nūpsī, nūpta m. Dat.	(jmd.) heiraten
+forte Adv.	zufällig
+interficere, interficio, interfeci, interfectum	töterl, vernichten
+mortuus, a, um	tot
+ambulare, ambulō	Spazierengehen
+rapere, rapiō, rapui, raptum	rauben, wegführen, wegreißen
+rēgīna	Königin
+resistere, resisto, restiti	stehenbleiben; Widerstand leisten
+neglegere, neglego, neglēxī, neglectum	nicht (be)achten, vernachlässigen
+lūx, lūcis f	Licht, Tageslicht﻿</words>
+</wordlist>
+<wordlist>
+<list>15,Lektion 43,la,de,Lektion 43,0</list>
+<words>﻿Romae	in Rom (wo?)
+Rōmā	von/aus Rom (weg) (woher?)
+multis locīs	an vielen Orten (wo?)
+saeculum	Jahrhundert, Menschenalter,
+ante Christum nātum	Zeit(alter) vor Christi Geburt
+gēns, gentis f	Familienverband, Stamm, Volk
+mōs, mōris m	Sitte, Brauch; PI. Charakter
+tōtus, a, um (Geri, tōtīus, Dat. tōtīj	ganz
+tōtā Italiā	in ganz Italien (wo?)
+conscribere, cōnscrībō, conscripsi, conscriptum	aufschreiben, verfassen
+mīlitēs conscribere	Soldaten ausheben
+castra, castrorum Pl. n	Lager
+collocāre, colloco	aufstellen, unterbringen
+castra collocāre	das Lager aufschlagen
+cohors, cohortis f	Kohorte (bis zu 600 Mann)
+mittere, mittō, mīsī, missum	(los)lassen, schicken; werfen
+provincia	Provinz
+mūnītiō, mūnītiōnis f	Bau, Befestigung
+impedire, impedio, impedivi, impeditum	hindern, verhindern
+aditus, aditūs m	Zugang
+tōtō imperio	im ganzen Reich (wo?)
+Biriciānam	nach Weißenburg (wohin?)
+metuere, metuō, metui	(sich) fürchten
+mors, mortis f	Tod
+īerrēre, terreō, terrui, territum	erschrecken
+adeō Adv.	so sehr
+Biriciāna	Weißenburg
+Raetia	Rätien (röm. Provinz)﻿</words>
+</wordlist>
+<wordlist>
+<list>16,Lektion 44,la,de,Lektion 44,0</list>
+<words>﻿dīcere m. dopp. Akk.	nennen, bezeichnen (als)
+putāre m. dopp. Akk.	halten für
+ducere m. dopp. Akk.	halten für
+parere, pariō, pepen, partum	zur Welt bringen; erwerben, schaffen
+nūntiāre, nūntiō	melden
+agmen, agminis n	Heereszug, Zug
+salvus, a, um	gesund, unversehrt
+prex, precis f	Bitte
+iter, itineris n	Reise, Marsch, Weg
+iter facere	eine Reise machen
+mensis, mēnsis m (Gen. Pl. -iumj	Monat
+suscipere, suscipio,	auf sich nehmen; sich (einer Sache)
+suscēpī, susceptum  m. Akk.	annehmen, unternehmen
+praemium	Belohnung, Lohn
+civis, cīvis m/f	Bürger(in)
+appellāre, appello  m. dopp. Akk.	nennen, bezeichnen (als); anrufen
+cīvitās, cīvitātis f	Gemeinde, Staat, Bürgerrecht
+capitis damnāre	zum Tode verurteilen
+imperātor, imperātōris m	Befehlshaber, Feldherr; Kaiser
+facere m. dopp. Akk.	machen zu
+pūblicus, a, um	öffentlich, staatlich
+rēs pūblica	Staat
+ad rem publicam accedere	sich dem Staatsdienst widmen
+honor/honōs, honoris m	Ehre, Ehrenamt
+cursus honorum	Ämterlaufbahn
+emere, emō, ēmī, ēmptum	kaufen﻿</words>
+</wordlist>
+<wordlist>
+<list>17,Lektion 45,la,de,Lektion 45,0</list>
+<words>﻿﻿condere, condō, condidi, conditum	verwahren, verbergen; erbauen, gründen
+iūcundus, a, um	angenehm, erfreulich
+ōtium	freie Zeit, Ruhe (von berufl. Tätigkeit); Frieden
+sē dare m. Dat.	sich widmen
+grandis, e	alt; bedeutend, groß
+clārus, a, um	hell, klar, berühmt
+lūmen, lūminis n	Licht; Auge
+illlC Adv.	dort
+omnia n Pl.	alles
+Biriciānae	in Weißenburg (wo?)
+equidem	(ich) allerdings, freilich
+vērus, a, um	wahr, echt, richtig
+grātus, a, um	dankbar, willkommen, beliebt
+liber, libera, liberum	frei
+cūra	Sorge, Pflege
+convenire, convenio, convēnī, conventum  (m. Akk.)	besuchen, treffen
+interdum Adv.	manchmal
+exercere, exerceo	üben, trainieren; quälen
+Cambodūnum	Kempten</words>
+</wordlist>
+<wordlist>
+<list>18,Lektion 46,la,de,Lektion 46,0</list>
+<words>﻿﻿opus, operis n	Arbeit, Werk
+pergere, pergō, perrēxī	aufbrechen; weitermachen
+pōns, pontis m	Brücke
+aquaeductus m	Wasserleitung
+auctoritas, auctōritātis f	Ansehen, Einfluss, Macht
+honōre afficī	geehrt werden, Ehre erlangen
+tālis, e	derartig, ein solcher, so (beschaffen)
+trecenti, -ōrum	dreihundert
+mille (Pl. milia, mīlium)	tausend
+mīlle passūs	eine Meile (ca. 1,5 km; eigentl. tausend Doppelschritte)
+mīlia passuum	(mehrere) Meilen
+dividere, dīvidō, dīvīsī, dīvīsum	teilen, trennen
+magistrātus, magistrātūs m	Amt; Beamter
+cultus, cultūs m	Bildung, Lebensweise; Pflege, Verehrung
+praetereā Adv.	außerdem
+aedis, aedis f	Tempel; Pl. Haus
+vel	oder, sogar
+lātus, a, um	breit, ausgedehnt
+sīc Adv.	so
+Etrūscī, Etruscorum	Etrusker (Bewohner Etruriens)</words>
+</wordlist>
+<wordlist>
+<list>19,Lektion 47,la,de,Lektion 47,0</list>
+<words>﻿﻿hic, haec, hoc	dieser, diese, dieses (hier)
+ille, illa, illud	jener, jene, jenes (dort)
+iūs, iūris n	Recht
+iūs dīcere	Recht sprechen
+praetor, praetoris	Prätor (für die Rechtsprechung zuständiger Beamter)
+scelus, sceleris n	Verbrechen
+committere, committo, commīsī, commissum	anvertrauen; veranstalten, zustandebringen
+scelus committere	ein Verbrechen begehen
+exemplum	Beispiel, Vorbild
+ēvenīre, ēveniō, ēvēnī, eventum	sich ereignen
+in pūblicō	in der Öffentlichkeit
+iactāre, iactō	(hin und her) schleudern, werfen
+pellere, pellō, pepulī, pulsum	stoßen, schlagen, (ver)treiben
+culpa	Schuld
+in culpā esse	schuldig sein
+auctor, auctoris m	Anführer, Gründer, Ratgeber, Urheber, Verfasser
+in iūs vocāre	vor Gericht rufen, anklagen
+num im dir. Fragesatz	etwa
+foris Adv.	außerhalb, draußen, im Krieg (wo?)
+iūdex, iūdicis m	Richter</words>
+</wordlist>
+<wordlist>
+<list>20,Lektion 48,la,de,Lektion 48,0</list>
+<words>﻿﻿magnī esse	viel wert sein/gelten
+magnī facere	hoch (ein)schätzen "•
+pōnere, pōnō, posui, positum	(auf)stellen, (hin)legen, setzen
+vās, vāsis n Pl. vāsa, vāsōrum	Gefäß
+magnī putāre	hoch (ein)schätzen
+mōre m. Gen.	nach Art von, nach Sitte von
+accipere, accipio, accēpī, acceptum	erhalten, annehmen, erfahren
+parēns, parentis m/f	Vater, Mutter; Pl. Eltern
+aestimāre, aestimo	einschätzen, beurteilen
+magnī aestimāre	hoch (ein)schätzen
+parvō vendere	billig verkaufen
+fidem dare	sein Wort geben
+poscere, pōscō, popŌSCĪ	fordern, verlangen
+parvī esse	wenig wert sein/gelten
+rēs familiaris	Vermögen
+incendere, incendo, incendī, incensum	entflammen, in Brand stecken
+īrā incensus	von Zorn entflammt, aus Zorn
+credere, crēdō, crēdidl, creditum	anvertrauen, glauben
+honestus, a, um	angesehen, ehrenhaft
+fidem servāre	sein Wort halten
+vendere, vendō, vendidi, venditum	verkaufen
+addūcere, addūcō,	heranführen, herbeibringen;
+addūxī, adductum	veranlassen
+mirus, a, um	erstaunlich; sonderbar, wunderbar</words>
+</wordlist>
+<wordlist>
+<list>21,Lektion 49,la,de,Lektion 49,0</list>
+<words>﻿﻿temperare, tempero m. Akk.	lenken, ordnen
+consulere, cōnsulō, cōnsuluī, consultum m. Akk.	um Rat fragen m. Dat. sorgen für
+consulere, cōnsulō, cōnsuluī, consultum m. Dat.	sorgen für
+carere, careo m. Abi.	frei sein von, ohne (etw.) sein; nicht haben
+praeesse, praesum, praefui m. Dat.	an der Spitze stehen, leiten
+licet, licuit	es ist erlaubt, es ist möglich
+admittere, admitto, admīsī, admissum	hinzuziehen, zulassen
+ad rem publicam admittere	zur Leitung des Staates hinzuziehen
+cēdere, cēdō, cessi, cessum	gehen, weichen; naehgeben
+fugere, fugiō, fūgī	fliehen, meiden
+sacer, sacra, sacrum (m. Gen.)	geweiht, heilig
+convenire, convenio, convēnī, conventum	Zusammenkommen, zusammenpassen; besuchen, treffen
+patrēs (cōnscrīptī)	Senatoren
+cōgere, cōgō, coēgī, coāctum	(ver)sammeln, zwingen
+persuādēre, persuādeō, persuāsī, persuasum  m. Dat.	überreden, überzeugen
+inimicus, a, um	feindlich; Subst. Feind
+excipere, excipio, excēpī, exceptum	ausnehmen, aufnehmen, empfangen
+conicere, coniciō, coniēcl, coniectum	folgern, vermuten
+venter, ventris m iūre Adv.	Magen  mit Recht, zu Recht
+Mōns sacer	der heilige Berg (nordöstl. von Rom)
+Menenius Agrippa	Menenius Agrippa (röm. Konsul)</words>
+</wordlist>
+<wordlist>
+<list>22,Lektion 50,la,de,Lektion 50,0</list>
+<words>﻿﻿Ire, eō, iī, itum	gehen
+adire, adeō, adii, aditum (m. Akk.)	herantreten (an), bitten
+spem pōnere in m. Abi.	Hoffnung setzen in jmd.
+inire, ineō, inii, initum	hineingehen, beginnen
+consilium inire	einen Beschluss fassen
+perire, pereō, perii	umkommen, zugrunde gehen
+redire, redeō, redii, reditum	zurüekgehen, zurückkehren
+abire, abeō, abii, abitum	Weggehen
+subire, subeō, subii, subitum	auf sich nehmen, herangehen
+arcessere, arcesso, arcessivi, arcessitum	herbeirufen, holen
+afficere, afficio, affeci, affectum	versehen mit
+timōre affici	in Furcht geraten, Angst bekommen
+ōrātiō, ōrātiōnis f	Rede
+proelium	Kampf, Schlacht
+proelium inire	den Kampf beginnen
+occidere, occldō, occidi, occisum	niederschlagen, töten
+quod Subj.	weil
+trānsīre, trānseō, trānsiī, trānsitum	durchqueren, hinübergehen, überschreiten
+modum trānsīre	das Maß überschreiten
+colere, colō, colui, cultum	bewirtschaften, pflegen; verehren</words>
+</wordlist>
+<wordlist>
+<list>23,Lektion 51,la,de,Lektion 51,0</list>
+<words>﻿ipse, ipsa, ipsum	(er, sie, es) selbst
+īdem, eadem, idem	derselbe, der gleiche
+insidiae, insidiarum f Pl.	Falle, Attentat, Flinterlist
+animadvertere, animadverto, animadverti, animadversum  m. Aci / Akk.	bemerken
+opprimere, opprimo,	bedrohen, niederwerfen
+oppressi, oppressum	unterdrücken
+coniūnx, coniugis m/f	Gatte, Gattin
+diēs noctēsque	Tag und Nacht
+maximus, a, um	der größte, sehr groß
+summus, a, um	der oberste, der höchste, der letzte
+inopia	Mangel, Not
+perspicere, perspicio, perspexi, perspectum	durchschauen, erkennen, genau betrachten, sehen
+occupare, occupō	besetzen, einnehmen
+canis, canis m	Hund
+excitāre, excitō	erregen, ermuntern, wecken
+exire, exeō, exii, exitum	herausgehen
+proximus, a, um	der nächste
+gerere, gerō, gessi, gestum	tragen, ausführen, führen
+rēs gestae Pl.	Taten</words>
+</wordlist>
+<wordlist>
+<list>24,Lektion 52,la,de,Lektion 52,0</list>
+<words>﻿﻿nōlle, nōlō, nōluī	nicht wollen
+mālle, mālō, mālul	lieber wollen
+exercitus, exercitūs m	Heer
+trādūcere, trādūcō, trādūxī, traductum  (m. Akk.)	hinüberführen (über)
+puer novem annorum	ein neunjähriger Junge
+domi Adv.	zu Hause (wo?)
+sinere, sinō, sīvī, situm	lassen, erlauben
+sacra facere	Opfer darbringen, opfern
+cōgitāre, cōgitō	beabsichtigen, denken
+severus, a, um	streng
+iūrāre, iūrō	schwören
+iūsiūrandum	Eid, Schwur
+repetere, repetō, repetivi, repetitum	wiederholen; (zurück)verlangen
+odium	Hass
+umquam Adv.	jemals
+convertere, converto, convertī, conversum	verändern, (um)wandeln, verwandeln</words>
+</wordlist>
+<wordlist>
+<list>25,Lektion 53,la,de,Lektion 53,0</list>
+<words>﻿aliqui, aliqua, aliquod adj.	irgendein
+aliquis, aliquid subst.	irgendjemand, irgendetwas
+amicitia	Freundschaft
+coniungere, coniungō, coniūnxī, coniūnctum	verbinden, vereinigen
+victor, victoris m	Sieger
+fatlgāre, fatīgō	ermüden
+convocāre, convoco	versammeln
+cōnsul, consulis m	Konsul
+vincere, vincō, vīcī, victum	(be)siegen, übertreffen
+propinquus, a, um	nahe;  Subst Verwandter
+mulier, mulieris f	Frau
+frequens, frequentis	häufig, zahlreich
+supplex, supplicis	demütig bittend
+immortālis, e	unsterblich
+deserere, dēserō, dēseruī, desertum	im Stich lassen, verlassen
+perdere, perdō, perdidī, perditum	zugrunderichten
+aliquā ex causā	aus irgendeinem Grund
+nescire, nesciō, nescī(v)ī	nicht wissen
+oppūgnāre, oppūgnō	angreifen
+nōtus, a, um	bekannt
+revocāre, revocō	zurückrufen﻿</words>
+</wordlist>
+<wordlist>
+<list>26,Lektion 54,la,de,Lektion 54,0</list>
+<words>﻿﻿Idem ... quī	derselbe/der gleiche... wie
+quālis, e	wie (beschaffen)
+tālis ... quālis	so beschaffen ... wie (beschaffen)
+tot... quot	so viele ... wie (viele)
+tantus, a, um	so groß, so viel
+quantus, a, um	wie groß, wie viel
+tantus ... quantus	so groß ... wie (groß)
+tantum ... quantum	so viel... wie (viel)
+plūrimī, ae, a	sehr viele
+flūmen, flūminis n	Fluss
+quandō	wann
+portus, portūs m	Hafen
+proinde Adv.	also, daher, ebenso
+ascendere, ascendo, ascendi, ascensum	hinaufsteigen, besteigen
+magister, magistiī m	Lehrer
+magister nāvis	Kapitän
+complere, compleo, complēvī, completum	anfüllen
+impellere, impello, impuli, impulsum	antreiben, veranlassen
+optimus, a, um	der beste, sehr gut
+nauta m	Seemann, Matrose
+diligentia	Sorgfalt, Umsicht
+ancora	Anker
+ancoram tollere	den Anker lichten
+ūllus, a, um (Gen. Ūllīus/Dot. ūllīj	irgendeiner
+mora	Aufenthalt, Verzögerung
+sine ūllā morā	unverzüglich
+multōs diēs	viele Tage (lang) (wie lange?)</words>
+</wordlist>
+<wordlist>
+<list>27,Lektion 55,la,de,Lektion 55,0</list>
+<words>﻿﻿prōvidēre, prōvideō, prōvīdī, provisum  m. Akk., m. Dat.	vorhersehen, sorgen für
+cor, cordis n	Herz
+cordi esse	am Herzen liegen
+dives, divitis	reich
+gaudium	Freude
+nūbēs, nūbis f	Wolke
+cūrae esse	Sorge bereiten
+tempestās, tempestātis f	Sturm, (schlechtes) Wetter
+vexāre, vexō	quälen, heimsuchen
+vir vērē Rōmānus	ein echter Römer
+sē praebere	sich zeigen
+ūsuī esse	von Nutzen/nützlich sein
+criminī dare	zum Vorwurf machen
+interest inter m. Akk.	es ist ein Unterschied zwischen
+mē fugit	es entgeht mir
+fluctus, fluctūs m	Flut, Strömung
+remittere, remitto, remisi, remissum	zurückschicken; nachlassen, vermindern
+iter pergere	die Reise/den Weg fortsetzen</words>
+</wordlist>
+<wordlist>
+<list>28,Lektion 56,la,de,Lektion 56,0</list>
+<words>﻿﻿situs, a, um	gelegen (in Ortsangaben)
+colonia	Siedlung
+anteā Adv.	vorher, früher
+ūsque ad m.Akk.	bis zu
+pertinere, pertineo  (ad m.Akk.]	betreffen, gehören (zu), sich erstrecken (bis)
+scrīptor, scrīptōris m	Schriftsteller
+philosophus	Philosoph
+laus, laudis f	Lob, Ruhm
+dīgnus, a, um m. Abi.	(wert, würdig (einerSache)
+Athenis	in Athen (wo?)
+litterae, litterārum f Pl.	Literatur, Wissenschaft
+liber, libiī m	Buch
+lingua	Rede, Sprache
+scribere, scrībō, scrīpsī, scnptum	schreiben, beschreiben
+legere, legō, lēgī, lēctum	lesen
+recreare, recreō	wiederherstellen, erfrischen</words>
+</wordlist>
+<wordlist>
+<list>29,Lektion 57,la,de,Lektion 57,0</list>
+<words>﻿Paesti	in Pastum [wo?)
+incola m	Einwohner, Bewohner
+prius Adv.	eher, früher
+ōrātiōnem habēre	eine Rede halten
+inde Adv.	von dort; darauf; deshalb
+induere, induō, induī, indūtum	anziehen, anlegen
+habitus, habitus m	Aussehen
+simplex, simplicis	einfach
+plūris aestimāre	höher einsehätzen, für wichtiger halten
+divitiae, dīvitiārum f Pl.	Reichtum
+voluptās, voluptātis f	Lust, Vergnügen
+Corinthi	in Korinth (wo?)
+habitāre, habitō	bewohnen, wohnen
+sedere, sedeō, sēdī, sessum	sitzen
+optāre, optō	wünschen
+propter m. Akk.	wegen
+reprehendere, reprehendo, reprehendi, reprehensum	kritisieren, schimpfen﻿</words>
+</wordlist>
+<wordlist>
+<list>30,Lektion 58,la,de,Lektion 58,0</list>
+<words>﻿﻿ut Subj. m. Konj.	dass
+nē Subj. m. Konj.	dass nicht
+timēre, nē m. Konj.	Angst haben/fürchten, dass
+invidia	Neid
+beātus, a, um	glücklich, reich
+domus, domūs f	Haus
+lectus	Bett, Liegesofa
+aureus, a, um	golden
+mēnsa	Tisch
+ōrnāre, ōmō	ausstatten, schmücken
+nē umquam	dass nie(mals)
+gladius	Schwert
+SUprā m.Akk.	oberhalb, über
+figere, fīgō, fixi, fīxum	heften, befestigen
+rogāre, rogō	bitten, erbitten; fragen
+rogāre, ut	darum bitten, dass</words>
+</wordlist>
+<wordlist>
+<list>31,Lektion 59,la,de,Lektion 59,0</list>
+<words>﻿ut Subj. m. Konj.	dass, sodass; damit
+ut nōn Subj. m. Konj.	(so)dass nicht
+nē Subj. m. Konj.	dass nicht, damit nicht
+bonō animō esse	guten Mutes sein, zuversichtlich sein
+audācia	Frechheit, Kühnheit
+obses, obsidis m/f	Geisel
+Rhodum	nach Rhodos (wohin?)
+praestāre, praesto, praestiti m.Akk.	gewähren, leisten; zeigen
+sē praestāre m. Akk.	sich erweisen als
+odiō esse	verhasst sein
+supplicium subīre	hingerichtet werden
+vērō Adv.	in der Tat, wirklich, aber
+nunc vērō	jetzt aber, nun aber
+poēta m	Dichter
+recitare, recitō	vorlesen, vortragen
+dimittere, dīmittō, dīmīsī, dīmissum	wegschicken, entlassen, aufgeben
+condūcere, condūcō, condūxī, conductum	zusammenführen, anwerben, mieten
+animadvertere  in m. Akk.	vorgehen gegen
+conicere, coniciō, coniēcī, coniectum	(zusammen)werfen; folgern, vermuten
+in vincula conicere	in Fesseln legen, fesseln
+parcere, parcō, pepercī m. Dat.	schonen, sparen
+sūmere, sūmō, sūmpsī, sumptum	nehmen
+supplicium sūmere dē m.Abl.	die Hinrichtung vollziehen an, hinrichten﻿</words>
+</wordlist>
+<wordlist>
+<list>32,Lektion 60,la,de,Lektion 60,0</list>
+<words>﻿﻿factum	Handlung, Tat; Tatsache
+bellum gerere	Krieg führen
+noscere, nōscō, nōvī, nōtum	erkennen, kennenlerneri
+nō(vi)sse, nōvī Perf.	kennen, wissen
+superbia	Stolz, Überheblichkeit
+beneficium	Wohltat
+comperire, comperiō, comperī, compertum	(genau) erfahren
+egregius, a, um	ausgezeichnet, hervorragend
+diligere, dīligō, dīlēxī, dīlēctum	hochachten, lieben
+crescere, crēscō, crēvl	wachsen
+incipere, incipio, coepi (incepi), inceptum	anfangen, beginnen
+sōlus, a, um	allein, einzig
+expellere, expello, expuli, expulsum	vertreiben, verbannen
+desistere, desisto, dēstitī fab/ā m.Abl.)	aufhören (mit)</words>
+</wordlist>
+<wordlist>
+<list>33,Lektion 61,la,de,Lektion 61,0</list>
+<words>﻿cum Subj. m. Konj.	als, nachdem
+sin (autem)	wenn aber
+cavēre, caveō, cāvī, cautum m.Akk.	sich hüten (vor), Vorsorge treffen
+odium tuī	der Hass auf dich
+domō Adv.	von zu Hause (woher?)
+īnstāre, īnstō, Institī	bevorstehen, hartzusetzen
+officium	Dienst, Pflicht(gefühl)
+officium praestāre	die Pflicht erfüllen
+senātus, senātūs m	Senat, Senatssitzung
+priusquam Subj. m. Ind.	bevor
+toga	Toga
+praeterire, praetereo, praeterii, praeteritum	Vorbeigehen, übergehen
+fidūcia	Vertrauen
+fldūcia suī	Vertrauen zu sich, Selbstvertrauen
+circumvenire, circumvenio, circumveni, circumventum	umringen, umzingeln
+ubi Subj. m. Ind. Perf.	sobald
+ultimus, a, um	der äußerste, der entfernteste, der letzte
+gemitus, gemitus m	Seufzen, Traurigkeit
+dōnec Subj.	solange (als), (so lange) bis﻿</words>
+</wordlist>
+<wordlist>
+<list>34,Lektion 62,la,de,Lektion 62,0</list>
+<words>﻿﻿quisque, quidque subst.	jeder
+quisque, quaeque, quodque adj.	jeder, jede, jedes
+vindicāre, vindico	beanspruchen; bestrafen
+aetās, aetātis f	Lebensalter, Zeitalter, Zeit
+misericordia	Mitleid
+spoliare, spolio m.Abl.	berauben, plündern
+optimus quisque	gerade die Besten (jeder Beste)
+potestas, potestātis f	(Amts-)Gewält, Macht
+frangere, frangō, frēgī, fractum	zerbrechen
+egēre, egeō m.Abl.	brauchen, benötigen, Mangel haben (an)
+lēx, lēgis f	Gesetz, Bedingung
+iūstitia	Gerechtigkeit
+libertas, lībertātis f	Freiheit</words>
+</wordlist>
+<wordlist>
+<list>35,Lektion 63,la,de,Lektion 63,0</list>
+<words>﻿﻿restituere, restituo, restitui, restitūtum	wiederherstellen
+iuventūs, iuventūtis f	Jugend
+māiōrēs, māiōrum m Pl.	Vorfahren
+mōrēs māiōrum	Sitten der Vorfahren
+hīs dē causīs	aus diesen Gründen, deshalb
+pietās, pietātis f	Frömmigkeit; Ehrfurcht,
+sūmptus, sūmptūs m	Pflichtgefühl Aufwand, die Kosten
+opēs, opum f Pl.	Macht, Mittel, Reiclitum
+sēdēs, sēdis f	Sitz, Wohnsitz, Platz
+cōnsuētūdō, cōnsuētūdinis f	Gewohnheit
+princeps, principis m	der Erste, der führende Mann; Kaiser
+pār, paris	ebenbürtig, gleich
+hūmānitās, hūmānitātis f	Menschlichkeit; Bildung
+optimō iūre	mit bestem Recht/ganz zu Recht</words>
+</wordlist>
+<wordlist>
+<list>36,Grundzahlen,la,de,Grundzahlen,0</list>
+<words>﻿1 =1	ūnus, a, um
+2 = 11	duo, duae, duo
+3 = 111	trēs, tria
+4 = IV	quattuor
+5 = V	quinque
+6 = VI	sex
+7 = VII	septem
+8 = VIII	octō
+9 = IX	novem
+10 = X	decem
+11 = XI	undecim
+12 = XII	duodecim
+13 = XIII	trēdecim
+14 = XIV	quattuordecim
+15 = XV	quindecim
+16 = XVI	sēdecim
+17 = XVII	septendecim
+18 = XVIII	duodeviginti
+19 = XIX	undeviginti
+20 = XX	vīgintī
+30 = XXX	trīgintā
+40 = XL	quadrāgintā
+50 = L	quīnquāgintā
+60 = LX	sexāgintā
+70 = LXX	septuāgintā
+80 = LXXX	octōgintā
+90 = XC	nōnāgintā
+100 = C	centum
+200 = CC	ducentī, ae, a
+300 = CCC	trecenti, ae, a
+400 = CCCC	quadringenti, ae, a
+500 = D	quingenti, ae, a
+600 = DC	sescentī, ae, a
+700 = DCC	septingenti, ae, a
+800 = DCCC	octingenti, ae, a
+900 = CM	nongenti, ae, a
+1000 = M	mille
+2000 = MM	duo milia﻿</words>
+</wordlist>
+</sql>
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+	<CheckBoxPreference android:defaultValue="false" android:title="@string/InverseLang" android:key="inverselang"></CheckBoxPreference>
+	
+	<PreferenceScreen android:orderingFromXml="true" android:title="@string/ToneSettings" android:key="ToneSettings">
+	<RingtonePreference android:ringtoneType="notification" android:showDefault="true" android:showSilent="true" android:title="@string/ToneSelectorR" android:key="ToneSelectorR"></RingtonePreference><CheckBoxPreference android:key="VibrateR" android:title="@string/VibrateR" android:defaultValue="false"></CheckBoxPreference><RingtonePreference android:ringtoneType="notification" android:showDefault="true" android:showSilent="true" android:title="@string/ToneSelectorF" android:key="ToneSelectorF"></RingtonePreference><CheckBoxPreference android:defaultValue="true" android:key="VibrateF" android:title="@string/VibrateF"></CheckBoxPreference>
+
+	</PreferenceScreen><PreferenceScreen android:key="DisplaySettings" android:title="@string/DisplaySettings" android:orderingFromXml="true">
+	<ListPreference android:summary="@string/Buttonsdesc" android:entryValues="@array/ButtonsValues" android:title="@string/ButtonsY" android:key="ButtonsY" android:defaultValue="2" android:entries="@array/ButtonsEntriesY"></ListPreference><ListPreference android:title="@string/ButtonsX" android:summary="@string/Buttonsdesc" android:entryValues="@array/ButtonsValues" android:key="ButtonsX" android:defaultValue="2" android:entries="@array/ButtonsEntriesX"></ListPreference><ListPreference android:entries="@array/ButtonForms" 
+	android:summary="@string/ButtoFormsDescription" 
+	android:entryValues="@array/ButtonShape" 
+	android:title="@string/ButtonFormsText" android:key="ButtonFormKey" android:defaultValue="rectangle"></ListPreference>
+	<Preference android:key="ButtonColor" android:title="@string/ButtonColorTitle"/>
+   <Preference android:key="ButtonTextColor" android:title="@string/ButtonTextColorTitle"/>
+   <ListPreference android:entryValues="@array/TextSizeValues" android:entries="@array/TextSizeEntries" android:key="TextSizeKey" android:title="@string/TextSizeButtons" android:summary="@string/TextSizeDescription" android:defaultValue="2"/><ListPreference android:entryValues="@array/TextSizeValues" android:entries="@array/TextSizeEntries" android:key="TextSizeQuestKey" android:title="@string/TextSizeQuestion" android:summary="@string/TextSizeDescription" android:defaultValue="6"/>
+   
+	</PreferenceScreen>
+</PreferenceScreen>
