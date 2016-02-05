@@ -1,0 +1,37 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        babakey {
+            keyAlias 'baba'
+            keyPassword 'r133195'
+            storeFile file('/home/artur/StudioProjects/vocabs/keystore/AndroidKeyStore')
+            storePassword 'r133195'
+        }
+    }
+    compileSdkVersion 19
+    buildToolsVersion "23.0.2"
+    defaultConfig {
+        applicationId "com.babasoft.vocabs"
+        minSdkVersion 7
+        targetSdkVersion 19
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_5
+            targetCompatibility JavaVersion.VERSION_1_5
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.babakey
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:19.1.0'
+    compile 'com.android.support:support-v4:19.1.0'
+    compile files('libs/jsoup-1.6.3.jar')
+    compile files('libs/msta-with-deps.jar')
+}
