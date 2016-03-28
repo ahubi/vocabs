@@ -34,4 +34,5 @@ dependencies {
     compile 'com.android.support:support-v4:19.1.0'
     compile files('libs/jsoup-1.6.3.jar')
     compile files('libs/msta-with-deps.jar')
+    compile files('libs/opencsv-3.7.jar')
 }

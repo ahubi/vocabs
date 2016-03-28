@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -32,6 +33,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.babasoft.vocabs.DictCCScraper.DictRecord;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 
 /**
  * Datenbankhilfsklasse, kapselt alle DB-Zugriffe
@@ -293,8 +296,8 @@ public class WordDB extends SQLiteOpenHelper {
         try {
             // Get words for this list
             c = getReadableDatabase().query(WORDS_TABLE,
-                    new String[] { ID, LIST_ID, W1, W2, SCORE },
-                    LIST_ID + "=?", new String[] { String.valueOf(id) }, null,
+                    new String[]{ID, LIST_ID, W1, W2, SCORE},
+                    LIST_ID + "=?", new String[]{String.valueOf(id)}, null,
                     null, SCORE);
 
             List<WordRecord> lst = new ArrayList<WordRecord>();
@@ -365,8 +368,8 @@ public class WordDB extends SQLiteOpenHelper {
 
     public Cursor getWordsCursor(long id) {
         return getReadableDatabase().query(WORDS_TABLE,
-                new String[] { ID, LIST_ID, W1, W2, SCORE }, LIST_ID + "=?",
-                new String[] { String.valueOf(id) }, null, null,
+                new String[]{ID, LIST_ID, W1, W2, SCORE}, LIST_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null,
                 W1 + " COLLATE LOCALIZED");
     }
     
@@ -418,7 +421,7 @@ public class WordDB extends SQLiteOpenHelper {
                     .insert(MAIN_TABLE, null, values);
         } else {
             getWritableDatabase().update(MAIN_TABLE, values, ID + "=?",
-                    new String[] { String.valueOf(wordlist.id) });
+                    new String[]{String.valueOf(wordlist.id)});
         }
         return wordlist.id;
     }
@@ -445,7 +448,7 @@ public class WordDB extends SQLiteOpenHelper {
         if (wordlist.id == 0) {
             wordlist.id = db.insert(MAIN_TABLE, null, values);
         } else {
-            db.update(MAIN_TABLE, values, ID + "=?",new String[] { String.valueOf(wordlist.id) });
+            db.update(MAIN_TABLE, values, ID + "=?", new String[]{String.valueOf(wordlist.id)});
         }
         return wordlist.id;
     }
@@ -456,7 +459,7 @@ public class WordDB extends SQLiteOpenHelper {
         if (id != 0) {
             values.put(SELECION, selection ? 1:0);
             getWritableDatabase().update(MAIN_TABLE, values, ID + "=?",
-                        new String[] { String.valueOf(id) });
+                    new String[]{String.valueOf(id)});
         }
     }
 
@@ -475,7 +478,7 @@ public class WordDB extends SQLiteOpenHelper {
             rec.id = (int) getWritableDatabase().insert(WORDS, null, values);
         } else {
             getWritableDatabase().update(WORDS, values, ID + "=?",
-                    new String[] { String.valueOf(rec.id) });
+                    new String[]{String.valueOf(rec.id)});
         }
         return rec.id;
     }
@@ -494,7 +497,7 @@ public class WordDB extends SQLiteOpenHelper {
         if (rec.id == 0) {
             rec.id = (int) db.insert(WORDS, null, values);
         } else {
-            db.update(WORDS, values, ID + "=?",new String[] { String.valueOf(rec.id) });
+            db.update(WORDS, values, ID + "=?", new String[]{String.valueOf(rec.id)});
         }
         return rec.id;
     }
@@ -503,7 +506,6 @@ public class WordDB extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         for (DictRecord e : l) {
             ContentValues values = new ContentValues();
-
             values.put(LIST_ID, id);
             values.put(W1, e.l);
             values.put(W2, e.r);
@@ -521,7 +523,7 @@ public class WordDB extends SQLiteOpenHelper {
     private String wordRecSqlInsertString(String rec, Long lstId) {
         String[] listParts = rec.split("\t");
         return String.format("INSERT INTO " + WORDS_TABLE
-                + " VALUES(NULL,%d,'%s','%s',%d)",
+                        + " VALUES(NULL,%d,'%s','%s',%d)",
                 lstId, listParts[0].trim(), listParts[1].trim(), 0);
     }
 
@@ -657,46 +659,46 @@ public class WordDB extends SQLiteOpenHelper {
 
         try {
             // liest standardmäßig UTF-8
-            BufferedReader in = new BufferedReader(new FileReader(file));
             WordList wl = new WordList();
             wl.title = title;
+            wl.lang1 = wl.lang2 = "";
             wl.desc = "Imported from: " + file.getPath();
-
             String str;
             long listId = 0;
-            while ((str = in.readLine()) != null) {
+            CSVReader csvReader = new CSVReader(new FileReader(file), '\t');
+            String[] row = null;
+            while ((row = csvReader.readNext()) != null) {
                 if (listId == 0) {
+                    str = row[0];
                     if (str.contains("-lang-")) {
-                        wl.lang1 = str.split("-lang-")[0];
-                        wl.lang2 = str.split("-lang-")[1];
+                        wl.lang1 = str.split("-lang-")[0].trim();
+                        wl.lang2 = str.split("-lang-")[1].trim();
                         listId = insertWordList(db, wl);
                         continue;//skip -lang- line
-                    } else {
-                        wl.lang1 = "";
-                        wl.lang2 = "";
+                    } else
                         listId = insertWordList(db, wl);
+                }
+                //Import pairs only
+                if (row.length>1) {
+                    //Import non empty words only
+                    if(row[0].length()>0 && row[1].length()>0) {
+                        WordRecord wr = new WordRecord();
+                        wr.w1 = row[0];
+                        wr.w2 = row[1];
+                        wr.lstID = listId;
+                        insertWordRecord(db, wr);
                     }
                 }
-                WordRecord wr = new WordRecord();
-                String ar[] = str.split("\t");
-                if (ar.length > 1) {
-                    wr.w1 = ar[0];
-                    wr.w2 = ar[1];
-                    wr.lstID = listId;
-                    insertWordRecord(db, wr);
-                }
             }
-            in.close();
+            csvReader.close();
         } catch (FileNotFoundException e) {
-            // Fehler wird hier einfach ignoriert
             return false;
         } catch (IOException e) {
-            // Fehler wird hier einfach ignoriert
             return false;
         }
         return true;
     }
-    
+
     /**
      * Import all lists from a directory
      * @param dir directory to import from
@@ -728,19 +730,18 @@ public class WordDB extends SQLiteOpenHelper {
         // Dateipfad ergibt sich aus Name, wir quoten alle Sonderzeichen
         File file = new File(dir, URLEncoder.encode(wordlist.title) + ".txt");
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter(file));
+            CSVWriter writer = new CSVWriter(new FileWriter(file),'\t');
             List<WordRecord> words = getWords(id);
-            out.write(wordlist.lang1);
-            out.write("-lang-");
-            out.write(wordlist.lang2);
-            out.write("\n");
+            String entries[]= new String[2];
+            entries[0]= wordlist.lang1 + "-lang-" + wordlist.lang2;
+            writer.writeNext(entries,false);
+            //Write all word records
             for (WordRecord wr : words) {
-                out.write(wr.w1);
-                out.write("\t");
-                out.write(wr.w2);
-                out.write("\n");
+                entries[0]= wr.w1;
+                entries[1]= wr.w2;
+                writer.writeNext(entries,false);
             }
-            out.close();
+            writer.close();
         } catch (IOException e) {
             // Fehler wird hier einfach ignoriert
             return false;
@@ -767,8 +768,8 @@ public class WordDB extends SQLiteOpenHelper {
      * Exportiere Wortliste ins Dateisystem. Der Dateiname ergibt sich aus dem
      * Titel, eine existierende Datei wird überschrieben.
      * 
-     * @param id
-     *            ID der Wortliste
+     * @param db
+     *            database
      * @param dir
      *            Verzeichnis in das geschrieben werden soll (muss existieren)
      * @return true falls erfolgreich
