@@ -15,6 +15,7 @@ import android.gesture.Prediction;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -55,37 +56,33 @@ public class MemoryCard extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View retView = inflater.inflate(R.layout.memory, container, false);
-        
+        retView.setBackgroundColor(0x00000000); //black background
         int textSizeButtonOffset = Prefs.getButtonTextSize(getActivity());
-        
-        Button button = (Button)retView.findViewById(R.id.button_main);
+        //Add all buttons to list to traverse with a loop
+        List<Button> buttonList = new ArrayList<Button>();
+        buttonList.add((Button)retView.findViewById(R.id.button_main));
+        buttonList.add((Button)retView.findViewById(R.id.button_ohoh));
+        buttonList.add((Button)retView.findViewById(R.id.button_easy));
+        buttonList.add((Button)retView.findViewById(R.id.button_solala));
+        //Main button for memory card
         Drawable shape = getResources().getDrawable(Prefs.getButtonsForm(getActivity()));
-        shape.clearColorFilter();
         shape.setColorFilter(Prefs.getButtoncolor(getActivity()), PorterDuff.Mode.SRC);
-        button.setTextSize(button.getTextSize()+textSizeButtonOffset);
-        button.setBackgroundDrawable(shape);
-        button.setTextColor(Prefs.getTextcolor(getActivity()));
-        
-        button = (Button)retView.findViewById(R.id.button_ohoh);
-        shape = getResources().getDrawable(R.drawable.rectangle_border);
-        button.setTextSize(button.getTextSize()+textSizeButtonOffset);
-        button.setBackgroundDrawable(shape);
-        button.setTextColor(Prefs.getTextcolor(getActivity()));
-        
-        button = (Button)retView.findViewById(R.id.button_easy);
-        shape = getResources().getDrawable(R.drawable.rectangle_border);
-        button.setTextSize(button.getTextSize()+textSizeButtonOffset);
-        button.setBackgroundDrawable(shape);
-        button.setTextColor(Prefs.getTextcolor(getActivity()));
-        
-        button = (Button)retView.findViewById(R.id.button_solala);
-        shape = getResources().getDrawable(R.drawable.rectangle_border);
-        button.setTextSize(button.getTextSize()+textSizeButtonOffset);
-        button.setBackgroundDrawable(shape);
-        button.setTextColor(Prefs.getTextcolor(getActivity()));
+        //Button form settings for all buttons in the list
+        GradientDrawable gd = new GradientDrawable();
+        gd.setColor(Prefs.getButtoncolor(getActivity()));
+        gd.setCornerRadius(5);
+        gd.setStroke(1, 0xFF000000);
+
+        for (Button b:buttonList) {
+            b.setTextSize(b.getTextSize()+textSizeButtonOffset);
+            b.setTextColor(Prefs.getTextcolor(getActivity()));
+            if(b.getId()!=R.id.button_main)
+                b.setBackgroundDrawable(gd);
+            else
+                b.setBackgroundDrawable(shape);
+        }
         setupListeners(retView);
         registerGestures(retView);
-        
         return retView;
     }
 
