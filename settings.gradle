@@ -1,0 +1,2 @@
+include ':vocabs'
+project(':vocabs').projectDir = new File('app')
