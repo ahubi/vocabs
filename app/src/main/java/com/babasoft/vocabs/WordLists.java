@@ -50,7 +50,8 @@ public class WordLists extends ListFragment {
 	private static final int EDIT_LIST_NAME  = Menu.FIRST + 7;
 	private static final int FILESELECTOR_REQUEST = 0;
     private WordDB db;
-    
+    private ShareActionProvider mShareActionProvider;
+
     private static class ViewHolder {
         public TextView listId;
         public CheckBox checkBox;
@@ -262,15 +263,13 @@ public class WordLists extends ListFragment {
 		return super.onContextItemSelected(item);
 	}
 	
-	private ShareActionProvider mShareActionProvider;
-	//normales Menü zum Anlegen neuer Wortlisten und zum Importieren	
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 	    inflater.inflate(R.menu.wordlists_activity_actions, menu);
 	    // Set up ShareActionProvider's default share intent
-//        MenuItem shareItem = menu.findItem(R.id.action_share);
-//        mShareActionProvider = (android.support.v7.widget.ShareActionProvider)MenuItemCompat.getActionProvider(shareItem);
-//        mShareActionProvider.setShareIntent(getDefaultIntent());
+        MenuItem shareItem = menu.findItem(R.id.action_share);
+        mShareActionProvider = (android.support.v7.widget.ShareActionProvider)MenuItemCompat.getActionProvider(shareItem);
+        mShareActionProvider.setShareIntent(getDefaultIntent());
 	}
 
 	/** Defines a default (dummy) share intent to initialize the action provider.
@@ -280,8 +279,9 @@ public class WordLists extends ListFragment {
 	  */
 	private Intent getDefaultIntent() {
 	    Intent intent = new Intent(Intent.ACTION_SEND);
-	    intent.setType("image/*");
-	    return intent;
+        intent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+        intent.setType("text/plain");
+        return intent;
 	}
 	
 	//@Override
