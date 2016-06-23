@@ -666,7 +666,7 @@ public class WordDB extends SQLiteOpenHelper {
             String str;
             long listId = 0;
             CSVReader csvReader = new CSVReader(new FileReader(file), '\t');
-            String[] row = null;
+            String[] row;
             while ((row = csvReader.readNext()) != null) {
                 if (listId == 0) {
                     str = row[0];
@@ -725,7 +725,7 @@ public class WordDB extends SQLiteOpenHelper {
      *            Verzeichnis in das geschrieben werden soll (muss existieren)
      * @return true falls erfolgreich
      */
-    public boolean exportWordList(long id, File dir) {
+    public String exportWordList(long id, File dir) {
         WordList wordlist = getWordList(id);
         // Dateipfad ergibt sich aus Name, wir quoten alle Sonderzeichen
         File file = new File(dir, URLEncoder.encode(wordlist.title) + ".txt");
@@ -744,24 +744,28 @@ public class WordDB extends SQLiteOpenHelper {
             writer.close();
         } catch (IOException e) {
             // Fehler wird hier einfach ignoriert
-            return false;
+            return null;
         }
-        return true;
+        return file.getAbsolutePath();
     }
 
-    public boolean exportSelectedWordLists(File dir) {
+    public List<String> exportSelectedWordLists(File dir) {
         Cursor c = getSelectedWordListsCursor();
+        List<String> lst = new ArrayList<String>();
+        String ret;
         if (c.moveToNext()) {
             if (c.moveToFirst()) {
                 for (int i = 0; i < c.getCount(); i++) {
-                    exportWordList(c.getLong(c.getColumnIndexOrThrow(ID)), dir);
+                    ret = exportWordList(c.getLong(c.getColumnIndexOrThrow(ID)), dir);
+                    if (ret!=null)
+                        lst.add(ret);
                     c.moveToNext();
                 }
 
             }
             c.close();
         }
-        return true;
+        return lst;
     }
     
     /**
@@ -774,18 +778,22 @@ public class WordDB extends SQLiteOpenHelper {
      *            Verzeichnis in das geschrieben werden soll (muss existieren)
      * @return true falls erfolgreich
      */
-    public boolean exportAllWordLists(SQLiteDatabase db, File dir) {
+    public List<String> exportAllWordLists(SQLiteDatabase db, File dir) {
         // hard coded name for export of all words
         Cursor c = db.query(MAIN_TABLE,new String[] {ID}, null, null, null, null,null);
+        List<String> lst = new ArrayList<String>();
+        String ret;
         if (c.moveToFirst()) {
             for (int i = 0; i < c.getCount(); i++) {
-                exportWordList(c.getLong(c.getColumnIndexOrThrow(ID)), dir);
+                ret=exportWordList(c.getLong(c.getColumnIndexOrThrow(ID)), dir);
+                if (ret!=null)
+                    lst.add(ret);
                 c.moveToNext();
             }
             
         }
         c.close();
-        return true;
+        return lst;
     }
 
     /**

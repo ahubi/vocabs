@@ -212,7 +212,6 @@ public class WordLists extends ListFragment {
 				MenuItem add = menu.add(0, EXPORT, 0, R.string.Export);
 				if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
 					add.setEnabled(false); // s.u.
-				return;
 			}
 		}
 	}
@@ -249,8 +248,9 @@ public class WordLists extends ListFragment {
 			// speichere Datei auf der SD-Karte, ins Verzeichnis
 			File dir = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
 			dir.mkdir(); // lege Verzeichnis an, ignoriere Fehler
-			if (db.exportWordList(wl.id, dir)) {
-				String msg = getString(R.string.Exported, dir.getPath());
+            String fpath = db.exportWordList(wl.id, dir);
+			if (fpath!=null) {
+				String msg = getString(R.string.Exported, fpath);
 				Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
 			} else {
 				// Fehlermeldung mit Dateipfad als Argument (Platzhalter %s im
@@ -333,7 +333,7 @@ public class WordLists extends ListFragment {
             // speichere Datei auf der SD-Karte, ins Verzeichnis
             File dir = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
             dir.mkdir(); // lege Verzeichnis an, ignoriere Fehler
-            if (db.exportSelectedWordLists(dir)) {
+            if (db.exportSelectedWordLists(dir).size()>0) {
                 String msg = getString(R.string.Exported, dir.getPath());
                 Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
             } else {
