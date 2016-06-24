@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
+import java.net.URI;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -725,7 +727,7 @@ public class WordDB extends SQLiteOpenHelper {
      *            Verzeichnis in das geschrieben werden soll (muss existieren)
      * @return true falls erfolgreich
      */
-    public String exportWordList(long id, File dir) {
+    public Uri exportWordList(long id, File dir) {
         WordList wordlist = getWordList(id);
         // Dateipfad ergibt sich aus Name, wir quoten alle Sonderzeichen
         File file = new File(dir, URLEncoder.encode(wordlist.title) + ".txt");
@@ -746,13 +748,13 @@ public class WordDB extends SQLiteOpenHelper {
             // Fehler wird hier einfach ignoriert
             return null;
         }
-        return file.getAbsolutePath();
+        return Uri.fromFile(file);
     }
 
-    public List<String> exportSelectedWordLists(File dir) {
+    public List<Uri> exportSelectedWordLists(File dir) {
         Cursor c = getSelectedWordListsCursor();
-        List<String> lst = new ArrayList<String>();
-        String ret;
+        List<Uri> lst = new ArrayList<Uri>();
+        Uri ret;
         if (c.moveToNext()) {
             if (c.moveToFirst()) {
                 for (int i = 0; i < c.getCount(); i++) {
@@ -778,11 +780,11 @@ public class WordDB extends SQLiteOpenHelper {
      *            Verzeichnis in das geschrieben werden soll (muss existieren)
      * @return true falls erfolgreich
      */
-    public List<String> exportAllWordLists(SQLiteDatabase db, File dir) {
+    public List<Uri> exportAllWordLists(SQLiteDatabase db, File dir) {
         // hard coded name for export of all words
         Cursor c = db.query(MAIN_TABLE,new String[] {ID}, null, null, null, null,null);
-        List<String> lst = new ArrayList<String>();
-        String ret;
+        List<Uri> lst = new ArrayList<Uri>();
+        Uri ret;
         if (c.moveToFirst()) {
             for (int i = 0; i < c.getCount(); i++) {
                 ret=exportWordList(c.getLong(c.getColumnIndexOrThrow(ID)), dir);

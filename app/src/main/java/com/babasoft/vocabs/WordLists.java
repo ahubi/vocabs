@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -248,7 +249,7 @@ public class WordLists extends ListFragment {
 			// speichere Datei auf der SD-Karte, ins Verzeichnis
 			File dir = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
 			dir.mkdir(); // lege Verzeichnis an, ignoriere Fehler
-            String fpath = db.exportWordList(wl.id, dir);
+            Uri fpath = db.exportWordList(wl.id, dir);
 			if (fpath!=null) {
 				String msg = getString(R.string.Exported, fpath);
 				Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
@@ -278,10 +279,21 @@ public class WordLists extends ListFragment {
 	  * mShareActionProvider.setShareIntent()
 	  */
 	private Intent getDefaultIntent() {
-	    Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-        intent.setType("text/plain");
-        return intent;
+
+        File dir = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
+        dir.mkdir(); // lege Verzeichnis an, ignoriere Fehler
+
+        ArrayList<Uri> imageUris = (ArrayList<Uri>) db.exportSelectedWordLists(dir);
+
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
+        shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris);
+        shareIntent.setType("image/*");
+        //startActivity(Intent.createChooser(shareIntent, "Share images to.."));
+//	    Intent intent = new Intent(Intent.ACTION_SEND);
+//        intent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+//        intent.setType("text/plain");
+        return shareIntent;
 	}
 	
 	//@Override
