@@ -123,6 +123,7 @@ public class WordLists extends ListFragment {
                       db.updateWordListSelection(id, isChecked);
                       WordList element = (WordList) viewHolder.checkBox.getTag();
                       element.selection = buttonView.isChecked() ? 1:0;
+                      mShareActionProvider.setShareIntent(getShareListsIntent()); //update shared lists
                   }
                 });
                 view.setTag(viewHolder);
@@ -270,7 +271,7 @@ public class WordLists extends ListFragment {
 	    // Set up ShareActionProvider's default share intent
         MenuItem shareItem = menu.findItem(R.id.action_share);
         mShareActionProvider = (android.support.v7.widget.ShareActionProvider)MenuItemCompat.getActionProvider(shareItem);
-        mShareActionProvider.setShareIntent(getDefaultIntent());
+        mShareActionProvider.setShareIntent(getShareListsIntent());
 	}
 
 	/** Defines a default (dummy) share intent to initialize the action provider.
@@ -278,21 +279,14 @@ public class WordLists extends ListFragment {
 	  * is known or changes, you must update the share intent by again calling
 	  * mShareActionProvider.setShareIntent()
 	  */
-	private Intent getDefaultIntent() {
-
+	private Intent getShareListsIntent() {
         File dir = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
-        dir.mkdir(); // lege Verzeichnis an, ignoriere Fehler
-
+        dir.mkdir();
         ArrayList<Uri> imageUris = (ArrayList<Uri>) db.exportSelectedWordLists(dir);
-
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
         shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris);
         shareIntent.setType("image/*");
-        //startActivity(Intent.createChooser(shareIntent, "Share images to.."));
-//	    Intent intent = new Intent(Intent.ACTION_SEND);
-//        intent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-//        intent.setType("text/plain");
         return shareIntent;
 	}
 	
@@ -386,8 +380,7 @@ public class WordLists extends ListFragment {
             });
     	    alertDlg.show();
     	    break;
-        
-		}
+        }
 		return super.onOptionsItemSelected(item);
 	}
 	
