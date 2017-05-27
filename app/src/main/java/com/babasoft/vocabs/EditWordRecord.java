@@ -1,11 +1,9 @@
 package com.babasoft.vocabs;
 
 import java.util.Locale;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -20,9 +18,8 @@ import android.widget.Toast;
 import com.babasoft.vocabs.WordDB.WordList;
 import com.babasoft.vocabs.WordDB.WordRecord;
 import com.memetix.mst.language.Language;
-import com.memetix.mst.translate.Translate;
 
-public class EditWordRecord extends Activity {
+public class EditWordRecord extends Activity implements TranslationListener {
     private WordDB db;
     private long wordRecId = 0;
     WordRecord wordRec = null;
@@ -34,9 +31,6 @@ public class EditWordRecord extends Activity {
     private boolean textChanged = false;
     private int mEditTextChanged = 1;
     private int LISTS=0xff;
-
-    protected static final String ENCODING = "UTF-8";
-    protected static String apiKey = "5968BF93732438E63986F8C23C9F5CF21552C2E0";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -165,33 +159,29 @@ public class EditWordRecord extends Activity {
     final View.OnClickListener onTranslate1 = new View.OnClickListener() {
 
         public void onClick(View v) {
-            Translate.setClientId("babalasoft_translator");
-            Translate.setClientSecret("mYZEKXXxscGRYWQJ5hd824lZVEGAhOTCPD+cHxNefEI=");
-            String translatedText,toBeTranlated;
+            String toBeTranslated;
             Language from,to;
             try {
                 
                 if(mEditTextChanged==1){
                     from = Language.fromString(SupportedLanguage.parseLanguage(sp1.getSelectedItem().toString()));
                     to = Language.fromString(SupportedLanguage.parseLanguage(sp2.getSelectedItem().toString()));
-                    toBeTranlated = et_w1.getText().toString();
+                    toBeTranslated = et_w1.getText().toString();
                 }else{
                     from = Language.fromString(SupportedLanguage.parseLanguage(sp2.getSelectedItem().toString()));
                     to = Language.fromString(SupportedLanguage.parseLanguage(sp1.getSelectedItem().toString()));
-                    toBeTranlated = et_w2.getText().toString();
+                    toBeTranslated = et_w2.getText().toString();
                 }
                     
                 if (from != null && to != null) {
                     if (to != Language.AUTO_DETECT) {
-                        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                        StrictMode.setThreadPolicy(policy); 
-                        translatedText = Translate.execute(toBeTranlated, from, to);
-                        if (mEditTextChanged == 1)
-                            et_w2.setText(translatedText);
-                        else
-                            et_w1.setText(translatedText);
-
-                        onComplete(translatedText);
+                        TranslateReq req = new TranslateReq();
+                        req.from = from.toString();
+                        req.to = to.toString();
+                        req.toTranslate = toBeTranslated;
+                        req.callback = EditWordRecord.this;
+                        GoogleTranslate tt = new GoogleTranslate();
+                        tt.execute(req);
                     }else
                         onError(0, getString(R.string.TargetLanguageError)); 
                 } else
@@ -214,10 +204,13 @@ public class EditWordRecord extends Activity {
     };
 
     public void onComplete(String result) {
-        if (result == null) {
-            Toast.makeText(this, "Nothing returned", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, result, Toast.LENGTH_LONG).show();
+        if (result == null)
+            Toast.makeText(this, "Translation failed", Toast.LENGTH_LONG).show();
+        else {
+            if (mEditTextChanged == 1)
+                et_w2.setText(result);
+            else
+                et_w1.setText(result);
         }
     }
 
