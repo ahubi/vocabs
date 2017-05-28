@@ -23,7 +23,8 @@
     <Spinner
         android:id="@+id/sp_Lang1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"/>
 
     <TextView
         android:id="@+id/tv_Lang2"
@@ -34,6 +35,7 @@
     <Spinner
         android:id="@+id/sp_Lang2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"/>
 
 </LinearLayout>

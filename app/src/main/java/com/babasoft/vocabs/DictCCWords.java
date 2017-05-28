@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.babasoft.vocabs.DictCCScraper.DictRecord;
 import com.babasoft.vocabs.WordDB.WordList;
-import com.memetix.mst.language.Language;
 
 /**
  * Bearbeite eine Wortliste, bestehend aus zwei EditText-Steuerelementen für

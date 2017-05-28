@@ -1,74 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/top_control_bar"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="2.0">
+        android:layout_gravity="center_horizontal">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+            android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/AddItem"
-                android:layout_width="match_parent"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_toRightOf="@+id/edit_word_button1"
                 android:layout_weight="1"
                 android:text="@string/AddWord" />
 
             <Button
                 android:id="@+id/edit_word_button1"
-                android:layout_width="match_parent"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:text="Translate" />
+                android:text="Translate"
+                android:visibility="visible" />
         </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/firstWordControl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:layout_below="@+id/top_control_bar">
 
         <Spinner
             android:id="@+id/trans_word_lang1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:spinnerMode="dialog" />
 
         <TextView
             android:id="@+id/edit_word_lang1"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:gravity="center" />
+
         <EditText
             android:id="@+id/edit_word_word1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/trans_word_lang1"
             android:layout_weight="0.39"
-            android:gravity="top" >
-
+            android:gravity="top">
             <requestFocus />
+
         </EditText>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/secondWordControl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:layout_below="@+id/firstWordControl">
 
         <Spinner
             android:id="@+id/trans_word_lang2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:spinnerMode="dialog" />
 
         <TextView
             android:id="@+id/edit_word_lang2"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:gravity="center" />
+
         <EditText
             android:id="@+id/edit_word_word2"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/trans_word_lang2"
             android:layout_weight="0.57"
             android:gravity="top" />
+    </RelativeLayout>
 
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

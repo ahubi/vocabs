@@ -45,7 +45,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true" />
+            android:layout_alignParentTop="true"
+            android:spinnerMode="dialog"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -57,21 +58,23 @@
 
         <Button
             android:id="@+id/prev_dict_cc_list"
+            style="@android:style/Widget.Button.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_action_previous_item"
-            android:paddingRight="64dip"
             android:minHeight="32dip"
-            android:minWidth="32dip" />
+            android:minWidth="32dip"
+            android:paddingRight="64dip" />
 
         <Button
             android:id="@+id/next_dict_cc_list"
+            style="@android:style/Widget.Button.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_action_next_item"
-            android:paddingLeft="64dip"
             android:minHeight="32dip"
-            android:minWidth="32dip" />
+            android:minWidth="32dip"
+            android:paddingLeft="64dip" />
 
     </LinearLayout>
 

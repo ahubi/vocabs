@@ -116,14 +116,15 @@ public class WordLists extends ListFragment {
                 viewHolder.listId   = (TextView) view.findViewById(R.id.listId);
                 viewHolder.checkBox = (CheckBox) view.findViewById(R.id.listSelected);
                 viewHolder.listName = (TextView) view.findViewById(R.id.listName);
-                viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
                   public void onCheckedChanged(CompoundButton buttonView,
                       boolean isChecked) {
                       long id = Long.parseLong(viewHolder.listId.getText().toString());
                       db.updateWordListSelection(id, isChecked);
                       WordList element = (WordList) viewHolder.checkBox.getTag();
                       element.selection = buttonView.isChecked() ? 1:0;
-                      mShareActionProvider.setShareIntent(getShareListsIntent()); //update shared lists
+                      if(mShareActionProvider!=null)
+                        mShareActionProvider.setShareIntent(getShareListsIntent()); //update shared lists
                   }
                 });
                 view.setTag(viewHolder);
@@ -269,9 +270,9 @@ public class WordLists extends ListFragment {
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 	    inflater.inflate(R.menu.wordlists_activity_actions, menu);
 	    // Set up ShareActionProvider's default share intent
-        MenuItem shareItem = menu.findItem(R.id.action_share);
-        mShareActionProvider = (android.support.v7.widget.ShareActionProvider)MenuItemCompat.getActionProvider(shareItem);
-        mShareActionProvider.setShareIntent(getShareListsIntent());
+        //MenuItem shareItem = menu.findItem(R.id.action_share);
+        //mShareActionProvider = (android.support.v7.widget.ShareActionProvider)MenuItemCompat.getActionProvider(shareItem);
+        //mShareActionProvider.setShareIntent(getShareListsIntent());
 	}
 
 	/** Defines a default (dummy) share intent to initialize the action provider.

@@ -8,10 +8,8 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.babasoft.vocabs.WordDB.WordList;
-import com.memetix.mst.language.Language;
 
 public class EditList extends Activity {
     private WordDB db;
@@ -67,8 +65,8 @@ public class EditList extends Activity {
         EditText name = (EditText) findViewById(R.id.et_Name);
         String lang1 = sp1.getSelectedItem().toString();
         String lang2 = sp2.getSelectedItem().toString();
-        mWl.lang1 = (lang1=="AUTODETECT") ? mWl.lang1:SupportedLanguage.parseLanguage(lang1);
-        mWl.lang2 = (lang2=="AUTODETECT") ? mWl.lang2:SupportedLanguage.parseLanguage(lang2);
+        mWl.lang1 = (lang1=="auto") ? mWl.lang1:SupportedLanguage.parseLanguage(lang1);
+        mWl.lang2 = (lang2=="auto") ? mWl.lang2:SupportedLanguage.parseLanguage(lang2);
         mWl.title = name.getText().toString();
         mWl.desc = mWl.lang1 + " | " + mWl.lang2;
         db.setWordList(mWl);

@@ -3,7 +3,7 @@ package com.babasoft.vocabs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import com.memetix.mst.language.Language;
+
 
 public class SupportedLanguage{
     private static Language languages[];
@@ -25,7 +25,7 @@ public class SupportedLanguage{
      */
     final private static String getDisplayLanguage(final String languageCode){
         if(languageCode.length()==0)
-            return "AUTODETECT";
+            return "auto";
         Locale l = new Locale(languageCode);
         return l.getDisplayName() + " (" + languageCode +")";
     }
@@ -48,7 +48,7 @@ public class SupportedLanguage{
     
     /**
     * Returns language string from display language.
-    * @param DisplayLanguage string.
+    * @param dl string.
     */
     public static String parseLanguage(final String dl){
         String split[]=dl.split("[(]");
@@ -56,6 +56,6 @@ public class SupportedLanguage{
         {
           return split[1].replace(")", "").trim();  
         }
-        return "";
+        return "auto";
     }
 }
