@@ -45,16 +45,12 @@ German irregular verbs
 ### Import from dict.cc
 ![Import from dict.cc](doc/import_from_dictcc.png)
 
-### Here is an class diagram generated with Code Iris plugin
-
-![Import from dict.cc](doc/vocabs_package_classdiagram.png)
 
 Following libraries are in use to implement certain functionality:
 
 Library | Functionality
 ------------ | -------------
 jsoup | [Java HTML Parser](https://jsoup.org/) - used for parsing html content when downloading lists from dict.cc
-mst | [Microsoft translator Java API](https://github.com/boatmeme/microsoft-translator-java-api) - used to access translator service
 opencsv | [CSV java parser](http://opencsv.sourceforge.net/) - used to parse Coma Separated Values
 
 Tips for setting up the project:
