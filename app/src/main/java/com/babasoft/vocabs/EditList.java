@@ -91,9 +91,9 @@ public class EditList extends Activity {
         String mSelection;
         public myOnItemSelectedListener(Spinner sp, String lang) {
             this.mSp    = sp;
-            Language sl=SupportedLanguage.getSupportedLanguage(lang);
-            if(sl!=null){
-                mSp.setSelection(sl.ordinal());
+            int sl=SupportedLanguage.getLanguagePosition(lang);
+            if(sl!=-1){
+                mSp.setSelection(sl);
             }          
          }
 

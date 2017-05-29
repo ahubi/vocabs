@@ -79,21 +79,21 @@ public class EditWordRecord extends Activity implements TranslationListener {
             if (mWordLst != null) {
                 mTvLang1.setText(mWordLst.lang1);
                 mTvLang2.setText(mWordLst.lang2);
-                Language sl1 = SupportedLanguage.getSupportedLanguage(mWordLst.lang1);
-                Language sl2 = SupportedLanguage.getSupportedLanguage(mWordLst.lang2);
+                int sl1 = SupportedLanguage.getLanguagePosition(mWordLst.lang1);
+                int sl2 = SupportedLanguage.getLanguagePosition(mWordLst.lang2);
                 
-                if(sl1!=null)
-                    mSp1.setSelection(sl1.ordinal());
+                if(sl1!=-1)
+                    mSp1.setSelection(sl1);
                 
-                if(sl2!=null)
-                    mSp2.setSelection(sl2.ordinal());
+                if(sl2!=-1)
+                    mSp2.setSelection(sl2);
                 
                 setTitle(mWordLst.title);
             }
         }else{
-            Language sl = SupportedLanguage.getSupportedLanguage(Locale.getDefault().getLanguage());
-            if(sl!=null)
-                mSp2.setSelection(sl.ordinal());
+            int sl = SupportedLanguage.getLanguagePosition(Locale.getDefault().getLanguage());
+            if(sl!=-1)
+                mSp2.setSelection(sl);
         }
         mEditTextChanged = 1;
     }

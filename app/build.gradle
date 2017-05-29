@@ -4,9 +4,9 @@ android {
     signingConfigs {
         babakey {
             keyAlias 'baba'
-            keyPassword 'r133195'
+            keyPassword 'r1xxx'
             storeFile file('/home/artur/StudioProjects/vocabs/keystore/AndroidKeyStore')
-            storePassword 'r133195'
+            storePassword 'r1xxx'
         }
     }
     compileSdkVersion 19
