@@ -589,6 +589,27 @@ public class WordDB extends SQLiteOpenHelper {
     }
 
     /**
+     * Returns word list id for a list name
+     *
+     * @param name of list
+     * @return id of list if present in database, 0 otherwise
+     */
+    public long getWordListID(String name) {
+        Cursor c = null;
+        try {
+            c = getReadableDatabase().query(MAIN_TABLE, new String[] { ID, TITLE}, TITLE + "=?",
+                    new String[] {name}, null, null,null);
+            if (c.moveToFirst())
+                return c.getLong(c.getColumnIndexOrThrow(ID));
+            else
+                return 0;
+        } finally {
+            if (c != null && !c.isClosed())
+                c.close(); //always close cursor
+        }
+    }
+
+    /**
      * Zugriff auf alle Wortlisten, sortiert nach Titel
      * 
      * @return Cursor über die Daten, Aufrufer muss Cursor selbst schliesseen
@@ -855,5 +876,49 @@ public class WordDB extends SQLiteOpenHelper {
     public static List<String> stringToList(String string) {
         return Arrays.asList(string.split("\n"));
     }
-
+    /**
+     * Updates scores in the database
+     *
+     * @param l list with word records
+     */
+    protected void updateWordsScore(List<WordRecord> l, boolean autosort) {
+        if (l != null) {
+            if(autosort==false){
+                Iterator<WordRecord> it = l.iterator();
+                while (it.hasNext()) {
+                    WordRecord wr = it.next();
+                    if (wr.dirty > 0)
+                        setWordRecord(wr);
+                }
+            }else { //Move
+                long easyListId=0, solalaListId=0, ohohListId=0;
+                WordList wl = new WordList();
+                wl.lang1 = "auto";
+                wl.lang2 = "auto";
+                String [] autoLists = {"Easy", "So lala", "Oh, Oh!"};
+                for (String al : autoLists) {
+                    wl.title = al;
+                    if((al=="Easy") && ((easyListId = getWordListID(al)) == 0))
+                        easyListId = setWordList(wl);
+                    if((al=="So lala") && ((solalaListId = getWordListID(al)) == 0))
+                        solalaListId = setWordList(wl);
+                    if((al=="Oh, Oh!") && ((ohohListId = getWordListID(al)) == 0))
+                        ohohListId = setWordList(wl);
+                }
+                Iterator<WordRecord> it = l.iterator();
+                while (it.hasNext()) {
+                    WordRecord wr = it.next();
+                    if (wr.dirty > 0) {
+                        if (wr.score >= 0)
+                            wr.lstID = easyListId;
+                        else if (wr.score < 0 && wr.score > -3)
+                            wr.lstID = solalaListId;
+                        else
+                            wr.lstID = ohohListId;
+                        setWordRecord(wr);
+                    }
+                }
+            }
+        }
+    }
 }

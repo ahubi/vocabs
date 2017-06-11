@@ -59,7 +59,4 @@ public class PrefsActivity extends PreferenceActivity {
                     });
         }
     }
-    
-
-
 }

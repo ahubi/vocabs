@@ -2,7 +2,11 @@
 <PreferenceScreen
   xmlns:android="http://schemas.android.com/apk/res/android">
 	<CheckBoxPreference android:defaultValue="false" android:title="@string/InverseLang" android:key="inverselang"></CheckBoxPreference>
-	
+
+	<CheckBoxPreference
+		android:defaultValue="false"
+		android:key="listautosort"
+		android:title="@string/ListAutoSort" />
 	<PreferenceScreen android:orderingFromXml="true" android:title="@string/ToneSettings" android:key="ToneSettings">
 	<RingtonePreference android:ringtoneType="notification" android:showDefault="true" android:showSilent="true" android:title="@string/ToneSelectorR" android:key="ToneSelectorR"></RingtonePreference><CheckBoxPreference android:key="VibrateR" android:title="@string/VibrateR" android:defaultValue="false"></CheckBoxPreference><RingtonePreference android:ringtoneType="notification" android:showDefault="true" android:showSilent="true" android:title="@string/ToneSelectorF" android:key="ToneSelectorF"></RingtonePreference><CheckBoxPreference android:defaultValue="true" android:key="VibrateF" android:title="@string/VibrateF"></CheckBoxPreference>
 

@@ -368,12 +368,7 @@ public class MemoryCard extends Fragment{
         }
     }
     protected void updateWordsScore(){
-        Iterator<WordRecord> it = mShuffledWords.iterator();
-        while(it.hasNext()){
-            WordRecord wr= it.next();
-            if(wr.dirty>0)
-                mDB.setWordRecord(wr);
-        }
+        mDB.updateWordsScore(mShuffledWords, Prefs.getListAutoSort(getActivity()));
     }
     protected void updateTitle(){
         getActivity().setTitle(mSession.wordlistName + " " + "[" +

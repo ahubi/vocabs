@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Sound">Sound bei richtig</string>
-	<string
-		name="Words">Wörter</string>
-	<string
-		name="Title">Titel</string>
+    <string
+        name="Words">Wörter</string>
+    <string
+        name="Title">Titel</string>
 
-	<string
-		name="app_name">Vocabs</string>
-	<string
-		name="EditWords">Wortliste bearbeiten</string>
-	<string
-		name="WordLists">Wortlisten</string>
-	<string
-		name="Delete">Löschen</string>
-	<string
-		name="Add">Neue Wortliste</string>
-	<string
-		name="Edit">Bearbeiten</string>		
-	<string
-		name="SelectFile">Datei wählen</string>	
-	<string
-		name="NoMoreWordlists">Keine weiteren Wortlisten</string>
-	<string
-		name="Import">Importieren...</string>
-	<string
-		name="Error">Fehler</string>
-	<string
-		name="ImportError">Datei %s konnte nicht gelesen werden</string>
-	<string
-		name="Export">Exportieren</string>	
-	<string
-		name="Exported">Wortliste wurde ins Verzeichnis %s exportiert</string><string name="Language1">Sprache 1</string><string name="Language2">Sprache 2</string>	
-	<string
-		name="ExportError">Wortliste konnte nicht ins Verzeichnis %s exportiert werden</string>	
-	<string	name="Prefs">Einstellungen</string>
-	<string  name="Help">Hilfe</string> 
+    <string
+        name="app_name">Vocabs</string>
+    <string
+        name="EditWords">Wortliste bearbeiten</string>
+    <string
+        name="WordLists">Wortlisten</string>
+    <string
+        name="Delete">Löschen</string>
+    <string
+        name="Add">Neue Wortliste</string>
+    <string
+        name="Edit">Bearbeiten</string>
+    <string
+        name="SelectFile">Datei wählen</string>
+    <string
+        name="NoMoreWordlists">Keine weiteren Wortlisten</string>
+    <string
+        name="Import">Importieren...</string>
+    <string
+        name="Error">Fehler</string>
+    <string
+        name="ImportError">Datei %s konnte nicht gelesen werden</string>
+    <string
+        name="Export">Exportieren</string>
+    <string
+        name="Exported">Wortliste wurde ins Verzeichnis %s exportiert</string><string name="Language1">Sprache 1</string><string name="Language2">Sprache 2</string>
+    <string
+        name="ExportError">Wortliste konnte nicht ins Verzeichnis %s exportiert werden</string>
+    <string	name="Prefs">Einstellungen</string>
+    <string  name="Help">Hilfe</string>
     <string name="Right">R:</string><string name="ExportAll">Alle exportieren</string>
     <string name="False">F:</string>
     <string name="ButtonsX">Spalten</string>
@@ -107,23 +107,24 @@
         angezeigt dann in der Mitte des Kreises klicken umd die Farbe einzustellen.</p>
         ]]>
      </string>
-     <string name="TextSizeButtons">Textgröße buttons</string>
-     <string name="TextSizeDescription">Ändern der Textgröße</string>
-     <string name="TextSizeQuestion">Textgröße Fragewort</string>
-     <string name="FilterHint">Tippen Sie hier zum Filtern</string>
-     <string name="MagnifierText">Suchen...</string>
-     <string name="EditList">Liste bearabeiten</string>
-     <string name="AddWord">Wordpaar hinzufügen</string>
-     <string name="PleaseWait">Bitte warten</string>
-     <string name="GetLists">Lade Listen ...</string>
-     <string name="GetWords">Wörter werden geholt ...</string>
-     <string name="ImportProgress">Importiere ...</string>
-     <string name="ImportFromDictCC">Import von dict.cc</string>
-     <string name="ErrorFromDictCC">Fehler beim Importieren von dict.cc, prüfen Sie die Internet Verbindung.</string>
-     <string name="ErrorGettingWords">Beim Holen der Wörter ist ein Problem aufgetretten</string>
-     <string name="Translate">Übersetze</string>
-     <string name="TargetLanguageError">Zielsprache nicht gesetzt, bitte eine konkrete Sprache auswählen.</string>
-     <string name="RecordSaved">Wörter wurden gespeichert</string>
-     <string name="RecordSaveFail">Unvollständige Wörterpaare werden nicht gespeichert.</string>
-     
+    <string name="TextSizeButtons">Textgröße buttons</string>
+    <string name="TextSizeDescription">Ändern der Textgröße</string>
+    <string name="TextSizeQuestion">Textgröße Fragewort</string>
+    <string name="FilterHint">Tippen Sie hier zum Filtern</string>
+    <string name="MagnifierText">Suchen...</string>
+    <string name="EditList">Liste bearabeiten</string>
+    <string name="AddWord">Wordpaar hinzufügen</string>
+    <string name="PleaseWait">Bitte warten</string>
+    <string name="GetLists">Lade Listen ...</string>
+    <string name="GetWords">Wörter werden geholt ...</string>
+    <string name="ImportProgress">Importiere ...</string>
+    <string name="ImportFromDictCC">Import von dict.cc</string>
+    <string name="ErrorFromDictCC">Fehler beim Importieren von dict.cc, prüfen Sie die Internet Verbindung.</string>
+    <string name="ErrorGettingWords">Beim Holen der Wörter ist ein Problem aufgetretten</string>
+    <string name="Translate">Übersetze</string>
+    <string name="TargetLanguageError">Zielsprache nicht gesetzt, bitte eine konkrete Sprache auswählen.</string>
+    <string name="RecordSaved">Wörter wurden gespeichert</string>
+    <string name="RecordSaveFail">Unvollständige Wörterpaare werden nicht gespeichert.</string>
+    <string name="ListAutoSort">Auto sort Easy, So lala, Oh, Oh!</string>
+
 </resources>

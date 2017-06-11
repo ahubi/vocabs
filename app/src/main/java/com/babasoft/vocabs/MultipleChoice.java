@@ -44,6 +44,7 @@ import android.widget.Toast;
 import com.babasoft.vocabs.WordDB.WordList;
 import com.babasoft.vocabs.WordDB.WordRecord;
 
+import static com.babasoft.vocabs.R.xml.prefs;
 
 
 @SuppressWarnings("ResourceType")
@@ -556,14 +557,8 @@ public class MultipleChoice extends Fragment{
     }
     
     protected void updateWordsScore() {
-        if (mCurrentWords != null) {
-            Iterator<WordRecord> it = mCurrentWords.iterator();
-            while (it.hasNext()) {
-                WordRecord wr = it.next();
-                if (wr.dirty > 0)
-                    mDB.setWordRecord(wr);
-            }
-        }
+        if (mCurrentWords != null)
+            mDB.updateWordsScore(mCurrentWords, Prefs.getListAutoSort(getActivity()));
     }
     
     private void showHint(){

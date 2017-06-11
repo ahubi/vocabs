@@ -30,6 +30,7 @@ public class Prefs {
 	private static final String TEXTCOLOR = "ButtonTextColor";
 	private static final String TEXTSIZE_BUTTON = "TextSizeKey";
 	private static final String TEXTSIZE_QUESTION = "TextSizeQuestKey";
+    private static final String AUTO_SORT = "listautosort";
 	
     //Statistics values, not in prefs screen used
     private final static String FIRST_TIME      ="first_time";          //first time training started
@@ -239,11 +240,24 @@ public class Prefs {
 		editor.commit();
 	}
 	
-	public static boolean getInverseLang(Context ctx) {
+	public static boolean getListAutoSort(Context ctx) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-		return prefs.getBoolean(INVERSELANG,false);	// default ist true, d.h. kein Sound	
+		return prefs.getBoolean(AUTO_SORT,false);
 	}
-	
+
+    public static void setListAutoSort(Context ctx, boolean listautosort)
+    {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(AUTO_SORT, listautosort);
+        editor.commit();
+    }
+
+    public static boolean getInverseLang(Context ctx) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        return prefs.getBoolean(INVERSELANG,false);	// default ist true, d.h. kein Sound
+    }
+
 	public static int getXButtons(Context ctx){
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
 		
