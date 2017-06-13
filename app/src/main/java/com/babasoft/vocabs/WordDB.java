@@ -83,11 +83,12 @@ public class WordDB extends SQLiteOpenHelper {
         public String w1;
         public String w2;
         public int score;
+        public long parentlist;
         public int dirty;
     }
 
     public WordDB(Context ctx) {
-        super(ctx, MAIN_TABLE, null, 2); // DB version 1
+        super(ctx, MAIN_TABLE, null, 3); // DB version 1
         this.context = ctx;
     }
 
@@ -173,7 +174,14 @@ public class WordDB extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         try {
-            db.execSQL("ALTER TABLE " + MAIN_TABLE + " ADD COLUMN selection INTEGER");
+            if (oldVersion==1 && newVersion == 2)// 1->2
+                db.execSQL("ALTER TABLE " + MAIN_TABLE + " ADD COLUMN selection INTEGER");
+            else if (oldVersion==2 && newVersion==3) // 2->3
+                db.execSQL("ALTER TABLE " + WORDS_TABLE+ " ADD COLUMN parentlist INTEGER");
+            else{ // 1->3
+                db.execSQL("ALTER TABLE " + MAIN_TABLE + " ADD COLUMN selection INTEGER");
+                db.execSQL("ALTER TABLE " + WORDS_TABLE+ " ADD COLUMN parentlist INTEGER");
+            }
         } catch (SQLiteException e) {
             Log.w(getClass().getName(), e.getMessage());
         }
@@ -525,8 +533,8 @@ public class WordDB extends SQLiteOpenHelper {
     private String wordRecSqlInsertString(String rec, Long lstId) {
         String[] listParts = rec.split("\t");
         return String.format("INSERT INTO " + WORDS_TABLE
-                        + " VALUES(NULL,%d,'%s','%s',%d)",
-                lstId, listParts[0].trim(), listParts[1].trim(), 0);
+                        + " VALUES(NULL,%d,'%s','%s',%d,%d)",
+                lstId, listParts[0].trim(), listParts[1].trim(), 0, 0);
     }
 
     /**
@@ -895,6 +903,7 @@ public class WordDB extends SQLiteOpenHelper {
                 WordList wl = new WordList();
                 wl.lang1 = "auto";
                 wl.lang2 = "auto";
+                //Create autosorted wordlists if necessary
                 String [] autoLists = {"Easy", "So lala", "Oh, Oh!"};
                 for (String al : autoLists) {
                     wl.title = al;
@@ -905,10 +914,15 @@ public class WordDB extends SQLiteOpenHelper {
                     if((al=="Oh, Oh!") && ((ohohListId = getWordListID(al)) == 0))
                         ohohListId = setWordList(wl);
                 }
+                //Sort word records according to scores
                 Iterator<WordRecord> it = l.iterator();
                 while (it.hasNext()) {
                     WordRecord wr = it.next();
                     if (wr.dirty > 0) {
+                        //save the parent category for later resorting back to original list
+                        if(wr.parentlist==0)
+                            wr.parentlist = wr.lstID;
+                        //auto sort words to autolists
                         if (wr.score >= 0)
                             wr.lstID = easyListId;
                         else if (wr.score < 0 && wr.score > -3)
@@ -919,6 +933,31 @@ public class WordDB extends SQLiteOpenHelper {
                     }
                 }
             }
+        }
+    }
+    /**
+     * Resort word records to original lists
+     *
+     * @param
+     */
+    protected void resort2ParentList() {
+        String [] autoLists = {"Easy", "So lala", "Oh, Oh!"};
+        for (String al : autoLists) {
+            long lid = getWordListID(al);
+            if (lid != 0 && getWordsCursorCount(lid)>0){
+                Iterator<WordRecord> it = getWords(lid).iterator();
+                while (it.hasNext()) {
+                    WordRecord wr = it.next();
+                    //swap parentlist id to listid, and set parent list id to 0
+                    if(wr.parentlist!=0){
+                        wr.lstID = wr.parentlist;
+                        wr.parentlist = 0;
+                        setWordRecord(wr);
+                    }
+                }
+
+            }
+
         }
     }
 }

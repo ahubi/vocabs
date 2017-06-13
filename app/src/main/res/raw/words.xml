@@ -16,7 +16,8 @@ CREATE TABLE IF NOT EXISTS words (
         _list INTEGER,
         w1 TEXT not null,
         w2 TEXT not null,
-        score INTEGER)
+        score INTEGER,
+		parentlist INTEGER)
 </statement>
 
 <wordlists>
