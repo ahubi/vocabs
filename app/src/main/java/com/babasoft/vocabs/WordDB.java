@@ -60,6 +60,9 @@ public class WordDB extends SQLiteOpenHelper {
     public final static String LIST_ID = "_list";
     public final static String TYPE = "type";
 
+    public String mEasyStr   ="Easy";
+    public String mSolalaStr ="So lala";
+    public String mOhOhStr   ="Oh Oh!";
 
     protected Context context;
 
@@ -90,6 +93,9 @@ public class WordDB extends SQLiteOpenHelper {
     public WordDB(Context ctx) {
         super(ctx, MAIN_TABLE, null, 3); // DB version 1
         this.context = ctx;
+        mEasyStr = context.getString(R.string.easy);
+        mSolalaStr = context.getString(R.string.solala);
+        mOhOhStr= context.getString(R.string.ohoh);
     }
 
     /**
@@ -100,8 +106,7 @@ public class WordDB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String s;
         try {
-            InputStream in = context.getResources()
-                    .openRawResource(R.raw.words);
+            InputStream in = context.getResources().openRawResource(R.raw.words);
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document doc = builder.parse(in, null);
             NodeList statements = doc.getElementsByTagName("statement");
@@ -257,15 +262,34 @@ public class WordDB extends SQLiteOpenHelper {
     public List<WordList> getWordLists() {
         Cursor c = getWordListsCursor();
         List<WordList> lst = new ArrayList<WordList>();
+        long easyId     = getWordListID(mEasyStr);
+        long solalaId   = getWordListID(mSolalaStr);
+        long ohohId     = getWordListID(mOhOhStr);
+        WordList easyList=null, solalaList=null, ohohList =null;
         if (c.moveToFirst()) {
             for (int i = 0; i < c.getCount(); i++) {
-                WordList wl = getWordList(c
-                        .getLong(c.getColumnIndexOrThrow(ID)));
-                lst.add(wl);
+                WordList wl = getWordList(c.getLong(c.getColumnIndexOrThrow(ID)));
+                //skip easy, solala, ohoh list, add them after all at the begin of the list
+                if(wl.id == easyId)
+                    easyList = wl;
+                else if(wl.id == solalaId)
+                    solalaList = wl;
+                else if(wl.id == ohohId)
+                    ohohList = wl;
+                else
+                    lst.add(wl);
                 c.moveToNext();
             }
             c.close();
         }
+        //add easy, solala, ohoh to the begininig of the list
+        if(easyList!=null)
+            lst.add(0, easyList);
+        if(solalaList!=null)
+            lst.add(0, solalaList);
+        if(ohohList!=null)
+            lst.add(0, ohohList);
+
         return lst;
     }
     
@@ -904,14 +928,14 @@ public class WordDB extends SQLiteOpenHelper {
                 wl.lang1 = "auto";
                 wl.lang2 = "auto";
                 //Create autosorted wordlists if necessary
-                String [] autoLists = {"Easy", "So lala", "Oh, Oh!"};
+                String [] autoLists = {mEasyStr, mSolalaStr, mOhOhStr};
                 for (String al : autoLists) {
                     wl.title = al;
-                    if((al=="Easy") && ((easyListId = getWordListID(al)) == 0))
+                    if((al==mEasyStr) && ((easyListId = getWordListID(al)) == 0))
                         easyListId = setWordList(wl);
-                    if((al=="So lala") && ((solalaListId = getWordListID(al)) == 0))
+                    if((al==mSolalaStr) && ((solalaListId = getWordListID(al)) == 0))
                         solalaListId = setWordList(wl);
-                    if((al=="Oh, Oh!") && ((ohohListId = getWordListID(al)) == 0))
+                    if((al==mOhOhStr) && ((ohohListId = getWordListID(al)) == 0))
                         ohohListId = setWordList(wl);
                 }
                 //Sort word records according to scores
@@ -941,7 +965,7 @@ public class WordDB extends SQLiteOpenHelper {
      * @param
      */
     protected void resort2ParentList() {
-        String [] autoLists = {"Easy", "So lala", "Oh, Oh!"};
+        String [] autoLists = {mEasyStr, mSolalaStr, mOhOhStr};
         for (String al : autoLists) {
             long lid = getWordListID(al);
             if (lid != 0 && getWordsCursorCount(lid)>0){
