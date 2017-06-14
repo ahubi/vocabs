@@ -126,5 +126,7 @@
     <string name="RecordSaved">Wörter wurden gespeichert</string>
     <string name="RecordSaveFail">Unvollständige Wörterpaare werden nicht gespeichert.</string>
     <string name="ListAutoSort">Auto sort Easy, So lala, Oh, Oh!</string>
+    <string name="resort2parents">Resort Easy, So lala, Oh, Oh</string>
+    <string name="resort2ParentsAlertMessage">Resort Easy, So lala and Oh Oh zurück in die orginal Listen?</string>
 
 </resources>

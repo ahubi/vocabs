@@ -136,4 +136,6 @@
     <string name="RecordSaved">Record was saved</string>
     <string name="RecordSaveFail">Record incorrect and wasn\'t saved</string>
     <string name="ListAutoSort">Auto sort Easy, So lala, Oh, Oh!</string>
+    <string name="resort2parents">Resort Easy, So lala, Oh, Oh</string>
+    <string name="resort2ParentsAlertMessage">Resort Easy, So lala and Oh Oh back to orginal lists?</string>
 </resources>

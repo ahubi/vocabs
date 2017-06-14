@@ -50,7 +50,12 @@
           android:icon="@drawable/ic_action_discard"
           android:title="@string/DeleteAll"
           app:showAsAction="ifRoom" />
-    
+
+    <item
+        android:id="@+id/action_resort_to_parents"
+        android:icon="@android:drawable/ic_menu_sort_alphabetically"
+        android:title="@string/resort2parents"
+        app:showAsAction="ifRoom" />
     <item android:id="@+id/action_settings"
           android:title="@string/Prefs"/>
     

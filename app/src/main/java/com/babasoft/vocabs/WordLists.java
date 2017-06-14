@@ -299,92 +299,113 @@ public class WordLists extends ListFragment {
 //			menu.findItem(IMPORT).setEnabled(false); 
 //		getActivity().onPrepareOptionsMenu(menu);
 //	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch(item.getItemId()) {
-		case R.id.action_settings:
-            startActivity(new Intent(getActivity(),PrefsActivity.class)); // keine ID übergeben = neue Wortliste
-            break;
-    	case R.id.action_new:
-    		startActivity(new Intent(getActivity(),EditList.class)); // keine ID übergeben = neue Wortliste
-    		break;
-    	case R.id.action_edit:
-    	    List<Long> lst = db.getSelectedWordLists();
-            if(lst.size()>0){
-                Intent editInt = new Intent(getActivity(), EditWordList.class);
-                editInt.putExtra(EditWordList.ID, lst.get(0));
-                startActivity(editInt);
-            }else
-                Toast.makeText(getActivity(), "Select a list to edit", Toast.LENGTH_LONG).show();
-            break;
-    	case R.id.action_search:
-    	    Intent intent = new Intent(getActivity(), EditWordList.class);
-            intent.putExtra(EditWordList.ID, -1);
-            startActivity(intent); 
-    	    break;
-    	
-    	case R.id.action_download:
-            startActivity(new Intent(getActivity(), DictCCList.class)); 
-            break;
-            
-    	case R.id.action_import:
-            Intent i = new Intent(getActivity(), FileSelectorActivity.class);
-            // starte eigene Dateiauswahl für *.txt Dateien,
-            // Ergebnis in onActivityResult unten
-            i.putExtra(FileSelectorActivity.EXTENSIONS, "txt"); //$NON-NLS-1$
-            startActivityForResult(i, FILESELECTOR_REQUEST);
-            break;
-            
-    	case R.id.action_export:
-            // speichere Datei auf der SD-Karte, ins Verzeichnis
-            File dir = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
-            dir.mkdir(); // lege Verzeichnis an, ignoriere Fehler
-            if (db.exportSelectedWordLists(dir).size()>0) {
-                String msg = getString(R.string.Exported, dir.getPath());
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                startActivity(new Intent(getActivity(), PrefsActivity.class)); // keine ID übergeben = neue Wortliste
+                break;
+            case R.id.action_new:
+                startActivity(new Intent(getActivity(), EditList.class)); // keine ID übergeben = neue Wortliste
+                break;
+            case R.id.action_edit:
+                List<Long> lst = db.getSelectedWordLists();
+                if (lst.size() > 0) {
+                    Intent editInt = new Intent(getActivity(), EditWordList.class);
+                    editInt.putExtra(EditWordList.ID, lst.get(0));
+                    startActivity(editInt);
+                } else
+                    Toast.makeText(getActivity(), "Select a list to edit", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.action_search:
+                Intent intent = new Intent(getActivity(), EditWordList.class);
+                intent.putExtra(EditWordList.ID, -1);
+                startActivity(intent);
+                break;
+
+            case R.id.action_download:
+                startActivity(new Intent(getActivity(), DictCCList.class));
+                break;
+
+            case R.id.action_import:
+                Intent i = new Intent(getActivity(), FileSelectorActivity.class);
+                // starte eigene Dateiauswahl für *.txt Dateien,
+                // Ergebnis in onActivityResult unten
+                i.putExtra(FileSelectorActivity.EXTENSIONS, "txt"); //$NON-NLS-1$
+                startActivityForResult(i, FILESELECTOR_REQUEST);
+                break;
+
+            case R.id.action_export:
+                // speichere Datei auf der SD-Karte, ins Verzeichnis
+                File dir = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
+                dir.mkdir(); // lege Verzeichnis an, ignoriere Fehler
+                if (db.exportSelectedWordLists(dir).size() > 0) {
+                    String msg = getString(R.string.Exported, dir.getPath());
+                    Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+                } else {
+                    String msg = getString(R.string.ExportError, dir.getPath());
+                    new AlertDialog.Builder(getActivity()).setTitle(R.string.Error).setMessage(msg).setPositiveButton(android.R.string.ok, null).show();
+                }
+                break;
+            case R.id.action_export_all:
+                //speichere Datei auf der SD-Karte, ins Verzeichnis
+                File dir2 = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
+                dir2.mkdir(); // lege Verzeichnis an, ignoriere Fehler
+                db.exportAllWordLists(db.getReadableDatabase(), dir2);
+                String msg = getString(R.string.Exported, dir2.getPath());
                 Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
-            } else {
-                String msg = getString(R.string.ExportError, dir.getPath());
-                new AlertDialog.Builder(getActivity()).setTitle(R.string.Error).setMessage(msg).setPositiveButton(android.R.string.ok, null).show();
-            }
-            break;      
-    	case R.id.action_export_all:
-    	    //speichere Datei auf der SD-Karte, ins Verzeichnis
-            File dir2 = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
-            dir2.mkdir(); // lege Verzeichnis an, ignoriere Fehler
-            db.exportAllWordLists(db.getReadableDatabase(),dir2);
-            String msg = getString(R.string.Exported, dir2.getPath());
-            Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
-    	    break;
-    	
-    	case R.id.action_delete:
-            db.removeSelectedLists();
-            refreshList();
-            break;
-    	case R.id.action_delete_all:
-    	    AlertDialog alertDlg = new AlertDialog.Builder(getActivity()).create();
-    	    alertDlg.setTitle(R.string.DeleteAll);
-    	    alertDlg.setMessage(getString(R.string.DeleteAllMessage));
-    	    alertDlg.setCancelable(true);
-    	    alertDlg.setButton("OK", new DialogInterface.OnClickListener() {
-                
-                public void onClick(DialogInterface dialog, int which) {
-                    db.removeAllList();
-                    refreshList();
-                }
-            });
-    	    alertDlg.setButton2("Cancel", new DialogInterface.OnClickListener() {
-                
-                public void onClick(DialogInterface dialog, int which) {
-                    
-                }
-            });
-    	    alertDlg.show();
-    	    break;
+                break;
+
+            case R.id.action_delete:
+                db.removeSelectedLists();
+                refreshList();
+                break;
+            case R.id.action_delete_all:
+                AlertDialog alertDlg = new AlertDialog.Builder(getActivity()).create();
+                alertDlg.setTitle(R.string.DeleteAll);
+                alertDlg.setMessage(getString(R.string.DeleteAllMessage));
+                alertDlg.setCancelable(true);
+                alertDlg.setButton("OK", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        db.removeAllList();
+                        refreshList();
+                    }
+                });
+                alertDlg.setButton2("Cancel", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alertDlg.show();
+                break;
+            case R.id.action_resort_to_parents:
+                AlertDialog alDlg = new AlertDialog.Builder(getActivity()).create();
+                alDlg.setTitle(R.string.resort2parents);
+                alDlg.setMessage(getString(R.string.resort2ParentsAlertMessage));
+                alDlg.setCancelable(true);
+                alDlg.setButton("OK", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        db.resort2ParentList();
+                        refreshList();
+                    }
+                });
+                alDlg.setButton2("Cancel", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alDlg.show();
+                break;
         }
-		return super.onOptionsItemSelected(item);
-	}
-	
+
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);

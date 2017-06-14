@@ -57,6 +57,7 @@ public class WordDB extends SQLiteOpenHelper {
     public final static String W1 = "w1";
     public final static String W2 = "w2";
     public final static String SCORE = "score";
+    public final static String PARENTLIST = "parentlist";
     public final static String LIST_ID = "_list";
     public final static String TYPE = "type";
 
@@ -330,7 +331,7 @@ public class WordDB extends SQLiteOpenHelper {
         try {
             // Get words for this list
             c = getReadableDatabase().query(WORDS_TABLE,
-                    new String[]{ID, LIST_ID, W1, W2, SCORE},
+                    new String[]{ID, LIST_ID, W1, W2, SCORE, PARENTLIST},
                     LIST_ID + "=?", new String[]{String.valueOf(id)}, null,
                     null, SCORE);
 
@@ -342,6 +343,7 @@ public class WordDB extends SQLiteOpenHelper {
                 rec.w1 = c.getString(c.getColumnIndex(W1));
                 rec.w2 = c.getString(c.getColumnIndex(W2));
                 rec.score = c.getInt(c.getColumnIndex(SCORE));
+                rec.parentlist = c.getInt(c.getColumnIndex(PARENTLIST));
                 lst.add(rec);
             }
             return lst;
@@ -364,7 +366,7 @@ public class WordDB extends SQLiteOpenHelper {
         try {
             // Get words for this list
             c = getReadableDatabase().query(WORDS_TABLE,
-                    new String[] { ID, LIST_ID, W1, W2, SCORE }, ID + "=?",
+                    new String[] { ID, LIST_ID, W1, W2, SCORE, PARENTLIST }, ID + "=?",
                     new String[] { String.valueOf(id) }, null, null, SCORE);
             if (c.moveToFirst()) {
                 WordRecord rec = new WordRecord();
@@ -373,6 +375,7 @@ public class WordDB extends SQLiteOpenHelper {
                 rec.w1 = c.getString(c.getColumnIndex(W1));
                 rec.w2 = c.getString(c.getColumnIndex(W2));
                 rec.score = c.getInt(c.getColumnIndex(SCORE));
+                rec.parentlist = c.getInt(c.getColumnIndex(PARENTLIST));
                 return rec;
             } else
                 return null;
@@ -385,7 +388,7 @@ public class WordDB extends SQLiteOpenHelper {
 
     public Cursor getWordsCursor(long id, String s) {
         String query = "Select " + ID + "," + LIST_ID + "," + W1 + "," + W2
-                + "," + SCORE + " from " + WORDS_TABLE + " WHERE " + LIST_ID
+                + "," + SCORE + "," + PARENTLIST + " from " + WORDS_TABLE + " WHERE " + LIST_ID
                 + "=" + String.valueOf(id) + " AND (" + W1 + " LIKE " + "'%"
                 + s + "%'" + " or " + W2 + " like " + "'%" + s + "%')"
                 + " ORDER BY " + W1 + " COLLATE LOCALIZED";
@@ -394,7 +397,7 @@ public class WordDB extends SQLiteOpenHelper {
 
     public Cursor getWordsCursor(String s) {
         String query = "Select " + ID + "," + LIST_ID + "," + W1 + "," + W2
-                + "," + SCORE + " from " + WORDS_TABLE + " WHERE " + W1
+                + "," + SCORE + "," + PARENTLIST + " from " + WORDS_TABLE + " WHERE " + W1
                 + " LIKE " + "'%" + s + "%'" + " or " + W2 + " like " + "'%"
                 + s + "%'" + " ORDER BY " + W1 + " COLLATE LOCALIZED";
         return getReadableDatabase().rawQuery(query, null);
@@ -402,7 +405,7 @@ public class WordDB extends SQLiteOpenHelper {
 
     public Cursor getWordsCursor(long id) {
         return getReadableDatabase().query(WORDS_TABLE,
-                new String[]{ID, LIST_ID, W1, W2, SCORE}, LIST_ID + "=?",
+                new String[]{ID, LIST_ID, W1, W2, SCORE, PARENTLIST}, LIST_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null,
                 W1 + " COLLATE LOCALIZED");
     }
@@ -426,7 +429,7 @@ public class WordDB extends SQLiteOpenHelper {
 
     public Cursor getWordsCursor() {
         return getReadableDatabase().query(WORDS_TABLE,
-                new String[] { ID, LIST_ID, W1, W2, SCORE }, null, null, null,
+                new String[] { ID, LIST_ID, W1, W2, SCORE, PARENTLIST }, null, null, null,
                 null, W1 + " COLLATE LOCALIZED");
     }
 
@@ -507,6 +510,7 @@ public class WordDB extends SQLiteOpenHelper {
         values.put(W1, rec.w1);
         values.put(W2, rec.w2);
         values.put(SCORE, rec.score);
+        values.put(PARENTLIST, rec.parentlist);
 
         if (rec.id == 0) {
             rec.id = (int) getWritableDatabase().insert(WORDS, null, values);
@@ -527,6 +531,7 @@ public class WordDB extends SQLiteOpenHelper {
         values.put(W1, rec.w1);
         values.put(W2, rec.w2);
         values.put(SCORE, rec.score);
+        values.put(PARENTLIST, rec.parentlist);
 
         if (rec.id == 0) {
             rec.id = (int) db.insert(WORDS, null, values);
@@ -544,6 +549,7 @@ public class WordDB extends SQLiteOpenHelper {
             values.put(W1, e.l);
             values.put(W2, e.r);
             values.put(SCORE, 0);
+            values.put(PARENTLIST, 0);
             db.insert(WORDS, null, values);
         }
         db.close();
