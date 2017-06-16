@@ -721,7 +721,7 @@ public class WordDB extends SQLiteOpenHelper {
         try {
             // liest standardmäßig UTF-8
             WordList wl = new WordList();
-            wl.title = title;
+            wl.title = title.trim();
             wl.lang1 = wl.lang2 = "";
             wl.desc = "Imported from: " + file.getPath();
             String str;
@@ -766,11 +766,10 @@ public class WordDB extends SQLiteOpenHelper {
      */
     public void importAllWordLists(SQLiteDatabase db, File dir) {
         if(dir.exists()){
-            String files[] = dir.list();
+            File files[] = dir.listFiles();
             for (int i = 0; i < files.length; i++) {
-                File file = new File(files[i]);
-                if(!importWordList(db,file))
-                    Log.e(this.getClass().getName(), "Failed to import word list from " + file.toString());
+                if(!importWordList(db,files[i]))
+                    Log.e(this.getClass().getName(), "Failed to import word list from " + files[i].toString());
             }
         }else
             Log.e(this.getClass().getName(), "directory for import " + dir.toString() + " doesn't exist");

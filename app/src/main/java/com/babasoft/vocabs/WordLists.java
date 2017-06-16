@@ -14,9 +14,10 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ListFragment;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.ShareActionProvider;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -28,7 +29,6 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
@@ -42,15 +42,14 @@ import com.babasoft.vocabs.WordDB.WordList;
  * Verwalte beliebig viele Wortlisten in einem ListView: Auswahl, Anlegen und Löschen, 
  * Importieren und Exportieren. 
  */
-public class WordLists extends ListFragment {
+public class WordLists extends ListFragment{
 
 	public static final String ID="id"; // Parameter zur übergabe der ausgewählten ID 
 	private static final int DELETE = Menu.FIRST + 1;
 	private static final int EXPORT = Menu.FIRST + 3;
 	private static final int EDIT = Menu.FIRST + 4;
 	private static final int EDIT_LIST_NAME  = Menu.FIRST + 7;
-	private static final int FILESELECTOR_REQUEST = 0;
-    private WordDB db;
+	private WordDB db;
     private ShareActionProvider mShareActionProvider;
 
     private static class ViewHolder {
@@ -329,11 +328,27 @@ public class WordLists extends ListFragment {
                 break;
 
             case R.id.action_import:
-                Intent i = new Intent(getActivity(), FileSelectorActivity.class);
-                // starte eigene Dateiauswahl für *.txt Dateien,
-                // Ergebnis in onActivityResult unten
-                i.putExtra(FileSelectorActivity.EXTENSIONS, "txt"); //$NON-NLS-1$
-                startActivityForResult(i, FILESELECTOR_REQUEST);
+                File mPath = new File(Environment.getExternalStorageDirectory() + "//Vocabs//");
+                FileDialog fileDialog = new FileDialog(getActivity(), mPath, "");
+                fileDialog.addFileListener(new FileDialog.FileSelectedListener() {
+                    public void fileSelected(File file) {
+                        Log.d(getClass().getName(), "selected file " + file.toString());
+                        if (!db.importWordList(db.getWritableDatabase(),file)){
+                            String msg = getString(R.string.ImportError, file.getPath());
+                            new AlertDialog.Builder(getActivity()).setTitle(R.string.Error).setMessage(msg).setPositiveButton(android.R.string.ok, null).show();
+                        }else
+                            refreshList();
+                    }
+                });
+                fileDialog.addDirectoryListener(new FileDialog.DirectorySelectedListener() {
+                    public void directorySelected(File directory) {
+                        Log.d(getClass().getName(), "selected dir " + directory.toString());
+                        db.importAllWordLists(db.getWritableDatabase(),directory);
+                        refreshList();
+                    }
+                });
+                fileDialog.setSelectDirectoryOption(true);
+                fileDialog.showDialog();
                 break;
 
             case R.id.action_export:
@@ -409,19 +424,5 @@ public class WordLists extends ListFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == FILESELECTOR_REQUEST && resultCode == Activity.RESULT_OK) {
-			// Benutzer hat eine Datei zum Import ausgewählt
-			File file = new File(data.getExtras().getString(FileSelectorActivity.PATH));
-			if (db.importWordList(db.getWritableDatabase(),file)){
-			    //refreshList();
-			}
-			else {
-				// Fehlermeldung mit Dateipfad als Argument (Platzhalter %s im
-				// Format-String)
-				String msg = getString(R.string.ImportError, file.getPath());
-				new AlertDialog.Builder(getActivity()).setTitle(R.string.Error).setMessage(msg).setPositiveButton(android.R.string.ok, null).show();
-			}
-
-		} // FILESELECTOR_REQUEST
 	} // onActivityResult	
 }
