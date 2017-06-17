@@ -48,7 +48,7 @@ public class FileDialog {
      * @return file dialog
      */
     public Dialog createFileDialog() {
-        Dialog dialog = null;
+        Dialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
         builder.setTitle(currentPath.getPath());

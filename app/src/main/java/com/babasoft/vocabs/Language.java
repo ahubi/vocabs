@@ -1,8 +1,5 @@
 package com.babasoft.vocabs;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 public enum Language {
     AUTO_DETECT("auto"),
     AFRIKAANS("af"),

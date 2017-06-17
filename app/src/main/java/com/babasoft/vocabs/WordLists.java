@@ -106,7 +106,7 @@ public class WordLists extends ListFragment{
         
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            View view = null;
+            View view;
             if (convertView == null) {
                 LayoutInflater inflater = context.getLayoutInflater();
                 view = inflater.inflate(R.layout.word_list_row, null);
@@ -444,7 +444,7 @@ public class WordLists extends ListFragment{
                     if (isCancelled()) break;
                 }
             }else
-                Log.e(this.getClass().getName(), "directory for import " + dir.toString() + " doesn't exist");
+                Log.e(this.getClass().getName(), "directory for import " + dir[0].toString() + " doesn't exist");
             return count;
         }
 

@@ -1,12 +1,9 @@
 package com.babasoft.vocabs;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.zip.Inflater;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.gesture.Gesture;
@@ -34,8 +31,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -43,8 +38,6 @@ import android.widget.Toast;
 
 import com.babasoft.vocabs.WordDB.WordList;
 import com.babasoft.vocabs.WordDB.WordRecord;
-
-import static com.babasoft.vocabs.R.xml.prefs;
 
 
 @SuppressWarnings("ResourceType")
