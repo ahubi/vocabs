@@ -14,7 +14,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ListFragment;
 import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
@@ -343,8 +342,7 @@ public class WordLists extends ListFragment{
                 fileDialog.addDirectoryListener(new FileDialog.DirectorySelectedListener() {
                     public void directorySelected(File directory) {
                         Log.d(getClass().getName(), "selected dir " + directory.toString());
-                        db.importAllWordLists(db.getWritableDatabase(),directory);
-                        refreshList();
+                        new ImportFilesTask().execute(directory);
                     }
                 });
                 fileDialog.setSelectDirectoryOption(true);
@@ -421,8 +419,49 @@ public class WordLists extends ListFragment{
         return super.onOptionsItemSelected(item);
     }
 
+    private class ImportFilesTask extends AsyncTask<File, Integer, Long> {
+        private ProgressDialog dialog;
+
+        protected void onPreExecute() {
+            dialog = new ProgressDialog(getActivity());
+            dialog.setTitle(R.string.PleaseWait);
+            dialog.setMessage(getString(R.string.GetLists));
+            dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            dialog.setIndeterminate(false);
+            dialog.setProgress(0);
+            this.dialog.show();
+        }
+
+        protected Long doInBackground(File... dir) {
+            long count = 0;
+            if(dir[0].exists()){
+                File files[] = dir[0].listFiles();
+                count = files.length;
+                for (int i = 0; i < count; i++) {
+                    if(!db.importWordList(db.getWritableDatabase(),files[i]))
+                        Log.e(this.getClass().getName(), "Failed to import word list from " + files[i].toString());
+                    publishProgress((int) ((i / (float) count) * 100));
+                    if (isCancelled()) break;
+                }
+            }else
+                Log.e(this.getClass().getName(), "directory for import " + dir.toString() + " doesn't exist");
+            return count;
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+            dialog.setProgress(progress[0]);
+
+        }
+
+        protected void onPostExecute(Long result) {
+            refreshList();
+            if (dialog.isShowing())
+                dialog.dismiss();
+        }
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-	} // onActivityResult	
+	} // onActivityResult
 }

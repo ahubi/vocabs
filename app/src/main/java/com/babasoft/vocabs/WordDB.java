@@ -978,7 +978,7 @@ public class WordDB extends SQLiteOpenHelper {
                 while (it.hasNext()) {
                     WordRecord wr = it.next();
                     //swap parentlist id to listid, and set parent list id to 0
-                    if(wr.parentlist!=0){
+                    if(wr.parentlist!=0 && getWordList(wr.parentlist)!=null){
                         wr.lstID = wr.parentlist;
                         wr.parentlist = 0;
                         setWordRecord(wr);

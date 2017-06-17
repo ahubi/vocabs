@@ -130,8 +130,10 @@ public class FileDialog {
             FilenameFilter filter = new FilenameFilter() {
                 public boolean accept(File dir, String filename) {
                     File sel = new File(dir, filename);
-                    if (!sel.canRead()) return false;
-                    if (selectDirectoryOption) return sel.isDirectory();
+                    if (!sel.canRead()) {
+                        Log.e(this.getClass().getName(), "accept: can't read file: " + dir.getName() + "/" + filename);
+                        return false;
+                    }
                     else {
                         boolean endsWith = fileEndsWith != null ? filename.toLowerCase().endsWith(fileEndsWith) : true;
                         return endsWith || sel.isDirectory();
@@ -139,8 +141,10 @@ public class FileDialog {
                 }
             };
             String[] fileList1 = path.list(filter);
-            for (String file : fileList1) {
-                r.add(file);
+            if(fileList1!=null){
+                for (String file : fileList1) {
+                    r.add(file);
+                }
             }
         }
         fileList = (String[]) r.toArray(new String[]{});
