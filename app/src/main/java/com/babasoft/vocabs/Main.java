@@ -37,6 +37,8 @@ public class Main extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 mTabSelection = tab.getPosition();
                 mViewPager.setCurrentItem(mTabSelection);
+                ViewPagerAdapter viewPagerAdapter = (ViewPagerAdapter) mViewPager.getAdapter();
+                viewPagerAdapter.updateTitleBar(mTabSelection);
                 Log.d("onTabSelected", "tab:" + mTabSelection);
             }
 
@@ -69,7 +71,7 @@ public class Main extends AppCompatActivity {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         int selectedTab = prefs.getInt("SelectedTab", 0);
         Log.d("onResume", "tab:" + selectedTab);
-        mViewPager.setCurrentItem(selectedTab);
+        //mViewPager.setCurrentItem(selectedTab);
     }
 }
 

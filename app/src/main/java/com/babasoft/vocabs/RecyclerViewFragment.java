@@ -27,11 +27,13 @@ import android.widget.Toast;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by sonu on 08/02/17.
  */
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment implements Observer{
 
     private Context context;
     private WordListAdapter mAdapter;
@@ -229,6 +231,12 @@ public class RecyclerViewFragment extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        Log.d(getClass().getName(), "update from observer called");
+        getActivity().setTitle(R.string.Select2Train);
     }
 
     private class ImportFilesTask extends AsyncTask<File, Integer, Long> {

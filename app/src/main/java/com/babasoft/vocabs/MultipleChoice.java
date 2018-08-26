@@ -2,6 +2,8 @@ package com.babasoft.vocabs;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 
 import android.content.Context;
@@ -23,6 +25,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,7 +44,7 @@ import com.babasoft.vocabs.WordDB.WordRecord;
 
 
 @SuppressWarnings("ResourceType")
-public class MultipleChoice extends Fragment{
+public class MultipleChoice extends Fragment implements Observer{
 
     // menu IDs
     private static final int EDIT = Menu.FIRST; // akt. Wortliste bearbeiten
@@ -80,7 +83,7 @@ public class MultipleChoice extends Fragment{
         mShuffledWords = new ArrayList<WordDB.WordRecord>();
         mCurrentWords = new ArrayList<WordDB.WordRecord>();
         
-        View view = createUIDynamically(); // dynamisch
+        View view = createUIDynamically(inflater, container); // dynamisch
 
         // Create start point
         if (Prefs.getFirstTime(getActivity()).length()==0)
@@ -97,11 +100,71 @@ public class MultipleChoice extends Fragment{
         loadAction(view,XSIZE, YSIZE);
         return view;
     }
-    
+
+    private View createUIDynamically(LayoutInflater inflater, ViewGroup container) {
+        // wichtig: für LayoutParams immer die passende Layout-Klasse verwenden
+        int textSizeButtonOffset = Prefs.getButtonTextSize(getActivity());
+        //LinearLayout retView = new LinearLayout(getActivity());
+        LinearLayout retView = (LinearLayout)inflater.inflate(R.layout.multiplechoice, container, false);
+        retView.setId(ID2);
+
+        LinearLayout main = new LinearLayout(getActivity());
+        main.setId(LINEARLAYOUTID);
+        main.setOrientation(LinearLayout.VERTICAL);
+
+        retView.addView(main, new LinearLayout.LayoutParams(
+                LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, 1));
+
+        LinearLayout rowTextView = new LinearLayout(getActivity());
+
+        TextView tQuest = new TextView(getActivity());
+
+        tQuest.setId(QUESTID);
+        tQuest.setGravity(Gravity.CENTER_HORIZONTAL);
+        //tQuest.setGravity(Gravity.CENTER_VERTICAL);
+        tQuest.setTextColor(Color.GREEN);
+        tQuest.setTextSize(tQuest.getTextSize() + Prefs.getQuestionTextSize(getActivity()));
+
+        rowTextView.setGravity(Gravity.CENTER_VERTICAL);
+        rowTextView.addView(tQuest, new LinearLayout.LayoutParams(
+                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.35f));
+
+        main.addView(rowTextView, new LinearLayout.LayoutParams(
+                LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 0.35f));
+
+        Drawable shape = getResources().getDrawable(Prefs.getButtonsForm(getActivity()));
+        shape.clearColorFilter();
+        shape.setColorFilter(Prefs.getButtoncolor(getActivity()), PorterDuff.Mode.SRC);
+
+        for (int y = 0; y < YSIZE; y++) {
+            LinearLayout row = new LinearLayout(getActivity());
+            for (int x = 0; x < XSIZE; x++) {
+                Button button = new Button(getActivity());
+                // die ID wird hier der Einfachheit halber aus den generierten
+                // R-Konstanten
+                // gesetzt, damit das restliche Coding weiter funktioniert.
+                button.setId(getButtonID(x, y));
+                button.setWidth(0);
+                button.setHeight(0);
+                button.setTextSize(button.getTextSize()+textSizeButtonOffset);
+                //button.setEllipsize(TextUtils.TruncateAt.END);
+                button.setBackgroundDrawable(shape);
+                button.setTextColor(Prefs.getTextcolor(getActivity()));
+                row.addView(button, new LinearLayout.LayoutParams(
+                        LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT, 1)); // weight
+                // 1
+            }
+            main.addView(row, new LinearLayout.LayoutParams(
+                    LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 1));
+        }
+        return retView;
+    }
+
     @Override
     public void onResume() {
         loadAction(getView(),XSIZE, YSIZE);
         mStartTime = System.currentTimeMillis();
+        updateTitle();
         super.onResume();
     }
     
@@ -189,65 +252,7 @@ public class MultipleChoice extends Fragment{
         }
     }
     
-    private View createUIDynamically() {
-        // wichtig: für LayoutParams immer die passende Layout-Klasse verwenden
-        int textSizeButtonOffset = Prefs.getButtonTextSize(getActivity());
-        LinearLayout retView = new LinearLayout(getActivity());
-        
-        retView.setId(ID2);
-        
-        LinearLayout main = new LinearLayout(getActivity());
-        main.setId(LINEARLAYOUTID);
-        main.setOrientation(LinearLayout.VERTICAL);
-        
-        retView.addView(main, new LinearLayout.LayoutParams(
-                        LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, 1));
 
-        LinearLayout rowTextView = new LinearLayout(getActivity());
-
-        TextView tQuest = new TextView(getActivity());
-
-        tQuest.setId(QUESTID);
-        tQuest.setGravity(Gravity.CENTER_HORIZONTAL);
-        //tQuest.setGravity(Gravity.CENTER_VERTICAL);
-        tQuest.setTextColor(Color.GREEN);
-        tQuest.setTextSize(tQuest.getTextSize() + Prefs.getQuestionTextSize(getActivity()));
-        
-        rowTextView.setGravity(Gravity.CENTER_VERTICAL);
-        rowTextView.addView(tQuest, new LinearLayout.LayoutParams(
-                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.35f));
-        
-        main.addView(rowTextView, new LinearLayout.LayoutParams(
-                LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 0.35f));
-        
-        Drawable shape = getResources().getDrawable(Prefs.getButtonsForm(getActivity()));
-        shape.clearColorFilter();
-        shape.setColorFilter(Prefs.getButtoncolor(getActivity()), PorterDuff.Mode.SRC);
-        
-        for (int y = 0; y < YSIZE; y++) {
-            LinearLayout row = new LinearLayout(getActivity());
-            for (int x = 0; x < XSIZE; x++) {
-                Button button = new Button(getActivity());
-                // die ID wird hier der Einfachheit halber aus den generierten
-                // R-Konstanten
-                // gesetzt, damit das restliche Coding weiter funktioniert.
-                button.setId(getButtonID(x, y));
-                button.setWidth(0);
-                button.setHeight(0);
-                button.setTextSize(button.getTextSize()+textSizeButtonOffset);
-                //button.setEllipsize(TextUtils.TruncateAt.END);
-                button.setBackgroundDrawable(shape);
-                button.setTextColor(Prefs.getTextcolor(getActivity()));
-                row.addView(button, new LinearLayout.LayoutParams(
-                        LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT, 1)); // weight
-                                                                                  // 1
-            }
-            main.addView(row, new LinearLayout.LayoutParams(
-                    LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 1)); 
-        }
-        return retView;
-    }
-    
     final View.OnClickListener onButtonClick=new View.OnClickListener() {
         
         public void onClick(View v) {
@@ -408,7 +413,7 @@ public class MultipleChoice extends Fragment{
         mSession.wordsDone = 0;
         mSession.correctInSession = 0;
         shuffleAction(view,false);
-        setTitle();
+        updateTitle();
     }
     
     protected void playNotification(int answer) {
@@ -472,19 +477,20 @@ public class MultipleChoice extends Fragment{
         }
     }
     
-    protected void setTitle(){
-        
-        getActivity().setTitle(mSession.wordlistName + " " + "[" +
-                Long.toString(mSession.wordsDone) + "/" + 
+    protected void updateTitle(){
+        String title = mSession.wordlistName + " " + "[" +
+                Long.toString(mSession.wordsDone) + "/" +
                 Long.toString(mSession.wordsToGo) + "]" + " " +
-                getActivity().getText(R.string.False)  + 
+                getActivity().getText(R.string.False)  +
                 Long.toString(mSession.wrongAnswers) + " " +
-                getActivity().getText(R.string.Right) + 
-                Long.toString(mSession.correctAnswers));
+                getActivity().getText(R.string.Right) +
+                Long.toString(mSession.correctAnswers);
+        Log.d(getClass().getName(), "setting title:" + title);
+        getActivity().setTitle(title);
     }
     
     protected void updateTimeInfo(long timeVal){
-        setTitle();
+        updateTitle();
         getActivity().setTitle(getActivity().getTitle() + " " + "[" + Long.toString(timeVal) + "]");
     }
     
@@ -546,7 +552,7 @@ public class MultipleChoice extends Fragment{
         }
         
         mSession.wordsDone++;
-        setTitle();
+        updateTitle();
     }
     
     protected void updateWordsScore() {
@@ -593,9 +599,14 @@ public class MultipleChoice extends Fragment{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == LISTS) {
             loadAction(getView(), XSIZE, YSIZE);
-            setTitle();
+            updateTitle();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        Log.d(getClass().getName(), "update from observer called");
+        updateTitle();
+    }
 }

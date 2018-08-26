@@ -2,6 +2,8 @@ package com.babasoft.vocabs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +20,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,7 +36,7 @@ import com.babasoft.vocabs.WordDB.WordList;
 import com.babasoft.vocabs.WordDB.WordRecord;
 
 
-public class MemoryCard extends Fragment{
+public class MemoryCard extends Fragment implements Observer{
     
     private static final int EDIT = Menu.FIRST; // akt. Wortliste bearbeiten
     private static final int LISTS = Menu.FIRST+1; // Wortlisten auswaehlen/anlegen/loeschen
@@ -414,4 +417,9 @@ public class MemoryCard extends Fragment{
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        Log.d(getClass().getName(), "update from observer called");
+        updateTitle();
+    }
 }

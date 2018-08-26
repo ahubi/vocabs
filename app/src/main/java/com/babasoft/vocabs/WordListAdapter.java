@@ -60,7 +60,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.Recycl
 
     @Override
     public void onBindViewHolder(WordListAdapter.RecyclerViewHolder holder, int position) {
-        Log.d(TAG, "onBindViewHolder: " + position);
+        //Log.d(TAG, "onBindViewHolder: " + position);
         WordList l = mList.get(position);
         String label = l.title + " " + "[" + l.lang1 + "-" + l.lang2 + "]" + " " + "[" + l.count + "]";
         holder.label.setText(label);
