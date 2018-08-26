@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -143,7 +144,11 @@ public class FileDialog {
             String[] fileList1 = path.list(filter);
             if(fileList1!=null){
                 for (String file : fileList1) {
-                    r.add(file);
+                    try {
+                        r.add(new String(file.getBytes("UTF-8")));
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

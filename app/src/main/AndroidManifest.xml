@@ -3,23 +3,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.babasoft.vocabs"
     android:installLocation="auto"
-    android:versionCode="9"
-    android:versionName="2.3" >
+    android:versionCode="10"
+    android:versionName="2.4" >
 
     <application
         android:icon="@drawable/main_icon"
-        android:label="@string/app_name" >
+        android:label="@string/app_name">
 
-        <!--
-              Activity soll bei Drehung des Geräts nicht neu gestartet werden: 
-			android:configChanges="keyboardHidden|orientation"
-			(Layout passt sich automatisch an)
-        -->
         <activity
             android:name=".Main"
             android:configChanges="keyboardHidden|orientation"
-            android:label="@string/app_name" 
-        	android:theme="@style/Theme.AppCompat">
+            android:label="@string/app_name"
+            android:supportsRtl="true"
+        	android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,57 +25,69 @@
         <activity
             android:name="EditWordList"
             android:configChanges="keyboardHidden|orientation"
-            android:label="@string/EditWords" >
+            android:label="@string/EditWords"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name="WordLists"
-            android:label="@string/WordLists" >
+            android:label="@string/WordLists"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name="com.babasoft.vocabs.PrefsActivity"
-            android:label="@string/Prefs" >
+            android:label="@string/Prefs"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name="Stats"
-            android:label="@string/Stats" >
+            android:label="@string/Stats"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name="MemoryCard"
-            android:label="@string/MemoryCard" >
+            android:label="@string/MemoryCard"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name="MultipleChoice"
-            android:label="@string/MultipleChoice" >
+            android:label="@string/MultipleChoice"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name="WordListsSimple"
-            android:label="@string/Select2Train" >
+            android:label="@string/Select2Train"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name="EditWordRecord"
-            android:label="@string/EditWords" >
+            android:label="@string/EditWords"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name="EditList"
-            android:label="EditList" >
+            android:label="EditList"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name=".Help"
-            android:label="@string/Help" >
+            android:label="@string/Help"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name="DictCCList"
-            android:label="DictCCList" >
+            android:label="DictCCList"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name="DictCCWords"
-            android:label="DictCCWords" >
+            android:label="DictCCWords"
+            android:theme="@style/AppTheme">
         </activity>
     </application>
 
      <uses-sdk
-      android:minSdkVersion="7"
-      android:targetSdkVersion="19" />
+      android:minSdkVersion="14"
+      android:targetSdkVersion="27" />
     <supports-screens
         android:anyDensity="false"
         android:largeScreens="true"
