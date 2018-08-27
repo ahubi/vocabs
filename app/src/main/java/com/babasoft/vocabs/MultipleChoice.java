@@ -24,6 +24,7 @@ import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
@@ -42,9 +43,8 @@ import android.widget.Toast;
 import com.babasoft.vocabs.WordDB.WordList;
 import com.babasoft.vocabs.WordDB.WordRecord;
 
-
-@SuppressWarnings("ResourceType")
 public class MultipleChoice extends Fragment implements Observer{
+    private Context context;
 
     // menu IDs
     private static final int EDIT = Menu.FIRST; // akt. Wortliste bearbeiten
@@ -65,18 +65,24 @@ public class MultipleChoice extends Fragment implements Observer{
     int XSIZE = 2;
     int YSIZE = 2;
     
+    public MultipleChoice(){};
+
     QuestSession mSession = new QuestSession();
-    
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      setHasOptionsMenu(true);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
-    
+
+
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+        Log.d(getClass().getName(), "onCreateView");
+
         XSIZE = Prefs.getXButtons(getActivity());
         YSIZE = Prefs.getYButtons(getActivity());
         
@@ -89,25 +95,25 @@ public class MultipleChoice extends Fragment implements Observer{
         if (Prefs.getFirstTime(getActivity()).length()==0)
             Prefs.setFirstTime(getActivity(), Prefs.getDateTime());
 
-        setupListeners(view);
-
-        mDB = new WordDB(getActivity()); // Oeffne Datenbank, wird in onDestroy wieder
-                                // geschlossen
 
         // rechts/links Wischen zum Wechsel der Wortliste
-        registerGestures(view);
+        //registerGestures(view);
         mSoundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-        loadAction(view,XSIZE, YSIZE);
         return view;
     }
-
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mDB = new WordDB(getActivity());
+        setupListeners(view);
+        loadAction(view,XSIZE, YSIZE);
+    }
     private View createUIDynamically(LayoutInflater inflater, ViewGroup container) {
         // wichtig: für LayoutParams immer die passende Layout-Klasse verwenden
         int textSizeButtonOffset = Prefs.getButtonTextSize(getActivity());
         //LinearLayout retView = new LinearLayout(getActivity());
         LinearLayout retView = (LinearLayout)inflater.inflate(R.layout.multiplechoice, container, false);
         retView.setId(ID2);
-
         LinearLayout main = new LinearLayout(getActivity());
         main.setId(LINEARLAYOUTID);
         main.setOrientation(LinearLayout.VERTICAL);
@@ -164,7 +170,7 @@ public class MultipleChoice extends Fragment implements Observer{
     public void onResume() {
         loadAction(getView(),XSIZE, YSIZE);
         mStartTime = System.currentTimeMillis();
-        updateTitle();
+        //updateTitle();
         super.onResume();
     }
     
@@ -413,7 +419,7 @@ public class MultipleChoice extends Fragment implements Observer{
         mSession.wordsDone = 0;
         mSession.correctInSession = 0;
         shuffleAction(view,false);
-        updateTitle();
+        //updateTitle();
     }
     
     protected void playNotification(int answer) {

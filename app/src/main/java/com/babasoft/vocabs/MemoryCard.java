@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
@@ -37,13 +38,13 @@ import com.babasoft.vocabs.WordDB.WordRecord;
 
 
 public class MemoryCard extends Fragment implements Observer{
-    
+    private Context context;
+
     private static final int EDIT = Menu.FIRST; // akt. Wortliste bearbeiten
     private static final int LISTS = Menu.FIRST+1; // Wortlisten auswaehlen/anlegen/loeschen
     
     int XSIZE = 1;
     int YSIZE = 1;
-    QuestSession mSession = new QuestSession();
     private WordDB mDB;
     protected SoundPool mSoundPool; // fuer Erfolgsfanfare
     protected int fanfareSoundID; // ID der geladenen Sound-Resource
@@ -53,9 +54,28 @@ public class MemoryCard extends Fragment implements Observer{
     protected long mStartTime=0L;
     public static final int LINEARLAYOUTID    =   0xff00;
 
+    public MemoryCard(){};
+
+    QuestSession mSession = new QuestSession();
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+
+        mShuffledWords = new ArrayList<WordDB.WordRecord>();
+
+        // Create start point
+        if (Prefs.getFirstTime(getActivity()).length() == 0)
+            Prefs.setFirstTime(getActivity(), Prefs.getDateTime());
+        mDB = new WordDB(getActivity());
+
         // Inflate the layout for this fragment
         View retView = inflater.inflate(R.layout.memory, container, false);
         retView.setBackgroundColor(0x00000000); //black background
@@ -88,17 +108,16 @@ public class MemoryCard extends Fragment implements Observer{
         return retView;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mShuffledWords = new ArrayList<WordDB.WordRecord>();
-        
-        // Create start point
-        if (Prefs.getFirstTime(getActivity()).length() == 0)
-            Prefs.setFirstTime(getActivity(), Prefs.getDateTime());
-        mDB = new WordDB(getActivity());
-        setHasOptionsMenu(true);
-    }
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        mShuffledWords = new ArrayList<WordDB.WordRecord>();
+//
+//        // Create start point
+//        if (Prefs.getFirstTime(getActivity()).length() == 0)
+//            Prefs.setFirstTime(getActivity(), Prefs.getDateTime());
+//        mDB = new WordDB(getActivity());
+//    }
     
     @Override
     public void onPause() {

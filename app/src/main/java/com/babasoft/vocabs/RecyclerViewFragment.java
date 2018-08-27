@@ -62,6 +62,7 @@ public class RecyclerViewFragment extends Fragment implements Observer{
         super.onViewCreated(view, savedInstanceState);
         mDB = new WordDB(getActivity());
         populateRecyclerView(view);
+        getActivity().setTitle(R.string.Select2Train);
     }
 
     @Override
