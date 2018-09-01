@@ -1,4 +1,4 @@
-package com.listcheckbox_demo.adapter;
+package com.babasoft.vocabs;
 
 import android.content.Context;
 import android.util.SparseBooleanArray;
@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.listcheckbox_demo.R;
+import com.babasoft.vocabs.R;
 
 import java.util.ArrayList;
 

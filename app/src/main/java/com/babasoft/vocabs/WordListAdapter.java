@@ -1,6 +1,7 @@
 package com.babasoft.vocabs;
 
 import android.content.Context;
+import android.os.CountDownTimer;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -12,7 +13,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static android.content.ContentValues.TAG;
 import static com.babasoft.vocabs.WordDB.*;
 
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.RecyclerViewHolder> {
@@ -25,9 +25,9 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.Recycl
 
         RecyclerViewHolder(View view) {
             super(view);
-            label       = (TextView) view.findViewById(R.id.listName);
-            checkBox    = (CheckBox) view.findViewById(R.id.listSelected);
-            listID      = (TextView) view.findViewById(R.id.listId);
+            label       = view.findViewById(R.id.listName);
+            checkBox    = view.findViewById(R.id.listSelected);
+            listID      = view.findViewById(R.id.listId);
         }
 
     }
@@ -56,14 +56,11 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.Recycl
 
     @Override
     public void onBindViewHolder(WordListAdapter.RecyclerViewHolder holder, int position) {
-
         WordList l = mList.get(position);
         String label = l.title + " " + "[" + l.lang1 + "-" + l.lang2 + "]" + " " + "[" + l.count + "]";
         holder.label.setText(label);
         holder.checkBox.setChecked(mSelectedItemsIds.get(position));
         holder.listID.setText(String.valueOf(l.id));
-        Log.d(getClass().getName(), "onBindViewHolder: " + position
-                + " label: " + label + " checkbox: " + mSelectedItemsIds.get(position));
         holder.checkBox.setOnClickListener(v -> checkCheckBox(position, !mSelectedItemsIds.get(position)));
         holder.label.setOnClickListener(v -> checkCheckBox(position, !mSelectedItemsIds.get(position)));
     }
@@ -102,10 +99,8 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.Recycl
             mSelectedItemsIds.put(position, true);
         else
             mSelectedItemsIds.delete(position);
-
-        mDB.updateWordListSelection(mList.get(position).id, value);
         notifyDataSetChanged();
-        //refreshList();
+        mDB.updateWordListSelection(mList.get(position).id, value);
     }
 
     /**

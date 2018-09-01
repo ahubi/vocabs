@@ -450,14 +450,6 @@ public class MemoryCard extends Fragment implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         Log.d(getClass().getName(), "update from observer called");
-        //This is a workaround for the issue can't resolve now
-        //The problem is that if the
-        new CountDownTimer(50, 1000) {
-            public void onTick(long millisUntilFinished) {}
-            public void onFinish() {
-                Log.d(getClass().getName(), "timer expired -> update title now");
-                updateTitle();
-            }
-        }.start();
+        updateTitle();
     }
 }
