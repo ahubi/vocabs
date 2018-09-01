@@ -8,9 +8,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,9 +32,6 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-/**
- * Created by sonu on 08/02/17.
- */
 public class RecyclerViewFragment extends Fragment implements Observer{
 
     private Context context;
@@ -46,6 +45,7 @@ public class RecyclerViewFragment extends Fragment implements Observer{
 
     @Override
     public void onAttach(Context context) {
+        Log.d(getClass().getName(), "onAttach called");
         super.onAttach(context);
         this.context = context;
     }
@@ -53,25 +53,43 @@ public class RecyclerViewFragment extends Fragment implements Observer{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(getClass().getName(), "onCreateView called");
         setHasOptionsMenu(true);
         return inflater.inflate(R.layout.recycler_view_fragment, container, false);
     }
 
+    public void updateTitle(){
+        Log.d(getClass().getName(), "updateTitle called");
+        FragmentActivity activity = getActivity();
+        String title = getString(R.string.Select2Train);
+        if(activity!=null && activity.getTitle().toString()!=title)
+            activity.setTitle(R.string.Select2Train);
+    }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Log.d(getClass().getName(), "onViewCreated called");
         super.onViewCreated(view, savedInstanceState);
         mDB = new WordDB(getActivity());
         populateRecyclerView(view);
-        getActivity().setTitle(R.string.Select2Train);
     }
 
     @Override
     public void onStop() {
+        Log.d(getClass().getName(), "onStop called");
         mDB.close();
         super.onStop();
     }
 
+    @Override
+    public void onResume() {
+        Log.d(getClass().getName(), "onResume called");
+        super.onResume();
+        mAdapter.refreshList();
+    }
+
     private void populateRecyclerView(View view) {
+        Log.d(getClass().getName(), "populateRecyclerView called");
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
@@ -82,7 +100,9 @@ public class RecyclerViewFragment extends Fragment implements Observer{
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        Log.d(getClass().getName(), "onCreateOptionsMenu called");
         inflater.inflate(R.menu.wordlists_activity_actions, menu);
+        updateTitle();
         // Set up ShareActionProvider's default share intent
         //MenuItem shareItem = menu.findItem(R.id.action_share);
         //mShareActionProvider = (android.support.v7.widget.ShareActionProvider)MenuItemCompat.getActionProvider(shareItem);
@@ -115,6 +135,7 @@ public class RecyclerViewFragment extends Fragment implements Observer{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d(getClass().getName(), "onOptionsItemSelected called");
         switch (item.getItemId()) {
             case R.id.action_settings:
                 startActivity(new Intent(getActivity(), PrefsActivity.class)); // keine ID übergeben = neue Wortliste
@@ -237,7 +258,15 @@ public class RecyclerViewFragment extends Fragment implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         Log.d(getClass().getName(), "update from observer called");
-        getActivity().setTitle(R.string.Select2Train);
+        //This is a workaround for the issue can't resolve now
+        //The problem is that if the
+        new CountDownTimer(50, 1000) {
+            public void onTick(long millisUntilFinished) {}
+            public void onFinish() {
+                Log.d(getClass().getName(), "timer expired -> update title now");
+                updateTitle();
+            }
+        }.start();
     }
 
     private class ImportFilesTask extends AsyncTask<File, Integer, Long> {
@@ -283,6 +312,7 @@ public class RecyclerViewFragment extends Fragment implements Observer{
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(getClass().getName(), "onActivityResult called");
         super.onActivityResult(requestCode, resultCode, data);
     }
 }

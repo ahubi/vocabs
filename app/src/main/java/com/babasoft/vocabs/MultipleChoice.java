@@ -23,9 +23,12 @@ import android.media.RingtoneManager;
 import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -71,6 +74,7 @@ public class MultipleChoice extends Fragment implements Observer{
 
     @Override
     public void onAttach(Context context) {
+        Log.d(getClass().getName(), "onAttach called");
         super.onAttach(context);
         this.context = context;
     }
@@ -80,6 +84,8 @@ public class MultipleChoice extends Fragment implements Observer{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+        Log.d(getClass().getName(), "onCreateView called");
+
         setHasOptionsMenu(true);
         Log.d(getClass().getName(), "onCreateView");
 
@@ -103,6 +109,7 @@ public class MultipleChoice extends Fragment implements Observer{
     }
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Log.d(getClass().getName(), "onViewCreated called");
         super.onViewCreated(view, savedInstanceState);
         mDB = new WordDB(getActivity());
         setupListeners(view);
@@ -114,7 +121,7 @@ public class MultipleChoice extends Fragment implements Observer{
         //LinearLayout retView = new LinearLayout(getActivity());
         LinearLayout retView = (LinearLayout)inflater.inflate(R.layout.multiplechoice, container, false);
         retView.setId(ID2);
-        LinearLayout main = new LinearLayout(getActivity());
+        LinearLayout main = new LinearLayout(context);
         main.setId(LINEARLAYOUTID);
         main.setOrientation(LinearLayout.VERTICAL);
 
@@ -168,6 +175,7 @@ public class MultipleChoice extends Fragment implements Observer{
 
     @Override
     public void onResume() {
+        Log.d(getClass().getName(), "onResume called");
         loadAction(getView(),XSIZE, YSIZE);
         mStartTime = System.currentTimeMillis();
         //updateTitle();
@@ -176,6 +184,7 @@ public class MultipleChoice extends Fragment implements Observer{
     
     @Override
     public void onPause() {
+        Log.d(getClass().getName(), "onPause called");
         Prefs.setIncorrectAnswers(getActivity(), Prefs.getIncorrectAnswers(getActivity())+mSession.wrongAnswers);
         Prefs.setCorrectAnswers(getActivity(), Prefs.getCorrectAnswers(getActivity())+mSession.correctAnswers);
         Prefs.setLastWords(getActivity(), mSession.wordlistName);
@@ -186,12 +195,14 @@ public class MultipleChoice extends Fragment implements Observer{
     
     @Override
     public void onStop(){
+        Log.d(getClass().getName(), "onStop called");
         mDB.close();
         super.onStop();
     }
     
     @Override
     public void onDestroy() {
+        Log.d(getClass().getName(), "onDestroy called");
         super.onDestroy();
     }
     
@@ -484,15 +495,21 @@ public class MultipleChoice extends Fragment implements Observer{
     }
     
     protected void updateTitle(){
-        String title = mSession.wordlistName + " " + "[" +
-                Long.toString(mSession.wordsDone) + "/" +
-                Long.toString(mSession.wordsToGo) + "]" + " " +
-                getActivity().getText(R.string.False)  +
-                Long.toString(mSession.wrongAnswers) + " " +
-                getActivity().getText(R.string.Right) +
-                Long.toString(mSession.correctAnswers);
-        Log.d(getClass().getName(), "setting title:" + title);
-        getActivity().setTitle(title);
+        FragmentActivity activity = getActivity();
+        if (activity!=null) {
+            String title = mSession.wordlistName + " " + "[" +
+                    Long.toString(mSession.wordsDone) + "/" +
+                    Long.toString(mSession.wordsToGo) + "]" + " " +
+                    activity.getString(R.string.False) +
+                    Long.toString(mSession.wrongAnswers) + " " +
+                    activity.getString(R.string.Right) +
+                    Long.toString(mSession.correctAnswers);
+            Log.d(getClass().getName(), "setting title:" + title);
+
+            activity.setTitle(title);
+            //Toolbar tb = (Toolbar) getActivity().findViewById(R.id.toolbar);
+            //tb.setTitle(title);
+        }
     }
     
     protected void updateTimeInfo(long timeVal){
@@ -575,7 +592,9 @@ public class MultipleChoice extends Fragment implements Observer{
     }
     
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        Log.d(getClass().getName(), "onCreateOptionsMenu called");
         inflater.inflate(R.menu.memorycard_activity_actions, menu);
+        updateTitle();
     }
 
     /**
@@ -583,6 +602,7 @@ public class MultipleChoice extends Fragment implements Observer{
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d(getClass().getName(), "onOptionsItemSelected called");
         switch (item.getItemId()) {
         case R.id.action_compose: {
             if (mAnswerButton != null) {
@@ -603,6 +623,7 @@ public class MultipleChoice extends Fragment implements Observer{
  */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(getClass().getName(), "onActivityResult called");
         if (requestCode == LISTS) {
             loadAction(getView(), XSIZE, YSIZE);
             updateTitle();
@@ -613,6 +634,15 @@ public class MultipleChoice extends Fragment implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         Log.d(getClass().getName(), "update from observer called");
-        updateTitle();
+        //This is a workaround for the issue can't resolve now
+        //The problem is that if the
+        new CountDownTimer(50, 1000) {
+            public void onTick(long millisUntilFinished) {}
+            public void onFinish() {
+                Log.d(getClass().getName(), "timer expired -> update title now");
+                updateTitle();
+            }
+        }.start();
+
     }
 }

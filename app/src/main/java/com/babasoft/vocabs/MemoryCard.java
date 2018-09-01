@@ -20,6 +20,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,7 +53,6 @@ public class MemoryCard extends Fragment implements Observer{
     protected List<WordRecord> mShuffledWords;                        //Words to be set on buttons
     protected String mCurrentPair;
     protected long mStartTime=0L;
-    public static final int LINEARLAYOUTID    =   0xff00;
 
     public MemoryCard(){};
 
@@ -60,6 +60,7 @@ public class MemoryCard extends Fragment implements Observer{
 
     @Override
     public void onAttach(Context context) {
+        Log.d(getClass().getName(), "onAttach called");
         super.onAttach(context);
         this.context = context;
     }
@@ -67,6 +68,7 @@ public class MemoryCard extends Fragment implements Observer{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d(getClass().getName(), "onCreateView called");
         setHasOptionsMenu(true);
 
         mShuffledWords = new ArrayList<WordDB.WordRecord>();
@@ -121,6 +123,7 @@ public class MemoryCard extends Fragment implements Observer{
     
     @Override
     public void onPause() {
+        Log.d(getClass().getName(), "onPause called");
         Prefs.setLastWords(getActivity(), mSession.wordlistName);
         Prefs.setDuration(getActivity(), Prefs.getDuration(getActivity()) + System.currentTimeMillis() - mStartTime);
         //To be at the same place as before
@@ -131,12 +134,14 @@ public class MemoryCard extends Fragment implements Observer{
 
     @Override
     public void onStop() {
+        Log.d(getClass().getName(), "onStop called");
         mDB.close();
         super.onStop();
     }
 
     @Override
     public void onDestroy() {
+        Log.d(getClass().getName(), "onDestroy called");
         super.onDestroy();
     }
     /**
@@ -147,8 +152,9 @@ public class MemoryCard extends Fragment implements Observer{
      */
     @Override
     public void onResume() {
+        Log.d(getClass().getName(), "onResume called");
         loadAction(getView(),XSIZE, YSIZE);
-        updateTitle();
+        //updateTitle();
         mStartTime = System.currentTimeMillis();
         super.onResume();
     }
@@ -398,7 +404,9 @@ public class MemoryCard extends Fragment implements Observer{
     }
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        Log.d(getClass().getName(), "onCreateOptionsMenu called");
         inflater.inflate(R.menu.memorycard_activity_actions, menu);
+        updateTitle();
     }
 
     /**
@@ -406,6 +414,8 @@ public class MemoryCard extends Fragment implements Observer{
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d(getClass().getName(), "onOptionsItemSelected called");
+
         switch (item.getItemId()) {
         case R.id.action_compose: {
             Button button = (Button) getView().findViewById(R.id.button_main);
@@ -427,6 +437,7 @@ public class MemoryCard extends Fragment implements Observer{
  */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(getClass().getName(), "onActivityResult called");
         if (requestCode == LISTS && resultCode == Activity.RESULT_OK) {
             // eine andere Liste wurde ausgewaehlt
             long id = data.getExtras().getLong(WordLists.ID);
@@ -439,6 +450,14 @@ public class MemoryCard extends Fragment implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         Log.d(getClass().getName(), "update from observer called");
-        updateTitle();
+        //This is a workaround for the issue can't resolve now
+        //The problem is that if the
+        new CountDownTimer(50, 1000) {
+            public void onTick(long millisUntilFinished) {}
+            public void onFinish() {
+                Log.d(getClass().getName(), "timer expired -> update title now");
+                updateTitle();
+            }
+        }.start();
     }
 }

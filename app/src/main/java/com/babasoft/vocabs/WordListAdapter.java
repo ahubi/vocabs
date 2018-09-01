@@ -15,10 +15,6 @@ import java.util.ArrayList;
 import static android.content.ContentValues.TAG;
 import static com.babasoft.vocabs.WordDB.*;
 
-/**
- * Created by sonu on 19/09/16.
- */
-
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.RecyclerViewHolder> {
 
     static class RecyclerViewHolder extends RecyclerView.ViewHolder {
@@ -60,22 +56,20 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.Recycl
 
     @Override
     public void onBindViewHolder(WordListAdapter.RecyclerViewHolder holder, int position) {
-        //Log.d(TAG, "onBindViewHolder: " + position);
+
         WordList l = mList.get(position);
         String label = l.title + " " + "[" + l.lang1 + "-" + l.lang2 + "]" + " " + "[" + l.count + "]";
         holder.label.setText(label);
         holder.checkBox.setChecked(mSelectedItemsIds.get(position));
         holder.listID.setText(String.valueOf(l.id));
-
+        Log.d(getClass().getName(), "onBindViewHolder: " + position
+                + " label: " + label + " checkbox: " + mSelectedItemsIds.get(position));
         holder.checkBox.setOnClickListener(v -> checkCheckBox(position, !mSelectedItemsIds.get(position)));
-
         holder.label.setOnClickListener(v -> checkCheckBox(position, !mSelectedItemsIds.get(position)));
     }
 
     @Override
-    public int getItemCount() {
-        return (null != mList ? mList.size() : 0);
-    }
+    public int getItemCount() {return (null != mList ? mList.size() : 0);}
 
     /**
      * Remove all elements from list and populate with new content from database
@@ -94,6 +88,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.Recycl
      * Remove all checkbox Selection
      **/
     public void removeSelection() {
+        Log.d(getClass().getName(), "removeSelection called");
         mSelectedItemsIds = new SparseBooleanArray();
         notifyDataSetChanged();
     }
@@ -102,6 +97,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.Recycl
      * Check the Checkbox if not checked
      **/
     public void checkCheckBox(int position, boolean value) {
+        Log.d(getClass().getName(), "checkCheckBox called");
         if (value)
             mSelectedItemsIds.put(position, true);
         else

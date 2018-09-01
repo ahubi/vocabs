@@ -71,7 +71,8 @@ public class Main extends AppCompatActivity {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         int selectedTab = prefs.getInt("SelectedTab", 0);
         Log.d("onResume", "tab:" + selectedTab);
-        //mViewPager.setCurrentItem(selectedTab);
+        mViewPager = findViewById(R.id.viewPager);
+        mViewPager.setCurrentItem(selectedTab);
     }
 }
 
