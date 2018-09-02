@@ -388,9 +388,8 @@ public class MemoryCard extends Fragment implements Observer{
         mDB.updateWordsScore(mShuffledWords, Prefs.getListAutoSort(getActivity()));
     }
     protected void updateTitle(){
-        getActivity().setTitle(mSession.wordlistName + " " + "[" +
-                Long.toString(mSession.wordsDone) + "/" + 
-                Integer.toString(mShuffledWords.size()) + "]");
+        getActivity().setTitle("[" + Long.toString(mSession.wordsDone) + "/" +
+                Integer.toString(mShuffledWords.size()) + "] " + mSession.wordlistName);
     }
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

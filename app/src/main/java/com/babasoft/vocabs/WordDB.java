@@ -785,6 +785,8 @@ public class WordDB extends SQLiteOpenHelper {
         WordList wordlist = getWordList(id);
         // Dateipfad ergibt sich aus Name, wir quoten alle Sonderzeichen
         File file = new File(dir, URLEncoder.encode(wordlist.title) + ".txt");
+        Log.d(getClass().getName(), "exportWordList id " + id + " path " + file.getPath());
+
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(file),'\t');
             List<WordRecord> words = getWords(id);
@@ -800,6 +802,7 @@ public class WordDB extends SQLiteOpenHelper {
             writer.close();
         } catch (IOException e) {
             // Fehler wird hier einfach ignoriert
+            Log.d(getClass().getName(), "exportWordList failed" + e.getMessage());
             return null;
         }
         return Uri.fromFile(file);

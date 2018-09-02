@@ -490,13 +490,12 @@ public class MultipleChoice extends Fragment implements Observer{
     protected void updateTitle(){
         FragmentActivity activity = getActivity();
         if (activity!=null) {
-            String title = mSession.wordlistName + " " + "[" +
-                    Long.toString(mSession.wordsDone) + "/" +
+            String title = "[" + Long.toString(mSession.wordsDone) + "/" +
                     Long.toString(mSession.wordsToGo) + "]" + " " +
                     activity.getString(R.string.False) +
                     Long.toString(mSession.wrongAnswers) + " " +
                     activity.getString(R.string.Right) +
-                    Long.toString(mSession.correctAnswers);
+                    Long.toString(mSession.correctAnswers) + " " + mSession.wordlistName;
             Log.d(getClass().getName(), "setting title:" + title);
 
             activity.setTitle(title);

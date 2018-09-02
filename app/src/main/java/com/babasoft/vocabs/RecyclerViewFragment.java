@@ -1,5 +1,6 @@
 package com.babasoft.vocabs;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -164,6 +166,7 @@ public class RecyclerViewFragment extends Fragment implements Observer{
                 break;
 
             case R.id.action_import:
+                requestStorageRWPermission();
                 File mPath = new File(Environment.getExternalStorageDirectory() + "//Vocabs//");
                 FileDialog fileDialog = new FileDialog(getActivity(), mPath, "");
                 fileDialog.addFileListener(new FileDialog.FileSelectedListener() {
@@ -187,6 +190,7 @@ public class RecyclerViewFragment extends Fragment implements Observer{
                 break;
 
             case R.id.action_export:
+                requestStorageRWPermission();
                 // speichere Datei auf der SD-Karte, ins Verzeichnis
                 File dir = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
                 dir.mkdir(); // lege Verzeichnis an, ignoriere Fehler
@@ -199,12 +203,17 @@ public class RecyclerViewFragment extends Fragment implements Observer{
                 }
                 break;
             case R.id.action_export_all:
+                requestStorageRWPermission();
                 //speichere Datei auf der SD-Karte, ins Verzeichnis
                 File dir2 = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
-                dir2.mkdir(); // lege Verzeichnis an, ignoriere Fehler
-                mDB.exportAllWordLists(mDB.getReadableDatabase(), dir2);
-                String msg = getString(R.string.Exported, dir2.getPath());
-                Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+                if(dir2.mkdir()) {
+                    mDB.exportAllWordLists(mDB.getReadableDatabase(), dir2);
+                    String msg = getString(R.string.Exported, dir2.getPath());
+                    Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+                }else {
+                    String msg = getString(R.string.ExportError, dir2.getPath());
+                    new AlertDialog.Builder(getActivity()).setTitle(R.string.Error).setMessage(msg).setPositiveButton(android.R.string.ok, null).show();
+                }
                 break;
 
             case R.id.action_delete:
@@ -279,12 +288,14 @@ public class RecyclerViewFragment extends Fragment implements Observer{
             long count = 0;
             if(dir[0].exists()){
                 File files[] = dir[0].listFiles();
-                count = files.length;
-                for (int i = 0; i < count; i++) {
-                    if(!mDB.importWordList(mDB.getWritableDatabase(),files[i]))
-                        Log.e(this.getClass().getName(), "Failed to import word list from " + files[i].toString());
-                    publishProgress((int) ((i / (float) count) * 100));
-                    if (isCancelled()) break;
+                if(files != null) {
+                    count = files.length;
+                    for (int i = 0; i < count; i++) {
+                        if (!mDB.importWordList(mDB.getWritableDatabase(), files[i]))
+                            Log.e(this.getClass().getName(), "Failed to import word list from " + files[i].toString());
+                        publishProgress((int) ((i / (float) count) * 100));
+                        if (isCancelled()) break;
+                    }
                 }
             }else
                 Log.e(this.getClass().getName(), "directory for import " + dir[0].toString() + " doesn't exist");
@@ -302,10 +313,16 @@ public class RecyclerViewFragment extends Fragment implements Observer{
                 dialog.dismiss();
         }
     }
+    void requestStorageRWPermission(){
+        ActivityCompat.requestPermissions(getActivity(), new String[] {
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        }, 777);
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(getClass().getName(), "onActivityResult called");
+        Log.d(getClass().getName(), "onActivityResult called: " + requestCode + "," + resultCode);
         super.onActivityResult(requestCode, resultCode, data);
     }
 }
