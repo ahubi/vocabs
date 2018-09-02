@@ -117,7 +117,8 @@ public class MultipleChoice extends Fragment implements Observer{
     }
     private View createUIDynamically(LayoutInflater inflater, ViewGroup container) {
         // wichtig: für LayoutParams immer die passende Layout-Klasse verwenden
-        int textSizeButtonOffset = Prefs.getButtonTextSize(getActivity());
+        int textSizeButtonOffset = Prefs.getButtonTextSize(getActivity())-16;
+        int textSizeQuestOffset = Prefs.getQuestionTextSize(getActivity())-16;
         //LinearLayout retView = new LinearLayout(getActivity());
         LinearLayout retView = (LinearLayout)inflater.inflate(R.layout.multiplechoice, container, false);
         retView.setId(ID2);
@@ -134,9 +135,8 @@ public class MultipleChoice extends Fragment implements Observer{
 
         tQuest.setId(QUESTID);
         tQuest.setGravity(Gravity.CENTER_HORIZONTAL);
-        //tQuest.setGravity(Gravity.CENTER_VERTICAL);
         tQuest.setTextColor(Color.GREEN);
-        tQuest.setTextSize(tQuest.getTextSize() + Prefs.getQuestionTextSize(getActivity()));
+        tQuest.setTextSize(tQuest.getTextSize() + textSizeQuestOffset);
 
         rowTextView.setGravity(Gravity.CENTER_VERTICAL);
         rowTextView.addView(tQuest, new LinearLayout.LayoutParams(
@@ -145,27 +145,20 @@ public class MultipleChoice extends Fragment implements Observer{
         main.addView(rowTextView, new LinearLayout.LayoutParams(
                 LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 0.35f));
 
-        Drawable shape = getResources().getDrawable(Prefs.getButtonsForm(getActivity()));
-        shape.clearColorFilter();
-        shape.setColorFilter(Prefs.getButtoncolor(getActivity()), PorterDuff.Mode.SRC);
-
         for (int y = 0; y < YSIZE; y++) {
             LinearLayout row = new LinearLayout(getActivity());
             for (int x = 0; x < XSIZE; x++) {
                 Button button = new Button(getActivity());
-                // die ID wird hier der Einfachheit halber aus den generierten
-                // R-Konstanten
-                // gesetzt, damit das restliche Coding weiter funktioniert.
                 button.setId(getButtonID(x, y));
                 button.setWidth(0);
                 button.setHeight(0);
                 button.setTextSize(button.getTextSize()+textSizeButtonOffset);
-                //button.setEllipsize(TextUtils.TruncateAt.END);
-                button.setBackgroundDrawable(shape);
                 button.setTextColor(Prefs.getTextcolor(getActivity()));
+                button.setBackgroundColor(Prefs.getButtoncolor(getActivity()));
+                button.setBackgroundResource(Prefs.getButtonsForm(getActivity()));
+
                 row.addView(button, new LinearLayout.LayoutParams(
-                        LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT, 1)); // weight
-                // 1
+                        LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT, 1));
             }
             main.addView(row, new LinearLayout.LayoutParams(
                     LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 1));

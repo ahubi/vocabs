@@ -81,29 +81,19 @@ public class MemoryCard extends Fragment implements Observer{
         // Inflate the layout for this fragment
         View retView = inflater.inflate(R.layout.memory, container, false);
         retView.setBackgroundColor(0x00000000); //black background
-        int textSizeButtonOffset = Prefs.getButtonTextSize(getActivity());
+        int textSizeButtonOffset = Prefs.getButtonTextSize(getActivity())-16;
         //Add all buttons to list to traverse with a loop
         List<Button> buttonList = new ArrayList<Button>();
         buttonList.add((Button)retView.findViewById(R.id.button_main));
         buttonList.add((Button)retView.findViewById(R.id.button_ohoh));
         buttonList.add((Button)retView.findViewById(R.id.button_easy));
         buttonList.add((Button)retView.findViewById(R.id.button_solala));
-        //Main button for memory card
-        Drawable shape = getResources().getDrawable(Prefs.getButtonsForm(getActivity()));
-        shape.setColorFilter(Prefs.getButtoncolor(getActivity()), PorterDuff.Mode.SRC);
-        //Button form settings for all buttons in the list
-        GradientDrawable gd = new GradientDrawable();
-        gd.setColor(Prefs.getButtoncolor(getActivity()));
-        gd.setCornerRadius(5);
-        gd.setStroke(1, 0xFF000000);
 
         for (Button b:buttonList) {
             b.setTextSize(b.getTextSize()+textSizeButtonOffset);
             b.setTextColor(Prefs.getTextcolor(getActivity()));
-            if(b.getId()!=R.id.button_main)
-                b.setBackgroundDrawable(gd);
-            else
-                b.setBackgroundDrawable(shape);
+            b.setBackgroundColor(Prefs.getButtoncolor(getActivity()));
+            b.setBackgroundResource(Prefs.getButtonsForm(getActivity()));
         }
         setupListeners(retView);
         registerGestures(retView);

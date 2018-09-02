@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,6 +19,7 @@
             android:id="@+id/button_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/rectangle_border"
             android:text="Button" />
     </LinearLayout>
 
@@ -43,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/easy"
+            android:background="@drawable/rectangle"
             android:text="@string/easy" />
 
         <Button
@@ -51,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/solala"
+            android:background="@drawable/rectangle"
             android:text="@string/solala" />
 
     </LinearLayout>
