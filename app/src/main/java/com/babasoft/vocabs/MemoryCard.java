@@ -381,7 +381,7 @@ public class MemoryCard extends Fragment implements Observer{
             button.setTag(R.id.Tag3, mSession.wordIndex);
             button.setTag(mShuffledWords.get(mSession.wordIndex));
             mSession.wordIndex++;
-            mSession.wordsDone = mSession.wordIndex;
+            //mSession.wordsDone = mSession.wordIndex;
         }
     }
     protected void updateWordsScore(){

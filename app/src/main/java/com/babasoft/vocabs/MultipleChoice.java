@@ -420,7 +420,7 @@ public class MultipleChoice extends Fragment implements Observer{
         // delete asked word counter
         mCurrentIndex = 0;
         mSession.wordsToGo = mCurrentWords.size();
-        mSession.wordsDone = 0;
+        //mSession.wordsDone = 0;
         mSession.correctInSession = 0;
         shuffleAction(view,false);
         //updateTitle();
@@ -627,7 +627,9 @@ public class MultipleChoice extends Fragment implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         Log.d(getClass().getName(), "update from observer called");
-        updateTitle();
+        loadAction(getView(),XSIZE, YSIZE);
+
+        //updateTitle();
 
     }
 }
