@@ -19,6 +19,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -113,8 +114,6 @@ public class MultipleChoice extends Fragment implements Observer{
     }
     private View createUIDynamically(LayoutInflater inflater, ViewGroup container) {
         // wichtig: für LayoutParams immer die passende Layout-Klasse verwenden
-        int textSizeButtonOffset = Prefs.getButtonTextSize(getActivity())-16;
-        int textSizeQuestOffset = Prefs.getQuestionTextSize(getActivity())-16;
         LinearLayout retView = (LinearLayout)inflater.inflate(R.layout.multiplechoice, container, false);
         retView.setId(ID2);
         LinearLayout main = new LinearLayout(context);
@@ -127,11 +126,13 @@ public class MultipleChoice extends Fragment implements Observer{
         LinearLayout rowTextView = new LinearLayout(getActivity());
 
         TextView tQuest = new TextView(getActivity());
+        float textSizeButton  = Prefs.getButtonTextSize(getActivity()) + tQuest.getTextSize();
+        float textSizeQuest   = Prefs.getQuestionTextSize(getActivity()) + tQuest.getTextSize();
 
         tQuest.setId(QUESTID);
         tQuest.setGravity(Gravity.CENTER_HORIZONTAL);
         tQuest.setTextColor(Color.GREEN);
-        tQuest.setTextSize(tQuest.getTextSize() + textSizeQuestOffset);
+        tQuest.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeQuest);
 
         rowTextView.setGravity(Gravity.CENTER_VERTICAL);
         rowTextView.addView(tQuest, new LinearLayout.LayoutParams(
@@ -147,7 +148,7 @@ public class MultipleChoice extends Fragment implements Observer{
                 button.setId(getButtonID(x, y));
                 button.setWidth(0);
                 button.setHeight(0);
-                button.setTextSize(button.getTextSize()+textSizeButtonOffset);
+                button.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeButton);
                 button.setTextColor(Prefs.getTextcolor(getActivity()));
                 button.setBackgroundColor(Prefs.getButtoncolor(getActivity()));
                 button.setBackgroundResource(Prefs.getButtonsForm(getActivity()));
@@ -613,6 +614,8 @@ public class MultipleChoice extends Fragment implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         Log.d(getClass().getName(), "update from observer called");
-        loadAction(getView(),XSIZE, YSIZE);
+        View v = getView();
+        if(v!=null)
+            loadAction(v, XSIZE, YSIZE);
     }
 }

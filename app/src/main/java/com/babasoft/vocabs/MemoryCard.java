@@ -19,6 +19,7 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -77,16 +78,19 @@ public class MemoryCard extends Fragment implements Observer{
         // Inflate the layout for this fragment
         View retView = inflater.inflate(R.layout.memory, container, false);
         retView.setBackgroundColor(0x00000000); //black background
-        int textSizeButtonOffset = Prefs.getButtonTextSize(getActivity())-16;
+        int textSizeButtonOffset = Prefs.getButtonTextSize(getActivity());
         //Add all buttons to list to traverse with a loop
         List<Button> buttonList = new ArrayList<Button>();
         buttonList.add((Button)retView.findViewById(R.id.button_main));
         buttonList.add((Button)retView.findViewById(R.id.button_ohoh));
         buttonList.add((Button)retView.findViewById(R.id.button_easy));
         buttonList.add((Button)retView.findViewById(R.id.button_solala));
+        float textSize = buttonList.get(0).getTextSize() + textSizeButtonOffset;
+
+        Log.d(getClass().getName(), "Button text size: " + textSize);
 
         for (Button b:buttonList) {
-            b.setTextSize(b.getTextSize()+textSizeButtonOffset);
+            b.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
             b.setTextColor(Prefs.getTextcolor(getActivity()));
             b.setBackgroundColor(Prefs.getButtoncolor(getActivity()));
             b.setBackgroundResource(Prefs.getButtonsForm(getActivity()));
