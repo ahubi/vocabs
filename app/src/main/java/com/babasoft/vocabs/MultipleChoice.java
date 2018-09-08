@@ -1,11 +1,4 @@
 package com.babasoft.vocabs;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Random;
-
 import android.content.Context;
 import android.content.Intent;
 import android.gesture.Gesture;
@@ -16,19 +9,15 @@ import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.GestureStore;
 import android.gesture.Prediction;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -45,6 +34,13 @@ import android.widget.Toast;
 
 import com.babasoft.vocabs.WordDB.WordList;
 import com.babasoft.vocabs.WordDB.WordRecord;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Random;
 
 public class MultipleChoice extends Fragment implements Observer{
     private Context context;
@@ -119,7 +115,6 @@ public class MultipleChoice extends Fragment implements Observer{
         // wichtig: für LayoutParams immer die passende Layout-Klasse verwenden
         int textSizeButtonOffset = Prefs.getButtonTextSize(getActivity())-16;
         int textSizeQuestOffset = Prefs.getQuestionTextSize(getActivity())-16;
-        //LinearLayout retView = new LinearLayout(getActivity());
         LinearLayout retView = (LinearLayout)inflater.inflate(R.layout.multiplechoice, container, false);
         retView.setId(ID2);
         LinearLayout main = new LinearLayout(context);
@@ -171,7 +166,6 @@ public class MultipleChoice extends Fragment implements Observer{
         Log.d(getClass().getName(), "onResume called");
         loadAction(getView(),XSIZE, YSIZE);
         mStartTime = System.currentTimeMillis();
-        //updateTitle();
         super.onResume();
     }
     
@@ -253,10 +247,8 @@ public class MultipleChoice extends Fragment implements Observer{
             AudioManager audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
             // berechne relative Lautstaerke, basierend auf vom Benutzer
             // eingestellter Lautstaerke und Maximum (int-Werte!)
-            float volume = (float) audioManager
-                    .getStreamVolume(AudioManager.STREAM_MUSIC)
-                    / (float) audioManager
-                            .getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+            float volume = (float) audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
+                    / (float) audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
             // spiele den in onCreate geladenen Sound
             mSoundPool.play(fanfareSoundID, volume, volume, 1, 0, 1f);
         }
@@ -273,7 +265,6 @@ public class MultipleChoice extends Fragment implements Observer{
     private void setupListeners(View view){
         // verknuepfe Buttons mit Aktionen  
         for (int y = 0; y < YSIZE; y++){
-            
             for (int x = 0; x < XSIZE; x++) {
                 Button button = (Button) view.findViewById(getButtonID(x, y));               
                 button.setOnClickListener(onButtonClick); 
@@ -420,10 +411,8 @@ public class MultipleChoice extends Fragment implements Observer{
         // delete asked word counter
         mCurrentIndex = 0;
         mSession.wordsToGo = mCurrentWords.size();
-        //mSession.wordsDone = 0;
         mSession.correctInSession = 0;
         shuffleAction(view,false);
-        //updateTitle();
     }
     
     protected void playNotification(int answer) {
@@ -499,8 +488,6 @@ public class MultipleChoice extends Fragment implements Observer{
             Log.d(getClass().getName(), "setting title:" + title);
 
             activity.setTitle(title);
-            //Toolbar tb = (Toolbar) getActivity().findViewById(R.id.toolbar);
-            //tb.setTitle(title);
         }
     }
     
@@ -627,8 +614,5 @@ public class MultipleChoice extends Fragment implements Observer{
     public void update(Observable o, Object arg) {
         Log.d(getClass().getName(), "update from observer called");
         loadAction(getView(),XSIZE, YSIZE);
-
-        //updateTitle();
-
     }
 }
