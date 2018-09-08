@@ -1,11 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
     android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/languages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="2dp"
+        android:weightSum="2.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/trans_word_lang1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="20dp"
+                android:spinnerMode="dialog" />
+
+            <Spinner
+                android:id="@+id/trans_word_lang2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="20dp"
+                android:spinnerMode="dialog" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/top_control_bar"
@@ -46,16 +79,10 @@
         android:id="@+id/firstWordControl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/languages"
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true"
         android:orientation="vertical">
-
-        <Spinner
-            android:id="@+id/trans_word_lang1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            android:spinnerMode="dialog" />
 
         <TextView
             android:id="@+id/edit_word_lang1"
@@ -67,7 +94,6 @@
             android:id="@+id/edit_word_word1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/trans_word_lang1"
             android:layout_weight="0.39"
             android:gravity="top">
 
@@ -84,13 +110,6 @@
         android:focusableInTouchMode="true"
         android:orientation="vertical"
         android:layout_below="@+id/firstWordControl">
-
-        <Spinner
-            android:id="@+id/trans_word_lang2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            android:spinnerMode="dialog" />
 
         <TextView
             android:id="@+id/edit_word_lang2"
