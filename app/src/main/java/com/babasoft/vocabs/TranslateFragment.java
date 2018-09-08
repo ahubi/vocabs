@@ -68,37 +68,7 @@ public class TranslateFragment extends Fragment implements TranslationListener {
     @Override
     public void onResume() {
         super.onResume();
-        Bundle extras = getActivity().getIntent().getExtras();
-
-        if (extras != null) {
-            if (extras.containsKey(EditWordList.ID)) {
-                mWordRecId = extras.getLong(EditWordList.ID);
-                mWordRec = mDB.getWordRecord(mWordRecId);
-                mWordLst = mDB.getWordList(mWordRec.lstID);
-
-            } else if (extras.containsKey(EditWordList.LIST_ID)) {
-                mWordLst = mDB.getWordList(extras.getLong(EditWordList.LIST_ID));
-            }
-
-            if (mWordRec != null) {
-                mEtw1.setText(mWordRec.w1);
-                mEtw2.setText(mWordRec.w2);
-            }
-            if (mWordLst != null) {
-                mTvLang1.setText(mWordLst.lang1);
-                mTvLang2.setText(mWordLst.lang2);
-                int sl1 = SupportedLanguage.getLanguagePosition(mWordLst.lang1);
-                int sl2 = SupportedLanguage.getLanguagePosition(mWordLst.lang2);
-
-                if(sl1!=-1)
-                    mSp1.setSelection(sl1);
-
-                if(sl2!=-1)
-                    mSp2.setSelection(sl2);
-
-                getActivity().setTitle(mWordLst.title);
-            }
-        }else{
+        if(mSp2.getSelectedItem().toString().contains("auto")){
             int sl = SupportedLanguage.getLanguagePosition(Locale.getDefault().getLanguage());
             if(sl!=-1)
                 mSp2.setSelection(sl);
