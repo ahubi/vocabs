@@ -11,6 +11,7 @@
         android:id="@+id/top_control_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/secondWordControl"
         android:orientation="vertical"
         android:weightSum="2.0">
         android:layout_gravity="center_horizontal">
@@ -47,8 +48,7 @@
         android:layout_height="wrap_content"
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true"
-        android:orientation="vertical"
-        android:layout_below="@+id/top_control_bar">
+        android:orientation="vertical">
 
         <Spinner
             android:id="@+id/trans_word_lang1"
@@ -70,6 +70,7 @@
             android:layout_below="@+id/trans_word_lang1"
             android:layout_weight="0.39"
             android:gravity="top">
+
             <requestFocus />
 
         </EditText>
