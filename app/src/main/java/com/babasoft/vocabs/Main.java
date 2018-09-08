@@ -25,8 +25,7 @@ public class Main extends AppCompatActivity {
         adapter.addFrag(new MemoryCard(), "MemoryCard");
         adapter.addFrag(new MultipleChoice(), "Multiple choice");
         adapter.addFrag(new RecyclerViewFragment(), "Word lists");
-        //adapter.addFrag(new ListViewFragment(), "Lists");
-        //adapter.addFrag(new WordLists(), "Word lists");
+        adapter.addFrag(new TranslateFragment(), "Translate");
         mViewPager.setAdapter(adapter);
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
