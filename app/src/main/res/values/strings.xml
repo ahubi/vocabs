@@ -2,8 +2,8 @@
 <resources>
     <string name="delete">Delete</string>
     <string name="show">Show</string>
-    <string name="deselect_all">Deselect All</string>
-    <string name="select_all">Select All</string>
+    <string name="deselect_all">Deselect all</string>
+    <string name="select_all">Select all</string>
     <string name="Sound">Sound by right</string>
     <string
         name="Words">Words</string>

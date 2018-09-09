@@ -121,12 +121,16 @@
     <string name="ImportFromDictCC">Import von dict.cc</string>
     <string name="ErrorFromDictCC">Fehler beim Importieren von dict.cc, prüfen Sie die Internet Verbindung.</string>
     <string name="ErrorGettingWords">Beim Holen der Wörter ist ein Problem aufgetretten</string>
-    <string name="Translate">Übersetze</string>
+    <string name="Translate">Übersetzen</string>
     <string name="TargetLanguageError">Zielsprache nicht gesetzt, bitte eine konkrete Sprache auswählen.</string>
     <string name="RecordSaved">Wörter wurden gespeichert</string>
     <string name="RecordSaveFail">Unvollständige Wörterpaare werden nicht gespeichert.</string>
     <string name="ListAutoSort">Auto sort Easy, So lala, Oh, Oh!</string>
     <string name="resort2parents">Resort Easy, So lala, Oh, Oh</string>
     <string name="resort2ParentsAlertMessage">Resort Easy, So lala and Oh Oh zurück in die orginal Listen?</string>
+    <string name="delete">Löschen</string>
+    <string name="show">Anzeigen</string>
+    <string name="deselect_all">Alle deselektieren</string>
+    <string name="select_all">Alle auswählen</string>
 
 </resources>
